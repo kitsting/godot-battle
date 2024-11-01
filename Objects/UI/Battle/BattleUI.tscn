@@ -462,8 +462,8 @@ theme_override_constants/separation = 75
 [node name="DodgePrompt" type="HBoxContainer" parent="."]
 offset_left = 86.0
 offset_top = 276.0
-offset_right = 197.0
-offset_bottom = 295.0
+offset_right = 212.0
+offset_bottom = 299.0
 theme_override_constants/separation = 0
 
 [node name="Up" parent="DodgePrompt" instance=ExtResource("13")]

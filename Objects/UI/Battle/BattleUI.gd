@@ -14,6 +14,7 @@ var target = 0
 #Reference variables
 var useattacks = null
 var gridref = null
+var currentplayer = null
 
 #Other variables
 var waiting = false
@@ -67,6 +68,8 @@ func _ready():
 
 
 func _process(_delta):
+	currentplayer = gridref.get_players()[currentturn]
+	
 	#Use the proper set of attacks
 	if mainselect == 0:
 		useattacks = mainattacks
@@ -95,30 +98,23 @@ func change_sides(enemyturn):
 	
 	#Your turn
 	if !enemyturn:
-		
-			
+
+		#Update the top health bars
 		for node in $TopUI/Health.get_children():
 			node.set_turn([currentturn])
 			
 		#Choose which party member to target for when it's the enemy's turn again
 		if gridref.get_players().size() > 1:
+												#Skip dead players
+			target = randi() % gridref.get_players(true, false).size()
+		
 			for node in $TopUI/Health.get_children():
-				node.set_turn([currentturn])
-			
-			target = randi() % gridref.get_players().size()
-			
-			while gridref.get_players()[target].dead:
-				target = randi() % gridref.get_players().size()
-		
-			for child in $TopUI/Health.get_children():
-				child.set_targeted(false)
-		
+				node.set_targeted(false)
 			$TopUI/Health.get_child(target).set_targeted(true)
 			
+			#Set all players to not targeted except the targeted one
 			for child in gridref.get_players():
-				child.targeted = false
-				if child.party_number == target:
-					child.targeted = true
+				child.targeted = (child.party_number == target)
 		
 		#Disable the icons of dead players
 		for player in gridref.get_players():
@@ -232,17 +228,12 @@ func update_more():
 			new_attack.grey_out()
 		if !(attack is Item):
 			var use_cooldown = bool(attack.ap_penalty)
-			new_attack.set_cooldown(use_cooldown,gridref.get_players()[currentturn].get_cooldown(attack))
+			new_attack.set_cooldown(use_cooldown,currentplayer.get_cooldown(attack))
 		else:
 			new_attack.show_stack()
 			
 		new_attack.connect("new_selection", update_submenu_ui)
 		
-		if attack.requires1:
-			new_attack.show_icon(1)
-		if attack.requires2:
-			new_attack.show_icon(2)
-			
 		if attackid == 0:
 			new_attack.grab_focus()
 			
@@ -358,43 +349,30 @@ func _input(_event):
 					else:
 						#Attack
 						if useattacks[subselect] is Attack:
-							var attack_enemy = []
-							#Select an enemy
-							if useattacks[subselect].get_affects() == "enemy":
-								attack_enemy = [await get_object("enemy")]
-							#Select all enemies
-							elif useattacks[subselect].get_affects() == "all_enemies":
-								attack_enemy = gridref.get_enemies()
-							#Select a grid square
-							elif useattacks[subselect].get_affects() == "grid":
-								attack_enemy = [await get_object("grid")]
-							else:
-								attack_enemy = ["None lmao"]
-								
 							
+							var attack_enemy = []
+							match useattacks[subselect].get_affects():
+								"enemy": #Select an enemy
+									attack_enemy = [await get_object("enemy")]
+								"all_enemies": #Select all enemies
+									attack_enemy = gridref.get_enemies()
+								"grid": #Select a grid square
+									attack_enemy = [await get_object("grid")]
+								_: #Fallback case
+									attack_enemy = ["None lmao"]
+								
 							#Attack if the selection is valid
 							if attack_enemy != [] and attack_enemy != [null]:
-								waiting = true
-								var node = Node.new()
-								node.set_script(useattacks[subselect].get_script())
-								add_child(node)
-								node.execute(useattacks[subselect],attack_enemy,gridref.get_players()[currentturn])
-								await node.attack_finished
-								waiting = false
-								BattleSystem.change_ap(-useattacks[subselect].cost - gridref.get_players()[currentturn].get_cooldown(useattacks[subselect]))
+								await execute_attack(useattacks[subselect],attack_enemy,currentplayer)
+								currentplayer.take_damage(useattacks[subselect].cost + currentplayer.get_cooldown(useattacks[subselect]))
+								#BattleSystem.change_ap(-useattacks[subselect].cost - gridref.get_players()[currentturn].get_cooldown(useattacks[subselect]))
 								advance()
 							else:
 								$AnimationPlayer.play("ShowMore")
 							
 						#Item
 						if useattacks[subselect] is Item:
-							waiting = true
-							var node = Node.new()
-							node.set_script(useattacks[subselect].get_script())
-							add_child(node)
-							node.execute(useattacks[subselect],gridref.get_players()[currentturn],gridref.get_players()[currentturn])
-							await node.attack_finished
-							waiting = false
+							await execute_attack(useattacks[subselect],currentplayer,currentplayer)
 							PartyStats.remove_inventory(useattacks[subselect])
 							advance()
 			
@@ -420,8 +398,8 @@ func advance():
 			if !(useattacks[subselect] is Item) and mainselect != 3:
 				set_attack_cooldown(useattacks[subselect])
 		
-		gridref.get_players()[currentturn].reset_anim()
-		gridref.get_players()[currentturn].not_thinking()
+		currentplayer.reset_anim()
+		currentplayer.not_thinking()
 		
 		currentturn += 1
 		
@@ -443,9 +421,9 @@ func advance():
 			for node in $TopUI/Health.get_children():
 				node.set_turn([currentturn])
 
-			gridref.get_players()[currentturn].thinking()
+			currentplayer.thinking()
 			
-			if gridref.get_players()[currentturn].dead:
+			if currentplayer.dead:
 				advance()
 				
 			if currentturn in BattleSystem.skipqueue:
@@ -461,31 +439,20 @@ func advance():
 		
 func set_attack_cooldown(attack):
 	if currentturn < PartyStats.party.size():
-		gridref.get_players()[currentturn].set_attack_cooldown(attack)
+		currentplayer.set_attack_cooldown(attack)
 
 
 #Check if an attack can actually be used
 func can_use_attack(attack):
 	var canuse = false
 	
-	if !(attack is Item):
-		if BattleSystem.currentap >= attack.cost+gridref.get_players()[currentturn].get_cooldown(attack):
+	if attack is not Item:
+		if BattleSystem.currentap >= attack.cost+currentplayer.get_cooldown(attack):
 			if BattleSystem.current_scenario.state == 2:
 				if attack is Attack and attack.get_affects() == "grid":
 					return false
 			canuse = true
-		
-		if attack.requires1:
-			if gridref.get_players().size() >= 2:
-				canuse = !gridref.get_players()[1].dead
-			else:
-				return false
-				
-		if attack.requires2:
-			if gridref.get_players().size() >= 3:
-				canuse = !gridref.get_players()[2].dead
-			else:
-				return false
+
 	else:
 		return true
 		
@@ -516,7 +483,7 @@ func battle_over():
 	
 	
 func update_menu_color():
-	var tempparty = PartyStats.load_party_id(gridref.get_players()[currentturn].party_number)
+	var tempparty = PartyStats.load_party_id(currentplayer.party_number)
 	var newselectcol = tempparty.select_color
 	var newunselectcol = tempparty.unselect_color
 	for action in $Actions.get_children():
@@ -526,17 +493,6 @@ func update_menu_color():
 	$Analysis.self_modulate = newunselectcol
 	$AttackInfo.set_color(newunselectcol)
 	
-	
-	
-	
-func swap_control(node1 : Control, node2 : Control, time = 0.2):
-	var tween = create_tween()
-	
-	var node1pos = node1.position
-	var node2pos = node2.position
-	tween.tween_property(node1, "position", node2pos, time)
-	tween.parallel().tween_property(node2,"position",node1pos,time)
-
 
 #Functions for showing and hiding the ui
 func animate_ui_appear():
@@ -566,8 +522,8 @@ func enemy_turn_ui_hide():
 func update_submenu_ui(attackid):
 	subselect = attackid
 	$Info.set_text(useattacks[attackid].desc.to_upper())
-	$Info.set_cost(useattacks[attackid].cost+gridref.get_players()[currentturn].get_cooldown(useattacks[attackid]))
-	BattleSystem.preview_ap_change(useattacks[attackid].cost+gridref.get_players()[currentturn].get_cooldown(useattacks[attackid]))
+	$Info.set_cost(useattacks[attackid].cost+currentplayer.get_cooldown(useattacks[attackid]))
+	BattleSystem.preview_ap_change(useattacks[attackid].cost+currentplayer.get_cooldown(useattacks[attackid]))
 	$Selection.play()
 
 func show_cards():
@@ -601,3 +557,14 @@ func lock_ui():
 			player.not_thinking()
 	get_tree().call_group("party","all_done")
 	$Selection.volume_db = -80
+
+
+func execute_attack(attack, target, user) -> void:
+	waiting = true
+	var node = Node.new()
+	node.set_script(attack.get_script())
+	add_child(node)
+	node.execute(attack, target, user)
+	await node.attack_finished
+	waiting = false
+	
