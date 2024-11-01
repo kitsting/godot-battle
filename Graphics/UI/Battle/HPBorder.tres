@@ -1,0 +1,41 @@
+[gd_resource type="AnimatedTexture" load_steps=13 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dsygqsinowobf" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder3.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bhc0pbsxj0vox" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder5.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d26084djarj12" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder4.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://batbshrpuv2q6" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder11.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cur8hwwxapub6" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder1.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dbhcmmpkq7h0m" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder7.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b2y5mej4ew1a2" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder12.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cddqipe08fuwu" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder6.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://dq2q76xmk84l2" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder9.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://vpxf25s42yrv" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder10.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://vdpvcnnh26j6" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder2.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://dbvm1wcp28tya" path="res://Graphics/UI/Battle/HPBorderFrames/HPBorder8.png" id="16"]
+
+[resource]
+frames = 12
+speed_scale = 10.0
+frame_0/texture = ExtResource("5")
+frame_1/texture = ExtResource("13")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("1")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("3")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("2")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("9")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("6")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("16")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("10")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("11")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("4")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("8")
+frame_11/duration = 1.0

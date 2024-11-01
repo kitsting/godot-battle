@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Badge" load_steps=3 format=3 uid="uid://b025mfehu671p"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Badge.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b7m7n2juhniy2" path="res://Graphics/Badges/Backtrek.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+badge_name = "Backtrek"
+readable_name = "Explorer's Pin"
+badge_desc = "All rooms available when backtracking"
+badge_sprite = ExtResource("2")

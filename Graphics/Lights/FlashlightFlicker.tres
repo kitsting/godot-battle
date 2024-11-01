@@ -1,0 +1,10 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3 uid="uid://dbasoy4jrxilp"]
+
+[ext_resource type="Texture2D" uid="uid://b2swqgl7agv1c" path="res://Graphics/Lights/Flashlight.png" id="1_wr2ab"]
+[ext_resource type="Texture2D" uid="uid://b7g84mvigg8hb" path="res://Graphics/Lights/Flashlight2.png" id="2_m3osn"]
+
+[resource]
+frames = 2
+frame_0/texture = ExtResource("1_wr2ab")
+frame_1/texture = ExtResource("2_m3osn")
+frame_1/duration = 1.0

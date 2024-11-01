@@ -1,0 +1,7 @@
+[gd_resource type="AnimatedTexture" load_steps=2 format=3 uid="uid://x5w3ohpsq5on"]
+
+[ext_resource type="Texture2D" uid="uid://dn7cwniahy1j5" path="res://Graphics/UI/Icons/Animations/Fight.png" id="1_jrp4y"]
+
+[resource]
+pause = true
+frame_0/texture = ExtResource("1_jrp4y")

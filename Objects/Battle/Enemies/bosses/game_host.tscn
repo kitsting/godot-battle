@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://vdu1iohbqipo"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/bosses/game_host.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c0tvd10r83htd" path="res://Graphics/Enemies/Game_Host/Forcefield.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="7"]
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dssfe"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn3jj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(4, 363)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(52, 302)
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.705882)]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1ew7"]
+_data = {
+"Appear": SubResource("3"),
+"Disappear": SubResource("4")
+}
+
+[node name="GameHost" groups=["in_place"] instance=ExtResource("1")]
+position = Vector2(449, 91)
+script = ExtResource("2")
+hp = 200
+enemyname = "Game Show Host"
+enemydesc = "Long grid"
+
+[node name="Sprite" parent="." index="0"]
+z_index = 1
+material = SubResource("ShaderMaterial_dssfe")
+position = Vector2(-28, -20)
+sprite_frames = SubResource("SpriteFrames_tn3jj")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" index="0"]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="CanvasLayer" index="1"]
+visible = false
+text = "Redacted"
+
+[node name="ProgressBar" parent="CanvasLayer" index="2"]
+texture_under = ExtResource("5")
+texture_over = ExtResource("7")
+texture_progress = ExtResource("4")
+
+[node name="Forcefield" type="Sprite2D" parent="." index="6"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 2
+position = Vector2(-82, 54)
+texture = ExtResource("6")
+hframes = 8
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 350)
+
+[node name="Collision" type="Area2D" parent="Forcefield" index="0" groups=["solid"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forcefield/Collision" index="0"]
+position = Vector2(8, 0.5)
+shape = SubResource("1")
+
+[node name="AnimTimer" type="Timer" parent="Forcefield" index="1"]
+wait_time = 0.065
+autostart = true
+
+[node name="Proximity" type="Area2D" parent="Forcefield" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forcefield/Proximity" index="0"]
+position = Vector2(-16, -7)
+shape = SubResource("2")
+
+[node name="ForcefieldAnim" type="AnimationPlayer" parent="Forcefield" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_x1ew7")
+}
+
+[connection signal="timeout" from="Forcefield/AnimTimer" to="." method="_on_AnimTimer_timeout"]
+[connection signal="area_entered" from="Forcefield/Proximity" to="." method="_on_Proximity_area_entered"]
+[connection signal="area_exited" from="Forcefield/Proximity" to="." method="_on_Proximity_area_exited"]

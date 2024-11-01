@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://c88eyk7u3ypes"]
+
+[ext_resource type="Texture2D" uid="uid://bt2kkjwbhxxjp" path="res://Graphics/Overworld/Mines/ColorPuzzle/Display.png" id="1_7nasc"]
+[ext_resource type="Script" path="res://Objects/Overworld/Mines/ColorPuzzle.gd" id="1_233hd"]
+[ext_resource type="AudioStream" uid="uid://csmkee7mx4wc0" path="res://Sounds/Overworld/color_button.wav" id="2_0owwd"]
+[ext_resource type="Texture2D" uid="uid://ea7w0esv07mr" path="res://Graphics/Overworld/Mines/ColorPuzzle/0.png" id="2_ehq2m"]
+[ext_resource type="Script" path="res://Objects/Overworld/Mines/RedButton.gd" id="4_jpfwb"]
+[ext_resource type="Texture2D" uid="uid://bba5d80n6ynyw" path="res://Graphics/Overworld/Mines/ColorPuzzle/RedButton.png" id="5_x0t3h"]
+[ext_resource type="Script" path="res://Objects/Overworld/Mines/Green.gd" id="6_foj01"]
+[ext_resource type="Texture2D" uid="uid://cq63qjy51x762" path="res://Graphics/Overworld/Mines/ColorPuzzle/GreenButton.png" id="7_pm16n"]
+[ext_resource type="Script" path="res://Objects/Overworld/Mines/Blue.gd" id="8_nqujx"]
+[ext_resource type="Texture2D" uid="uid://bv24aqptjt1wh" path="res://Graphics/Overworld/Mines/ColorPuzzle/BlueButton.png" id="9_i145o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03h0v"]
+size = Vector2(13, 13)
+
+[node name="ColorPuzzle" type="Node2D"]
+script = ExtResource("1_233hd")
+
+[node name="Pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0owwd")
+max_polyphony = 5
+
+[node name="Display" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_7nasc")
+centered = false
+
+[node name="RedNumber" type="Sprite2D" parent="Display"]
+modulate = Color(0.72549, 0.121569, 0.121569, 1)
+position = Vector2(3, 3)
+texture = ExtResource("2_ehq2m")
+centered = false
+
+[node name="BlueNumber" type="Sprite2D" parent="Display"]
+modulate = Color(0, 0.282353, 0.733333, 1)
+position = Vector2(13, 3)
+texture = ExtResource("2_ehq2m")
+centered = false
+
+[node name="GreenNumber" type="Sprite2D" parent="Display"]
+modulate = Color(0.223529, 0.635294, 0.423529, 1)
+position = Vector2(23, 3)
+texture = ExtResource("2_ehq2m")
+centered = false
+
+[node name="RedButton" type="Area2D" parent="."]
+position = Vector2(-6, 0)
+script = ExtResource("4_jpfwb")
+
+[node name="Collision" type="CollisionShape2D" parent="RedButton"]
+position = Vector2(-0.5, 35.5)
+shape = SubResource("RectangleShape2D_03h0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="RedButton"]
+position = Vector2(-7, 29)
+texture = ExtResource("5_x0t3h")
+centered = false
+
+[node name="GreenButton" type="Area2D" parent="."]
+position = Vector2(40, 0)
+script = ExtResource("6_foj01")
+
+[node name="Collision" type="CollisionShape2D" parent="GreenButton"]
+position = Vector2(-0.5, 35.5)
+shape = SubResource("RectangleShape2D_03h0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenButton"]
+position = Vector2(-7, 29)
+texture = ExtResource("7_pm16n")
+centered = false
+
+[node name="BlueButton" type="Area2D" parent="."]
+position = Vector2(17, 0)
+script = ExtResource("8_nqujx")
+
+[node name="Collision" type="CollisionShape2D" parent="BlueButton"]
+position = Vector2(-0.5, 35.5)
+shape = SubResource("RectangleShape2D_03h0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="BlueButton"]
+position = Vector2(-7, 29)
+texture = ExtResource("9_i145o")
+centered = false

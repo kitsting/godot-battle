@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv7fdq148j55x"]
+
+[ext_resource type="PackedScene" uid="uid://bxa68coqrmuo6" path="res://Objects/Battle/Backgrounds/Drop.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://vdgntihgg6n3" path="res://Objects/UI/Battle/BattleUI.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://clhj6qnvia51d" path="res://Objects/Battle/GridObjects/Grid.tscn" id="7"]
+[ext_resource type="Script" path="res://Objects/BattleCamera.gd" id="8"]
+[ext_resource type="Script" path="res://Objects/Battle/BattleScene.gd" id="9"]
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(55, 287)
+
+[node name="BattleScene" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("9")
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="Drop" parent="Background" instance=ExtResource("2")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BattleUI" parent="UI" instance=ExtResource("5")]
+
+[node name="DimBG" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MainGrid" parent="." instance=ExtResource("7")]
+position = Vector2(101, 132)
+
+[node name="BattleCamera" type="Camera2D" parent="." groups=["battlecam", "camera"]]
+process_mode = 3
+offset = Vector2(240, 135)
+script = ExtResource("8")
+
+[node name="GridCollapser" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GridCollapser"]
+position = Vector2(17.5, 133.5)
+shape = SubResource("3")
+
+[node name="Center" type="Marker2D" parent="."]
+position = Vector2(236, 149)
+
+[connection signal="area_entered" from="GridCollapser" to="." method="_on_GridCollapser_area_entered"]

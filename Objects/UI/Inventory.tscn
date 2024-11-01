@@ -1,0 +1,144 @@
+[gd_scene load_steps=13 format=3 uid="uid://dta216cirh2eh"]
+
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="1_4eysj"]
+[ext_resource type="Script" path="res://Objects/UI/Inventory.gd" id="1_u23xa"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="2_cvqee"]
+[ext_resource type="PackedScene" uid="uid://jwpnsxxme8k0" path="res://Objects/UI/Elements/InputTextureRect.tscn" id="4_pqub5"]
+[ext_resource type="Texture2D" uid="uid://bsvoo2tv4ekty" path="res://Graphics/UI/Buttons/KeyC.png" id="5_wrqm2"]
+[ext_resource type="Texture2D" uid="uid://cce4wt0fava3f" path="res://Graphics/UI/Buttons/ButtonXXbox.png" id="6_je2fh"]
+[ext_resource type="Texture2D" uid="uid://biwauy687o3cy" path="res://Graphics/UI/Buttons/ButtonYGeneric.png" id="7_y47u2"]
+[ext_resource type="Texture2D" uid="uid://w31uih0vdfon" path="res://Graphics/UI/Buttons/ButtonSquare.png" id="8_qoaiv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_skfpi"]
+font = ExtResource("2_cvqee")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xnmqw"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ho5c3"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbo4o"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Inventory" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u23xa")
+
+[node name="Top" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" parent="Top" instance=ExtResource("1_4eysj")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = " Back "
+desc = "Go back"
+
+[node name="TopLabel" type="Label" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ITEMS"
+label_settings = SubResource("LabelSettings_skfpi")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Menu" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Items" type="VBoxContainer" parent="Menu/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Capacity" type="HBoxContainer" parent="Menu/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Info/Capacity"]
+layout_mode = 2
+text = "Capacity: "
+label_settings = SubResource("LabelSettings_xnmqw")
+vertical_alignment = 2
+
+[node name="Have" type="Label" parent="Menu/Info/Capacity"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_ho5c3")
+vertical_alignment = 2
+
+[node name="Out of" type="Label" parent="Menu/Info/Capacity"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_mbo4o")
+vertical_alignment = 2
+
+[node name="Max" type="Label" parent="Menu/Info/Capacity"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_ho5c3")
+vertical_alignment = 2
+
+[node name="Spacer2" type="Control" parent="Menu/Info"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Item" type="HBoxContainer" parent="Menu/Info"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Menu/Info/Item"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="Menu/Info/Item"]
+visible = false
+layout_mode = 2
+stretch_mode = 2
+
+[node name="MoreInfoPrompt" type="HBoxContainer" parent="Menu/Info"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="InputTextureRect" parent="Menu/Info/MoreInfoPrompt" instance=ExtResource("4_pqub5")]
+layout_mode = 2
+texture = ExtResource("5_wrqm2")
+xbox_texture = ExtResource("6_je2fh")
+nintendo_texture = ExtResource("7_y47u2")
+playstation_texture = ExtResource("8_qoaiv")
+
+[node name="Label" type="Label" parent="Menu/Info/MoreInfoPrompt"]
+layout_mode = 2
+text = "More Info"
+label_settings = SubResource("LabelSettings_mbo4o")
+
+[connection signal="pressed" from="Top/Button" to="." method="_on_button_pressed"]

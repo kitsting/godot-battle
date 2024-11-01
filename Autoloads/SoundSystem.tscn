@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd5ph5aqri3hw"]
+
+[ext_resource type="Script" path="res://Autoloads/AUTOLOAD_SoundSystem.gd" id="1"]
+
+[node name="SoundSystem" type="Node"]
+process_mode = 3
+script = ExtResource("1")
+
+[node name="OverworldMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="ui_misc" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="ui_battle" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="battle_sfx" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="overworld" type="AudioStreamPlayer" parent="."]

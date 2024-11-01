@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5qcdh56bdu0g"]
+
+[ext_resource type="Script" path="res://Objects/UI/Battle/HealDisplay.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="2_r1epq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk1no"]
+font = ExtResource("2_r1epq")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "heal_display"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hwma"]
+_data = {
+"RESET": SubResource("1"),
+"heal_display": SubResource("2")
+}
+
+[node name="HealDisplay" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.65098, 1, 0.286275, 0.784314)
+offset_right = 24.0
+offset_bottom = 19.0
+text = "+10"
+label_settings = SubResource("LabelSettings_kk1no")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hwma")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

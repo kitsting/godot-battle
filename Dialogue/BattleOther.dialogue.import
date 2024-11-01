@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://du07uu8ca4kst"
+path="res://.godot/imported/BattleOther.dialogue-bec0edffaee0c83ecbc2846586d9f59f.tres"
+
+[deps]
+
+source_file="res://Dialogue/BattleOther.dialogue"
+dest_files=["res://.godot/imported/BattleOther.dialogue-bec0edffaee0c83ecbc2846586d9f59f.tres"]
+
+[params]
+

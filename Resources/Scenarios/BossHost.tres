@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=5 format=3 uid="uid://bv8cedsihiuhl"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Objects/Battle/Enemies/bosses/game_host.tscn" id="1_4fux7"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_sqcpm"]
+
+[sub_resource type="Resource" id="Resource_liw5s"]
+script = ExtResource("2_sqcpm")
+enemyscene = ExtResource("1_4fux7")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "Game Show"
+description = "BossHost"
+difficulty = 1
+grid = "x x x x x x x
+x x x x x x x
+x 0 x x x x x
+x x x x x x x
+x x x x x x x"
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("2_sqcpm")]([SubResource("Resource_liw5s")])
+background = "res://Objects/Battle/Backgrounds/Crowd.tscn"
+music = "res://Sounds/Music/Bonus Round.ogg"
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 2

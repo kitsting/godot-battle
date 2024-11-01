@@ -1,0 +1,93 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dhb84nj77pey5" path="res://Graphics/Player/Overworld/Shylen/Shylen_N.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1vhp0gq4vwj2" path="res://Graphics/Player/Overworld/Vardell/Vardell_SE.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bxni3jcat0ng6" path="res://Graphics/Player/Overworld/Vardell/Vardell_SW.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ywjm8vfgclss" path="res://Graphics/Player/Overworld/Shylen/Shylen_S.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c3u1un3kr702m" path="res://Graphics/Player/Overworld/23/23_left.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://ckr3l664vhf4m" path="res://Graphics/Player/Overworld/23/23_right.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cgnwcerk7j5us" path="res://Graphics/Player/Overworld/23/23_NE.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://c8go3y37pyq6v" path="res://Graphics/Player/Overworld/23/23_NW.png" id="8"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("4")],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [ExtResource("3")],
+"loop": true,
+"name": &"down_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"down_left_walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("2")],
+"loop": true,
+"name": &"down_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"down_right_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"down_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [ExtResource("5")],
+"loop": true,
+"name": &"left_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [ExtResource("6")],
+"loop": true,
+"name": &"right_walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("1")],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [ExtResource("8")],
+"loop": true,
+"name": &"up_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up_left_walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource("7")],
+"loop": true,
+"name": &"up_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up_right_walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up_walk",
+"speed": 5.0
+}]

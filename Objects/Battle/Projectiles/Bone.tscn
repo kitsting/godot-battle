@@ -1,0 +1,71 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Texture" uid="uid://xs2od882icci" path="res://Graphics/Battle/Grid/warning.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Projectiles/Bone.gd" id="2"]
+[ext_resource type="Texture" path="res://Graphics/Battle/Grid/ProjectileTest/bonelarge.png" id="3"]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 36, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 36, 0, 36, 24 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 20, 34 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 20, 0, 20, 34 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 20, 34 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 60, 0, 20, 34 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 80, 0, 20, 34 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 100, 0, 20, 34 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 9 ), SubResource( 9 ), SubResource( 8 ), SubResource( 5 ), SubResource( 4 ) ],
+"loop": false,
+"name": "default",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 14, 8 )
+
+[node name="Bone" type="Area2D" groups=["bullet", "damage"]]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -14 )
+frames = SubResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 11 )
+disabled = true

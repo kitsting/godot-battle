@@ -1,0 +1,10 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://c4lf3s22tq7hu" path="res://Graphics/UI/Battle/Bars/HealthBarLow.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bfr5hhr64sgle" path="res://Graphics/UI/Battle/Bars/HealthBarFull.png" id="2"]
+
+[resource]
+frames = 2
+frame_0/texture = ExtResource("2")
+frame_1/texture = ExtResource("1")
+frame_1/duration = 1.0

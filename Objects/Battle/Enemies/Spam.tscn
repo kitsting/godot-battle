@@ -1,0 +1,651 @@
+[gd_scene load_steps=33 format=3 uid="uid://bp04wqb0jntdm"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://d3jjho82tfmnr" path="res://Graphics/Temp/LegR.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dkpcpke6iq4bb" path="res://Graphics/Temp/WingL.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bgbr84qyq67h0" path="res://Graphics/Temp/Body.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://de6uy4oiqsae0" path="res://Graphics/Temp/LegL.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dfx772doncxp6" path="res://Graphics/Temp/WingR.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bq1nowalepn0s" path="res://Graphics/Temp/ArmR.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cp2qxgaffy1gp" path="res://Graphics/Temp/ArmL.png" id="9"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/Spam.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://b363gwgkyca3l" path="res://Graphics/Temp/Head.tres" id="11"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://ds78bjmcnudsq" path="res://Graphics/Temp/Cannon1.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://b64e1geq4vvcw" path="res://Graphics/Temp/Cannon2.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="16"]
+
+[sub_resource type="Shader" id="5"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xgo1r"]
+resource_local_to_scene = true
+shader = SubResource("5")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mdfd"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_hgbsl"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ut4lg"]
+resource_name = "boss_death"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.4, 1.6, 1.8, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(1.5, 1.5), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DeathBeams/Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DeathBeams/Polygon2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/DeathBeams/Polygon2D3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/DeathBeams/Polygon2D4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fx6jf"]
+resource_name = "exhausted"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExhaustSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExhaustSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_70prc"]
+resource_name = "idle"
+length = 5.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/LegL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 1, 1.1, 1.2, 1.8, 1.9, 2, 2.9, 3, 3.1, 3.9, 4, 4.1, 4.7, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/LegR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 1.4, 1.5, 1.6, 2.5, 2.6, 2.7, 3.4, 3.5, 3.6, 4.2, 4.3, 4.4, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 15.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1, 1.1, 1.8, 1.9, 2, 2.7, 2.8, 2.9, 3.6, 3.7, 3.8, 4.5, 4.6, 4.7, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/ArmR:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.6, 1.3, 1.4, 1.5, 2.2, 2.3, 2.4, 3.2, 3.3, 3.4, 4.2, 4.3, 4.4, 5, 5.1, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [17.0, 18.0, 17.0, -17.0, -18.0, -17.0, 17.0, 18.0, 17.0, -17.0, -18.0, -17.0, 17.0, 18.0, 17.0, -17.0, -18.0, -17.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/WingL:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.3, 1.4, 1.5, 2.6, 2.7, 2.8, 3.9, 4, 4.1, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite/WingR:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7, 0.8, 0.9, 1.5, 1.6, 1.7, 2.2, 2.3, 2.4, 2.8, 2.9, 3, 3.4, 3.5, 3.6, 4, 4.1, 4.2, 4.7, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0]
+}
+
+[sub_resource type="Animation" id="Animation_3ffp0"]
+resource_name = "reborn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExhaustSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExhaustSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExhaustSprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "shake"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.0, -3.0, 8.0, -8.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["hit", "idle"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2rkii"]
+_data = {
+"RESET": SubResource("Animation_hgbsl"),
+"boss_death": SubResource("Animation_ut4lg"),
+"exhausted": SubResource("Animation_fx6jf"),
+"idle": SubResource("Animation_70prc"),
+"reborn": SubResource("Animation_3ffp0"),
+"shake": SubResource("2")
+}
+
+[sub_resource type="Animation" id="Animation_rsb7j"]
+resource_name = "boss_death"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.4, 1.6, 1.8, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(1.5, 1.5), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DeathBeams/Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DeathBeams/Polygon2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/DeathBeams/Polygon2D3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/DeathBeams/Polygon2D4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e2yov"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0r3"]
+_data = {
+"boss_death": SubResource("Animation_rsb7j"),
+"h": SubResource("Animation_e2yov")
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Shoot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [90.0, 110.0, 370.0, 450.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ArmL/Cannon2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/ArmL/Cannon1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ixblp"]
+resource_name = "ShootPrep"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 80.0, 90.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ArmL/Cannon1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/ArmL/Cannon2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "idle"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.6, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [17.0, 18.0, 17.0, -18.0, -18.0, -17.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ArmL/Cannon1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/ArmL/Cannon2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qm3qg"]
+_data = {
+"Shoot": SubResource("3"),
+"ShootPrep": SubResource("Animation_ixblp"),
+"idle": SubResource("4")
+}
+
+[node name="Enemy" instance=ExtResource("1")]
+script = ExtResource("10")
+boss = true
+hp = 300
+damage = 20
+defense = 0.2
+enemyname = "Spamton NEO"
+enemydesc = "lmao who let this bozo in here"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_xgo1r")
+sprite_frames = SubResource("SpriteFrames_0mdfd")
+
+[node name="WingL" type="Sprite2D" parent="Sprite" index="0"]
+use_parent_material = true
+position = Vector2(-2, -1)
+rotation = -15.0
+texture = ExtResource("3")
+offset = Vector2(-8, -12)
+
+[node name="ArmL" type="Sprite2D" parent="Sprite" index="1"]
+use_parent_material = true
+position = Vector2(-6, -5)
+rotation = 17.0
+texture = ExtResource("9")
+offset = Vector2(0, 11)
+
+[node name="Cannon1" type="Sprite2D" parent="Sprite/ArmL" index="0"]
+visible = false
+position = Vector2(0.0894537, 15.1325)
+texture = ExtResource("13")
+offset = Vector2(0, 8)
+
+[node name="Cannon2" type="Sprite2D" parent="Sprite/ArmL" index="1"]
+visible = false
+position = Vector2(0.0894537, 15.1325)
+texture = ExtResource("14")
+offset = Vector2(0, 8)
+
+[node name="LegL" type="Sprite2D" parent="Sprite" index="2"]
+use_parent_material = true
+position = Vector2(-3, 9)
+rotation = 13.0
+texture = ExtResource("6")
+offset = Vector2(1, 15)
+
+[node name="LegR" type="Sprite2D" parent="Sprite" index="3"]
+use_parent_material = true
+position = Vector2(5, 9)
+rotation = -13.0
+texture = ExtResource("2")
+offset = Vector2(2, 15)
+
+[node name="Body" type="Sprite2D" parent="Sprite" index="4"]
+use_parent_material = true
+position = Vector2(-4, -5)
+rotation = -5.0
+texture = ExtResource("5")
+offset = Vector2(6, 7)
+
+[node name="ArmR" type="Sprite2D" parent="Sprite" index="5"]
+use_parent_material = true
+position = Vector2(12, -7)
+rotation = 17.0
+texture = ExtResource("8")
+offset = Vector2(2, 12)
+
+[node name="Head" type="Sprite2D" parent="Sprite" index="6"]
+use_parent_material = true
+position = Vector2(4, -17)
+texture = ExtResource("11")
+offset = Vector2(-3, -6)
+
+[node name="WingR" type="Sprite2D" parent="Sprite" index="7"]
+use_parent_material = true
+position = Vector2(5, -15)
+rotation = -14.0
+texture = ExtResource("7")
+offset = Vector2(25, 0)
+
+[node name="Strings" type="Node2D" parent="." index="1"]
+
+[node name="Line2D" type="Line2D" parent="Strings" index="0"]
+z_index = -1
+position = Vector2(5, 0)
+points = PackedVector2Array(-4, -248, -4, -3)
+width = 1.0
+default_color = Color(0, 0.415686, 0.121569, 1)
+
+[node name="Line2D2" type="Line2D" parent="Strings" index="1"]
+z_index = -1
+position = Vector2(7, 0)
+points = PackedVector2Array(-4, -248, -4, -3)
+width = 1.0
+default_color = Color(0, 0.415686, 0.121569, 1)
+
+[node name="Line2D3" type="Line2D" parent="Strings" index="2"]
+z_index = -1
+position = Vector2(2, 0)
+points = PackedVector2Array(-4, -248, -4, -3)
+width = 1.0
+default_color = Color(0, 0.415686, 0.121569, 1)
+
+[node name="Line2D4" type="Line2D" parent="Strings" index="3"]
+z_index = -1
+position = Vector2(9, 0)
+points = PackedVector2Array(-4, -248, -4, -3)
+width = 1.0
+default_color = Color(0, 0.415686, 0.121569, 1)
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+texture_under = ExtResource("15")
+texture_over = ExtResource("16")
+texture_progress = ExtResource("12")
+
+[node name="HealthPercent" parent="CanvasLayer/ProgressBar" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 28.0
+offset_bottom = 16.0
+
+[node name="SmallArrow" parent="CanvasLayer/Arrows" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 9.0
+offset_bottom = 9.0
+
+[node name="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_2rkii"),
+"spma": SubResource("AnimationLibrary_gx0r3")
+}
+
+[node name="ArmAnim" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_qm3qg")
+}

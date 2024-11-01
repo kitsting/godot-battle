@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvo511r5fxifq"]
+
+[ext_resource type="Texture2D" path="res://Graphics/Battle/Backgrounds/CrowdAnim.tres" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Crowd.gd" id="2"]
+
+[node name="Crowd" type="Sprite2D"]
+self_modulate = Color(0.262745, 0.262745, 0.262745, 1)
+texture = ExtResource("1")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 480, 270)
+script = ExtResource("2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(0.513726, 0.513726, 0.513726, 1)
+show_behind_parent = true

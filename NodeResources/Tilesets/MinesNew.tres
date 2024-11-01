@@ -1,0 +1,134 @@
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://brpl0pxq02l1n"]
+
+[ext_resource type="Texture2D" uid="uid://c3le0t1v1vjgs" path="res://Graphics/Tiles/Mines/MineFloor.png" id="1_olwwk"]
+[ext_resource type="Texture2D" uid="uid://cr8uvgoecb877" path="res://Graphics/Tiles/Mines/MineWall.png" id="2_ivdds"]
+[ext_resource type="PackedScene" uid="uid://bjaq6lh8nwb0e" path="res://Objects/Overworld/Mines/Torch.tscn" id="3_uhhxx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kex2"]
+resource_name = "MineFloor"
+texture = ExtResource("1_olwwk")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/probability = 2.0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:0/0/terrains_peering_bit/top_side = 0
+0:0/0/custom_data_0 = "Stone"
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/custom_data_0 = "Stone"
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:0/0/custom_data_0 = "Stone"
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/probability = 2.0
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/left_side = 0
+3:0/0/terrains_peering_bit/top_side = 0
+3:0/0/custom_data_0 = "Stone"
+7:4/0 = 0
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:4/0/custom_data_0 = "Stone"
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
+0:1/0/terrains_peering_bit/left_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:1/0/custom_data_0 = "Stone"
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/custom_data_0 = "Stone"
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q7122"]
+polygon = PackedVector2Array(-8, -60, 8, -60, 8, -56, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ymoem"]
+polygon = PackedVector2Array(-8, -60, 8, -60, 8, -56, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_63jof"]
+polygon = PackedVector2Array(-8, -60, 8, -60, 8, -56, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kqoa4"]
+polygon = PackedVector2Array(-8, -60, 8, -60, 8, -56, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wleb6"]
+polygon = PackedVector2Array(-8, -60, 8, -75, 8, -72, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r1bvy"]
+polygon = PackedVector2Array(-8, -76, 8, -60, 8, -56, -8, -72)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3wb3a"]
+polygon = PackedVector2Array(-8, -60, 8, -75, 8, -72, -8, -56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xw7cn"]
+polygon = PackedVector2Array(-8, -76, 8, -60, 8, -56, -8, -72)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_loclg"]
+texture = ExtResource("2_ivdds")
+texture_region_size = Vector2i(16, 80)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_q7122")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -56, 8, -56, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ymoem")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -56, 8, -56, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_63jof")
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -56, 8, -56, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+3:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kqoa4")
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -56, 8, -56, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 32)
+4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wleb6")
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -55, 8, -71, 8, -8, -8, 8)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 32)
+5:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_r1bvy")
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -55, -8, -71, -8, -8, 8, 8)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 32)
+6:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_3wb3a")
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -55, 8, -71, 8, -8, -8, 8)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, 32)
+7:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_xw7cn")
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -55, -8, -71, -8, -8, 8, 8)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_po67k"]
+resource_name = "Objects"
+scenes/1/scene = ExtResource("3_uhhxx")
+
+[resource]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "Material"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_1kex2")
+sources/1 = SubResource("TileSetAtlasSource_loclg")
+sources/2 = SubResource("TileSetScenesCollectionSource_po67k")

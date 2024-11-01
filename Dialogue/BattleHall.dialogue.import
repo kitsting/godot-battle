@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://315058gtp4io"
+path="res://.godot/imported/BattleHall.dialogue-949354806512d032397ab1cd7f250431.tres"
+
+[deps]
+
+source_file="res://Dialogue/BattleHall.dialogue"
+dest_files=["res://.godot/imported/BattleHall.dialogue-949354806512d032397ab1cd7f250431.tres"]
+
+[params]
+

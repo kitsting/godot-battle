@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=11 format=3 uid="uid://5nunl8pi2cud"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://clgs31uq2hyy0" path="res://Graphics/Battle/Patterns/Chessboard.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://k2wn5mllkyx0" path="res://Objects/Battle/Enemies/bosses/chess/Chess_King.tscn" id="2_mh3md"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="3_eyjx4"]
+[ext_resource type="PackedScene" uid="uid://c2xyol2xhn17q" path="res://Objects/Battle/Enemies/bosses/chess/ChessPiece.tscn" id="4_ygfaa"]
+
+[sub_resource type="Resource" id="Resource_6x8o8"]
+script = ExtResource("3_eyjx4")
+enemyscene = ExtResource("2_mh3md")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_qy7xm"]
+script = ExtResource("3_eyjx4")
+enemyscene = ExtResource("4_ygfaa")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_fiaou"]
+script = ExtResource("3_eyjx4")
+enemyscene = ExtResource("4_ygfaa")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_nfi7j"]
+script = ExtResource("3_eyjx4")
+enemyscene = ExtResource("4_ygfaa")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_hj7od"]
+script = ExtResource("3_eyjx4")
+enemyscene = ExtResource("4_ygfaa")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "VS Chess King"
+description = "BossChess"
+difficulty = 1
+grid = "x x x x
+x x x x
+x x 0 x
+x x x x"
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("3_eyjx4")]([SubResource("Resource_6x8o8"), SubResource("Resource_qy7xm"), SubResource("Resource_fiaou"), SubResource("Resource_nfi7j"), SubResource("Resource_hj7od")])
+background = "res://Objects/Battle/Backgrounds/Chess.tscn"
+music = "res://Sounds/Music/remix 8.ogg"
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+custom_pattern = ExtResource("2")
+state = 0

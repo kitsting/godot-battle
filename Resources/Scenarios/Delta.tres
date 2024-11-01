@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=5 format=3 uid="uid://b1e5ysq738o4k"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Objects/Battle/Enemies/Spam.tscn" id="1_lxjm4"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_e3isx"]
+
+[sub_resource type="Resource" id="Resource_c7twn"]
+script = ExtResource("2_e3isx")
+enemyscene = ExtResource("1_lxjm4")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "VS Spamton"
+description = "Delta"
+difficulty = 1
+grid = "x x x x
+x 1 x x
+x x 0 x
+x 2 x x"
+challenge_desc = "What! Why is he here? He's out of control, too! We're gonna get sued! Get rid of him before the lawyers get here!"
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("2_e3isx")]([SubResource("Resource_c7twn")])
+background = "res://Objects/Battle/Backgrounds/Spam.tscn"
+music = "res://Sounds/Music/BIG SHOT.ogg"
+custom_color = Color(0.309804, 0.258824, 0.333333, 1)
+state = 1

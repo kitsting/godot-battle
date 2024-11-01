@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://x76yjq2gfid"]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="1"]
+[ext_resource type="Script" path="res://Objects/UI/Text/TextBox.gd" id="1_1ls2o"]
+[ext_resource type="Texture2D" uid="uid://boi4wcpskajxs" path="res://Graphics/UI/Dialogue9Slice.png" id="2_73pgh"]
+[ext_resource type="Texture2D" uid="uid://hpqtl05vtius" path="res://Graphics/UI/Arrows/TextAdvance/TextAdvance.tres" id="4_aunw7"]
+
+[node name="TextBox" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_1ls2o")
+
+[node name="Background" type="NinePatchRect" parent="."]
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 448.0
+offset_bottom = 264.0
+texture = ExtResource("2_73pgh")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="TextMargin" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Contents" type="HBoxContainer" parent="Background/TextMargin"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Background/TextMargin/Contents"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Background/TextMargin/Contents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text" type="HBoxContainer" parent="Background/TextMargin/Contents/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Starter" type="RichTextLabel" parent="Background/TextMargin/Contents/VBox/Text"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "-"
+scroll_active = false
+
+[node name="MainText" type="RichTextLabel" parent="Background/TextMargin/Contents/VBox/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource("1")
+skip_action = "ui_accept"
+seconds_per_step = 0.04
+
+[node name="Choices" type="GridContainer" parent="Background/TextMargin/Contents/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Indicator" type="TextureRect" parent="Background/TextMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("4_aunw7")
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="TextSound" type="AudioStreamPlayer" parent="."]
+
+[node name="TextSound2" type="AudioStreamPlayer" parent="."]
+
+[node name="TextSound3" type="AudioStreamPlayer" parent="."]
+
+[node name="DelayTimer" type="Timer" parent="."]
+one_shot = true

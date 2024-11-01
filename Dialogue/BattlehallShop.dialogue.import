@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://bdw4832nlv5wo"
+path="res://.godot/imported/BattlehallShop.dialogue-54ec741c9c4baf83e4cdad1036f06b82.tres"
+
+[deps]
+
+source_file="res://Dialogue/BattlehallShop.dialogue"
+dest_files=["res://.godot/imported/BattlehallShop.dialogue-54ec741c9c4baf83e4cdad1036f06b82.tres"]
+
+[params]
+

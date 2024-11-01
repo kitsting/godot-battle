@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4p0en2dr7s6n"]
+
+[ext_resource type="PackedScene" uid="uid://7450dhhv1fpy" path="res://Objects/Overworld/Interactable.tscn" id="1"]
+[ext_resource type="Script" path="res://Objects/Overworld/Chest.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://c6qg3xo2o288a" path="res://Graphics/Overworld/Misc/ChestClosed.png" id="3"]
+[ext_resource type="AudioStream" uid="uid://c6klgqaatn8t4" path="res://Sounds/Overworld/chest_open.wav" id="4_j863m"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(16, 16)
+
+[node name="Chest" instance=ExtResource("1")]
+script = ExtResource("2")
+item = "Bread"
+chestid = "1"
+contents = "item"
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -2)
+texture = ExtResource("3")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("1")
+
+[node name="Collision" parent="Object" index="0"]
+shape = SubResource("2")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("4_j863m")

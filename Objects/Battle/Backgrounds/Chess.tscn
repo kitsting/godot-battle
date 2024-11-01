@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba2ub2lx0qrj3"]
+
+[ext_resource type="Texture2D" uid="uid://bru42iivfto5h" path="res://Graphics/Battle/Backgrounds/Chess.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Chess.gd" id="1_xwj63"]
+[ext_resource type="Shader" path="res://NodeResources/Shaders/Scroll2.gdshader" id="2_c5se7"]
+[ext_resource type="Texture2D" uid="uid://d3rfx0cyb2ray" path="res://Graphics/Battle/Backgrounds/Chess2.png" id="3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t01nl"]
+resource_local_to_scene = true
+shader = ExtResource("2_c5se7")
+shader_parameter/motion = Vector2(15, 0)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bff7l"]
+resource_local_to_scene = true
+shader = ExtResource("2_c5se7")
+shader_parameter/motion = Vector2(-15, -15)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="Chess" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwj63")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.384314)
+self_modulate = Color(1, 1, 1, 0.513726)
+material = SubResource("ShaderMaterial_t01nl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1")
+stretch_mode = 1
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.639216, 0.639216, 0.639216, 0.196078)
+self_modulate = Color(1, 1, 1, 0.705882)
+material = SubResource("ShaderMaterial_bff7l")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3")
+stretch_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

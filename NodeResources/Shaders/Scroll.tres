@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhhue3r2hxnq0"]
+
+[sub_resource type="Shader" id="Shader_86107"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform float scroll_speed_x : hint_range(-2,2) = 1;
+uniform float scroll_speed_y : hint_range(-2,2) = 1;
+uniform sampler2D noise;
+void fragment() {
+    vec2 uv = vec2(UV.x + (TIME * scroll_speed_x), UV.y + (TIME * scroll_speed_y));
+    COLOR.rgb = texture(TEXTURE, uv).rgb;
+}
+"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_86107")
+shader_parameter/scroll_speed_x = -0.3
+shader_parameter/scroll_speed_y = -0.3

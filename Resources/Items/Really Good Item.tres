@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cphrmmgvs7ayq"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_mr3nh"]
+[ext_resource type="Script" path="res://Resources/AttackScripts/StandardAttack.gd" id="2_lhmto"]
+[ext_resource type="Texture2D" uid="uid://koh3axsrkvgm" path="res://Graphics/UI/Items/ReallyGoodItem.png" id="2_syc7x"]
+
+[resource]
+script = ExtResource("1_mr3nh")
+attackname = "Really Good Item"
+attackid = "Really Good Item"
+desc = "Heals 75 Health. Wow!"
+extended_desc = "Have you ever wanted to heal yourself? Well now you can! With the Really Good Item, you can instantly heal up 75 health points! Pretty neat, huh? To take advantage of this incredible offer, simply call the number 573-554-7204 and give your credit card information! The Really Good Item will arrive at your home in 12-15 business days!"
+texture = ExtResource("2_syc7x")
+cost = 0
+heals_hp = 75
+heals_ap = 0
+affects = 4
+usescript = ExtResource("2_lhmto")
+requires1 = false
+requires2 = false

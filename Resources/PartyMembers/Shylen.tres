@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Resources/Scripts/PartyMember.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://NodeResources/Spriteframes/PlayerBattle/purple.tres" id="1_amwgt"]
+[ext_resource type="SpriteFrames" path="res://NodeResources/Spriteframes/PlayerOverworld/FollowerShylen.tres" id="1_g0g7e"]
+
+[resource]
+script = ExtResource("1")
+name = "Shylen"
+use_playername = false
+attack = 10
+defense = 3
+ap_reduction = 0
+health_icon = "res://Graphics/UI/Icons/Party/PurpleIcon.png"
+select_color = Color(1, 0.41, 0.26, 1)
+unselect_color = Color(0.73, 0.12, 0.12, 1)
+overworld_sprites = [ExtResource("1_g0g7e")]
+battle_sprites = [ExtResource("1_amwgt")]
+costume = 0
+basic_attacks = ["Standard"]
+special_attacks = ["Check"]

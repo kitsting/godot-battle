@@ -1,0 +1,15 @@
+*Battle tutorial
+*Dialogue Sprites
+*Bat Boss
+*More rooms
+*Fortune teller
+*In-Between tileset
+*End card
+*Room Decorations
+*Add "More Info" button to inventory
+*Save points
+*Title screen graphics
+*World map
+
+*Vardell Overworld Walking + Blinking
+*Vardell Windup

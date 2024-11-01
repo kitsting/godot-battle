@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://dr5x24xlp6fnr"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/fingor/Fingor.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://2wq16aw2lh14" path="res://Graphics/Enemies/Fingor/ForgorGlasses.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bfx45degbrgvf" path="res://Graphics/Enemies/Fingor/ForgorHead.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ddxvt6mmeynha" path="res://Graphics/Enemies/Fingor/ForgorHand.png" id="5"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/EnemyHitbox.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://bvnhcvgasfyew" path="res://Graphics/Enemies/Fingor/FingorGlasses.png" id="7"]
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_whbr5"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="2"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(10, 8)
+
+[node name="Forgor" instance=ExtResource("1")]
+position = Vector2(0, -8)
+script = ExtResource("2")
+forgor = true
+hp = 45
+damage = 12
+defense = 0.2
+enemyname = "Forgor"
+enemydesc = "Still cool, even in death"
+advanced_hp = 45
+advanced_damage = 12
+advanced_defense = 3
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_whbr5")
+sprite_frames = SubResource("2")
+
+[node name="Shades" type="Sprite2D" parent="Sprite" index="0"]
+visible = false
+texture = ExtResource("7")
+
+[node name="Flame" type="Sprite2D" parent="Sprite" index="1"]
+visible = false
+texture = ExtResource("3")
+
+[node name="Hand" type="Sprite2D" parent="." index="2"]
+position = Vector2(-18, 6)
+texture = ExtResource("5")
+
+[node name="Hitbox" type="Area2D" parent="Hand" index="0" groups=["enemy_hitbox"]]
+script = ExtResource("6")
+damage = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Hitbox" index="0"]
+position = Vector2(-1.5, 0)
+shape = SubResource("1")
+
+[node name="Timer" type="Timer" parent="." index="7"]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

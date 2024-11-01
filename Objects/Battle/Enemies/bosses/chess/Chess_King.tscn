@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://k2wn5mllkyx0"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/bosses/chess/Chess_King.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://5ibudbf6m1ls" path="res://Graphics/Enemies/Boss_Chess/Active_King.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://draytk8mfcq4v" path="res://Sounds/Misc/sizzle.wav" id="6"]
+[ext_resource type="Texture2D" uid="uid://jlmb5g1xcnr8" path="res://Graphics/Enemies/Boss_Chess/Exhausted_King.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="8"]
+
+[sub_resource type="Shader" id="5"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfyxs"]
+resource_local_to_scene = true
+shader = SubResource("5")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fofjk"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": true,
+"name": &"Exhausted",
+"speed": 5.0
+}]
+
+[node name="Chess_King" instance=ExtResource("1")]
+script = ExtResource("2")
+hp = 120
+defense = 1.0
+enemyname = "Chess King"
+enemydesc = "It looks terrified for a moment, but soon realizes it's safe. Not to be confused with the real king."
+advanced_hp = 200
+advanced_defense = 1.0
+advanced_name = "Supreme Chess King"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_sfyxs")
+sprite_frames = SubResource("SpriteFrames_fofjk")
+animation = &"Active"
+offset = Vector2(0, -18)
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+visible = false
+offset_left = -28.0
+offset_top = 2.0
+offset_right = 28.0
+offset_bottom = 10.0
+texture_under = ExtResource("5")
+texture_over = ExtResource("8")
+texture_progress = ExtResource("4")
+
+[node name="Arrows" parent="CanvasLayer" index="2"]
+offset_left = -26.0
+offset_top = -60.0
+offset_right = -12.0
+offset_bottom = -46.0
+
+[node name="Arrow" parent="CanvasLayer/Arrows" index="0"]
+visible = false
+
+[node name="SmallArrow" parent="CanvasLayer/Arrows" index="1"]
+visible = false
+
+[node name="Exhausted" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("6")
+
+[node name="ExhaustSprite" type="Sprite2D" parent="." index="7"]
+visible = false
+texture = ExtResource("7")
+offset = Vector2(0, -18)

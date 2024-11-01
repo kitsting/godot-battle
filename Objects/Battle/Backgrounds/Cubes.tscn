@@ -1,0 +1,461 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Cubes.gd" id="1_ctrg1"]
+[ext_resource type="Texture2D" uid="uid://b8sokjjvqhq1s" path="res://Graphics/Battle/Backgrounds/Huebe.png" id="1_egemd"]
+
+[node name="Cubes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctrg1")
+
+[node name="Textures" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -42.0
+offset_right = 60.0
+offset_bottom = -2.0
+
+[node name="Row1" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_right = -17.0
+offset_bottom = 40.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row1"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row2" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 42.0
+offset_right = -17.0
+offset_bottom = 82.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row2"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row3" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 84.0
+offset_right = -17.0
+offset_bottom = 124.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row3"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row4" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 126.0
+offset_right = -17.0
+offset_bottom = 166.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row4"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row5" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 168.0
+offset_right = -17.0
+offset_bottom = 208.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row5"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row6" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 210.0
+offset_right = -17.0
+offset_bottom = 250.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row6"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row7" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 252.0
+offset_right = -17.0
+offset_bottom = 292.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row7"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row8" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 294.0
+offset_right = -17.0
+offset_bottom = 334.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row8"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Row9" type="Control" parent="Textures"]
+anchors_preset = 0
+offset_left = -57.0
+offset_top = 336.0
+offset_right = -17.0
+offset_bottom = 376.0
+
+[node name="Cube1" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube2" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 199.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube3" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_left = 198.0
+offset_right = 298.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube4" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_left = 297.0
+offset_right = 397.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube5" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 496.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="Cube6" type="TextureRect" parent="Textures/Row9"]
+layout_mode = 0
+offset_left = 495.0
+offset_right = 595.0
+offset_bottom = 100.0
+texture = ExtResource("1_egemd")
+
+[node name="ShiftTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="ShiftTimer" to="." method="_on_shift_timer_timeout"]
+[connection signal="timeout" from="HTimer" to="." method="_on_h_timer_timeout"]

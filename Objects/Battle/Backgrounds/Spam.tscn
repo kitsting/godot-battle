@@ -1,0 +1,149 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv34vl6sehu7s"]
+
+[ext_resource type="Texture2D" uid="uid://ej3ru0es3mwv" path="res://Graphics/Temp/Track.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Spam.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dnyl70cs5xu8g" path="res://Graphics/Temp/BG1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://5vkimyckj27l" path="res://Graphics/Temp/BG2.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://73a2hi35ls6r" path="res://Graphics/Temp/BG3.png" id="5"]
+
+[sub_resource type="Animation" id="5"]
+resource_name = "Breathe"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture:noise:persistence")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture:noise:period")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [64.0, 66.0, 64.0, 62.0, 64.0]
+}
+
+[sub_resource type="Animation" id="6"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.964706, 0.396078, 0.396078, 1), Color(0.964706, 0.396078, 0.396078, 0)]
+}
+
+[sub_resource type="Animation" id="7"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.964706, 0.396078, 0.396078, 0), Color(0.964706, 0.396078, 0.396078, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07buv"]
+_data = {
+"Breathe": SubResource("5"),
+"Fade": SubResource("6"),
+"Unfade": SubResource("7")
+}
+
+[node name="Spam" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+modulate = Color(0.964706, 0.396078, 0.396078, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.192157, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_07buv")
+}
+
+[node name="BG" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tracks" type="Control" parent="BG"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Track1" type="TextureRect" parent="BG/Tracks"]
+offset_top = 105.0
+offset_right = 897.0
+offset_bottom = 211.0
+texture = ExtResource("1")
+stretch_mode = 1
+
+[node name="BG1" type="TextureRect" parent="BG"]
+offset_right = 953.0
+offset_bottom = 100.0
+texture = ExtResource("3")
+stretch_mode = 1
+
+[node name="BG2" type="TextureRect" parent="BG"]
+offset_top = 36.0
+offset_right = 1008.0
+offset_bottom = 100.0
+texture = ExtResource("4")
+stretch_mode = 1
+
+[node name="BG3" type="TextureRect" parent="BG"]
+offset_top = 50.0
+offset_right = 926.0
+offset_bottom = 99.0
+texture = ExtResource("5")
+stretch_mode = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

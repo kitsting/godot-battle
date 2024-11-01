@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://clhj6qnvia51d"]
+
+[ext_resource type="Script" path="res://Objects/Battle/GridObjects/Grid.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://cav7rr4y77qqa" path="res://Sounds/Select.wav" id="2"]
+
+[node name="Grid" type="Node2D" groups=["battle_grid"]]
+y_sort_enabled = true
+script = ExtResource("1")
+
+[node name="Pieces" type="Node2D" parent="."]
+show_behind_parent = true
+z_index = -1
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="EnemyPos0" type="Marker2D" parent="Objects"]
+position = Vector2(290, 21)
+
+[node name="EnemyPos1" type="Marker2D" parent="Objects"]
+position = Vector2(260, -2)
+
+[node name="EnemyPos2" type="Marker2D" parent="Objects"]
+position = Vector2(260, 44)
+
+[node name="EnemyPos3" type="Marker2D" parent="Objects"]
+position = Vector2(320, -2)
+
+[node name="EnemyPos4" type="Marker2D" parent="Objects"]
+position = Vector2(320, 44)
+
+[node name="EnemyPos5" type="Marker2D" parent="Objects"]
+position = Vector2(290, -25)
+
+[node name="EnemyPos6" type="Marker2D" parent="Objects"]
+position = Vector2(290, 67)
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2")
+volume_db = -12.0
+bus = &"SFX"
+
+[node name="TestAppend" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TestAppend" to="." method="_on_TestAppend_timeout"]

@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://cntwncp8xibx8"]
+
+[ext_resource type="Texture2D" uid="uid://dgul605eieetw" path="res://Graphics/Battle/Grid/GridConveyorHorizontal.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/GridObjects/Conveyor.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcdvf1355vku1" path="res://Graphics/Battle/Grid/GridConveyorVertical.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dnc4xl3ur4u13" path="res://Graphics/Battle/Grid/ConveyorWarningH.png" id="4"]
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("3")
+region = Rect2(72, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("3")
+region = Rect2(36, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("1")
+region = Rect2(36, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("1")
+region = Rect2(72, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("1")
+region = Rect2(72, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("1")
+region = Rect2(36, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("3")
+region = Rect2(36, 0, 36, 24)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("3")
+region = Rect2(72, 0, 36, 24)
+
+[sub_resource type="SpriteFrames" id="12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(31.4168, 20)
+
+[sub_resource type="Animation" id="16"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="17"]
+resource_name = "flash"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rr4qg"]
+_data = {
+"RESET": SubResource("16"),
+"flash": SubResource("17")
+}
+
+[node name="Sprite" type="AnimatedSprite2D"]
+show_behind_parent = true
+sprite_frames = SubResource("12")
+animation = &"Left"
+frame = 2
+script = ExtResource("2")
+
+[node name="Area2D" type="Area2D" parent="." groups=["conveyor"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rr4qg")
+}
+
+[node name="Warning" type="Sprite2D" parent="."]
+texture = ExtResource("4")

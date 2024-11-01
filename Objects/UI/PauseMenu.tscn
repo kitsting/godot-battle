@@ -1,0 +1,220 @@
+[gd_scene load_steps=16 format=3 uid="uid://1fo2b870if3x"]
+
+[ext_resource type="Texture2D" uid="uid://byq6jymnhrxlp" path="res://Graphics/UI/Theme/PanelBack.png" id="2"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="4"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="5"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="5_angkn"]
+[ext_resource type="Texture2D" uid="uid://bbdlwvs1hq2ma" path="res://Graphics/UI/Icons/Pins.png" id="5_btrpi"]
+[ext_resource type="Texture2D" uid="uid://ctj4hgjky1lka" path="res://Graphics/UI/Icons/Resume.png" id="5_lx1ld"]
+[ext_resource type="Script" path="res://Objects/UI/PauseMenu.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://fulgaksd4bcn" path="res://Graphics/UI/Icons/Party.png" id="6_don6t"]
+[ext_resource type="Texture2D" uid="uid://dv51qoh1vaall" path="res://Graphics/UI/Icons/Inventory.png" id="7_vs0at"]
+[ext_resource type="Texture2D" uid="uid://cl16tcmrxkpq6" path="res://Graphics/UI/Theme/PanelVSeparate.png" id="7_vvpw1"]
+[ext_resource type="Texture2D" uid="uid://cdx05fxjuw3at" path="res://Graphics/UI/Theme/PanelHSeparate.png" id="7_xatfi"]
+[ext_resource type="Texture2D" uid="uid://c4nvgge17p18f" path="res://Graphics/UI/Icons/Settings.png" id="9_767pi"]
+[ext_resource type="Texture2D" uid="uid://c6e77jbfjtb4b" path="res://Graphics/UI/Icons/Quit.png" id="10_70mvh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6mq8"]
+font = ExtResource("4")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uugqd"]
+font = ExtResource("5_angkn")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 6
+script = ExtResource("6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="OMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Background" type="NinePatchRect" parent="OMargin"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 472.0
+offset_bottom = 262.0
+texture = ExtResource("2")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="IMargin" type="MarginContainer" parent="OMargin/Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="OMargin/Background/IMargin"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 456.0
+offset_bottom = 246.0
+theme_override_constants/separation = 15
+
+[node name="PauseBox" type="VBoxContainer" parent="OMargin/Background/IMargin/HBox"]
+offset_right = 110.0
+offset_bottom = 238.0
+theme_override_constants/separation = 12
+
+[node name="TopLabel" type="Label" parent="OMargin/Background/IMargin/HBox/PauseBox"]
+z_index = 5
+offset_right = 110.0
+offset_bottom = 19.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_l6mq8")
+horizontal_alignment = 1
+
+[node name="Buttons" type="GridContainer" parent="OMargin/Background/IMargin/HBox/PauseBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 0)
+offset_top = 31.0
+offset_right = 110.0
+offset_bottom = 238.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="ResumeButton" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_right = 110.0
+offset_bottom = 32.0
+focus_neighbor_top = NodePath("../Exit Button")
+text = "Resume"
+desc = "Return to game"
+button_icon = ExtResource("5_lx1ld")
+
+[node name="PartyButton" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_top = 36.0
+offset_right = 110.0
+offset_bottom = 67.0
+disabled = true
+text = "Party"
+desc = "View party stats"
+button_icon = ExtResource("6_don6t")
+
+[node name="InventoryButton" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_top = 71.0
+offset_right = 110.0
+offset_bottom = 102.0
+text = "Inventory"
+desc = "View items"
+button_icon = ExtResource("7_vs0at")
+
+[node name="BadgeButton" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_top = 106.0
+offset_right = 110.0
+offset_bottom = 137.0
+text = "Pins"
+desc = "Equip pins"
+button_icon = ExtResource("5_btrpi")
+
+[node name="AudioButton" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_top = 141.0
+offset_right = 110.0
+offset_bottom = 172.0
+text = "Settings"
+desc = "Configure game settings"
+button_icon = ExtResource("9_767pi")
+
+[node name="Exit Button" parent="OMargin/Background/IMargin/HBox/PauseBox/Buttons" instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_top = 176.0
+offset_right = 110.0
+offset_bottom = 207.0
+focus_neighbor_bottom = NodePath("../ResumeButton")
+text = "Quit"
+desc = "Save and return to the title screen"
+button_icon = ExtResource("10_70mvh")
+
+[node name="RightSide" type="VBoxContainer" parent="OMargin/Background/IMargin/HBox"]
+offset_left = 125.0
+offset_right = 448.0
+offset_bottom = 238.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Menu" type="Control" parent="OMargin/Background/IMargin/HBox/RightSide"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 323.0
+offset_bottom = 207.0
+size_flags_vertical = 3
+
+[node name="Desc" type="Label" parent="OMargin/Background/IMargin/HBox/RightSide"]
+unique_name_in_owner = true
+offset_top = 219.0
+offset_right = 323.0
+offset_bottom = 238.0
+text = "Description text goes here"
+label_settings = SubResource("LabelSettings_uugqd")
+clip_text = true
+
+[node name="VSeparate" type="TextureRect" parent="."]
+offset_left = 132.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 260.0
+texture = ExtResource("7_vvpw1")
+stretch_mode = 1
+
+[node name="HSeparate" type="TextureRect" parent="."]
+offset_left = 134.0
+offset_top = 229.0
+offset_right = 470.0
+offset_bottom = 233.0
+texture = ExtResource("7_xatfi")
+stretch_mode = 1
+
+[node name="LeftDim" type="ColorRect" parent="."]
+visible = false
+z_index = 3
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 132.0
+offset_bottom = 259.0
+color = Color(0, 0, 0, 0.313726)
+
+[node name="RightDim" type="ColorRect" parent="."]
+z_index = 3
+offset_left = 135.0
+offset_top = 11.0
+offset_right = 469.0
+offset_bottom = 229.0
+color = Color(0, 0, 0, 0.313726)
+
+[connection signal="pressed" from="OMargin/Background/IMargin/HBox/PauseBox/Buttons/ResumeButton" to="." method="_on_SelectableButton_pressed"]
+[connection signal="pressed" from="OMargin/Background/IMargin/HBox/PauseBox/Buttons/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="OMargin/Background/IMargin/HBox/PauseBox/Buttons/BadgeButton" to="." method="_on_BadgeButton_pressed"]
+[connection signal="pressed" from="OMargin/Background/IMargin/HBox/PauseBox/Buttons/AudioButton" to="." method="_on_AudioButton_pressed"]
+[connection signal="pressed" from="OMargin/Background/IMargin/HBox/PauseBox/Buttons/Exit Button" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,182 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://Objects/UI/Keyboard.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cwx03kt8bdwdi" path="res://Graphics/Player/isotest.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dmk0xef5a120k" path="res://Graphics/UI/Menus/Keyboard/CurlyArrow.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dttbb4d6la7su" path="res://Graphics/UI/Menus/Keyboard/Paper.png" id="5"]
+[ext_resource type="Script" path="res://Objects/UI/NameInput.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://byq6jymnhrxlp" path="res://Graphics/UI/Theme/PanelBack.png" id="8"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="10"]
+[ext_resource type="AudioStream" uid="uid://6i7tl0a33t3i" path="res://Sounds/UI/pen.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://bb3doxdfxccy0" path="res://Sounds/UI/UI_Cancel.wav" id="12"]
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Appear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-192, 34), Vector2(15, 34), Vector2(43, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-75, 67), Vector2(131.25, 67), Vector2(160, 67)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paper:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(500, 40), Vector2(275, 40), Vector2(254, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Keyboard:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(30, 280), Vector2(30, 145), Vector2(30, 125)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0.705882)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w18yn"]
+_data = {
+"Appear": SubResource("3")
+}
+
+[node name="NameInput" type="CanvasLayer" groups=["keyboard"]]
+layer = 10
+script = ExtResource("7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="Keyboard" parent="." instance=ExtResource("2")]
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+text = "Your name,
+please"
+
+[node name="Player" type="TextureRect" parent="."]
+texture = ExtResource("3")
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+layout_mode = 0
+texture = ExtResource("4")
+
+[node name="You" type="Label" parent="Player"]
+layout_mode = 0
+text = "You"
+
+[node name="Paper" type="TextureRect" parent="."]
+texture = ExtResource("5")
+
+[node name="Name" type="Label" parent="Paper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Popup" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Margin" type="MarginContainer" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="NinePatchRect" parent="Popup/Margin"]
+layout_mode = 2
+texture = ExtResource("8")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Confirm" type="Label" parent="Popup/Margin/BG"]
+layout_mode = 0
+text = "This is your name?"
+
+[node name="NameRepeat" type="Label" parent="Popup/Margin/BG"]
+layout_mode = 0
+text = "MMMMMMMMMMM"
+
+[node name="Buttons" type="HBoxContainer" parent="Popup/Margin/BG"]
+layout_mode = 0
+
+[node name="YesButton" parent="Popup/Margin/BG/Buttons" instance=ExtResource("10")]
+layout_mode = 2
+text = "Yes"
+
+[node name="NoButton" parent="Popup/Margin/BG/Buttons" instance=ExtResource("10")]
+layout_mode = 2
+text = "No"
+
+[node name="WriteSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11")
+
+[node name="CancelSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12")
+volume_db = -6.0
+
+[node name="AppearAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w18yn")
+}
+
+[connection signal="pressed" from="Popup/Margin/BG/Buttons/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="Popup/Margin/BG/Buttons/NoButton" to="." method="_on_NoButton_pressed"]

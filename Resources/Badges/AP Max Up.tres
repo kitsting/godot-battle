@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Badge.gd" id="1"]
+[ext_resource type="Texture" uid="uid://chmsyulxw03pg" path="res://Graphics/Badges/APMaxUp.png" id="2"]
+
+[resource]
+script = ExtResource( 1 )
+badge_name = "AP Max Up"
+badge_id = "APMaxUp"
+readable_name = "Energizing Pin"
+badge_desc = "Increases the maximum amount of AP you can have"
+badge_sprite = ExtResource( 2 )
+badge_slots = 1
+badge_type = "Party"

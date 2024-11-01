@@ -1,0 +1,81 @@
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://d1itxkmg7h4un"]
+
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://k5slb8n0xnr1" path="res://Graphics/UI/Theme/SliderBack.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c1fmpq4mix7ac" path="res://Graphics/UI/Theme/Slider.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d1dh3mmd0u4an" path="res://Graphics/UI/Theme/CheckboxUntickedWhite.png" id="3_tyg34"]
+[ext_resource type="Texture2D" uid="uid://d25527s15pwl3" path="res://Graphics/UI/Theme/SliderSelected.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cvh2cac1hvifo" path="res://Graphics/UI/Theme/SliderBackOn.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dkrt00p1g8v4k" path="res://Graphics/UI/Theme/Check.png" id="5_qfqhi"]
+[ext_resource type="Texture2D" uid="uid://e0a3fs0lovtw" path="res://Graphics/UI/Theme/SliderTick.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bwrnq37eiy3bm" path="res://Graphics/UI/Theme/BoxDisabled.png" id="10"]
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("10")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 24, 24)
+
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("3_tyg34")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 24, 24)
+
+[sub_resource type="StyleBoxTexture" id="6"]
+texture = ExtResource("3_tyg34")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 24, 24)
+
+[sub_resource type="StyleBoxTexture" id="7"]
+texture = ExtResource("3_tyg34")
+region_rect = Rect2(0, 0, 24, 24)
+
+[sub_resource type="StyleBoxTexture" id="2"]
+texture = ExtResource("5")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("5")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("2")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 0, 12, 12)
+
+[resource]
+default_font = ExtResource("1")
+Button/colors/font_color_focus = Color(0.12549, 0.486275, 0.862745, 1)
+Button/colors/font_color_hover = Color(0.12549, 0.486275, 0.862745, 1)
+Button/styles/disabled = SubResource("4")
+Button/styles/focus = SubResource("5")
+Button/styles/hover = SubResource("5")
+Button/styles/normal = SubResource("6")
+Button/styles/pressed = SubResource("7")
+CheckBox/icons/checked = ExtResource("5_qfqhi")
+CheckBox/icons/checked_disabled = ExtResource("5_qfqhi")
+HSlider/icons/grabber = ExtResource("3")
+HSlider/icons/grabber_highlight = ExtResource("4")
+HSlider/icons/tick = ExtResource("6")
+HSlider/styles/grabber_area = SubResource("2")
+HSlider/styles/grabber_area_highlight = SubResource("3")
+HSlider/styles/slider = SubResource("1")

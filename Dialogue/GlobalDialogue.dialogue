@@ -1,0 +1,15 @@
+~ AskShop
+
+Want to shop here?
+- Yes
+- No
+end
+
+
+~ AskChallenge
+
+There's some challenges here! Want to take a look?
+- Yes
+	end
+- No
+	end

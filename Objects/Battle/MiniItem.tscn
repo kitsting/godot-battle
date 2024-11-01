@@ -1,0 +1,64 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://Objects/Battle/MiniItem.gd" id="1_c2xs6"]
+[ext_resource type="Texture2D" uid="uid://dl31eqj6piyko" path="res://Graphics/Battle/MiniItem/Unknown.png" id="1_rg1h4"]
+[ext_resource type="Texture2D" uid="uid://nuhlxhsbxfh0" path="res://Graphics/Battle/MiniItem/UseItem.png" id="3_wt0bv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoq5e"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj2xq"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogq1e"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47vjn"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o15v"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocl02"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pteq7"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scv0n"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tkhs"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3kda"]
+atlas = ExtResource("3_wt0bv")
+region = Rect2(72, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i61l"]
+animations = [{
+"frames": [SubResource("AtlasTexture_hoq5e"), SubResource("AtlasTexture_vj2xq"), SubResource("AtlasTexture_ogq1e"), SubResource("AtlasTexture_47vjn"), SubResource("AtlasTexture_3o15v"), SubResource("AtlasTexture_ocl02"), SubResource("AtlasTexture_pteq7"), SubResource("AtlasTexture_scv0n"), SubResource("AtlasTexture_4tkhs"), SubResource("AtlasTexture_k3kda")],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="MiniItem" type="Node2D"]
+script = ExtResource("1_c2xs6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_rg1h4")
+
+[node name="UseAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+frames = SubResource("SpriteFrames_0i61l")

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bowvhmple2dyt" path="res://Graphics/Battle/MiniItem/Bread.png" id="1_1mfaj"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://b8iqrel02b1km" path="res://Graphics/UI/Items/Bread.png" id="3"]
+[ext_resource type="Script" path="res://Resources/ItemScripts/BasicItem.gd" id="3_o0w7u"]
+
+[resource]
+script = ExtResource("2")
+attackname = "Bread"
+attackid = "Bread"
+desc = "Plain bread. Heals 15 Health"
+extended_desc = "Really dry bread. Also somewhat stale. Not the best, but it will do. Restores 15 Health to a party member."
+texture = ExtResource("3")
+mini_texture = ExtResource("1_1mfaj")
+cost = 0
+heals_hp = 15
+heals_ap = 0
+affects = 4
+custom_script = false
+usescript = ExtResource("3_o0w7u")
+requires1 = false
+requires2 = false

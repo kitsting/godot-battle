@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmxe4xno42r2b"]
+
+[ext_resource type="Script" path="res://Objects/Overworld/OverworldPlayer.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bt45ji1j5gws5" path="res://Graphics/Player/PlayerShadow.png" id="2_ddfn6"]
+[ext_resource type="SpriteFrames" uid="uid://33w2syjwxh8k" path="res://NodeResources/Spriteframes/PlayerOverworld/OverworldPlayer.tres" id="3_a8gyf"]
+[ext_resource type="Texture2D" uid="uid://bxxic05up5pqc" path="res://Graphics/Lights/TorchLightLarge3x.png" id="5_1ipor"]
+[ext_resource type="AudioStream" uid="uid://0t1t8dob7cer" path="res://Sounds/Footstep/woodstep.wav" id="5_27g4t"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(14, 10)
+
+[node name="OverworldPlayer" type="CharacterBody2D" groups=["overworld_player"]]
+motion_mode = 1
+script = ExtResource("2")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.529412)
+show_behind_parent = true
+z_index = -1
+texture = ExtResource("2_ddfn6")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = ExtResource("3_a8gyf")
+animation = &"down_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("2")
+
+[node name="Interact" type="RayCast2D" parent="."]
+position = Vector2(0, -3)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 3)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("3")
+
+[node name="StairCheck" type="Area2D" parent="."]
+position = Vector2(0, 3)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StairCheck"]
+position = Vector2(0, -4)
+shape = SubResource("4")
+
+[node name="PrevPosTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_27g4t")
+bus = &"SFX"
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+position = Vector2(-1, -10)
+blend_mode = 2
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("5_1ipor")
+texture_scale = 0.8
+
+[connection signal="frame_changed" from="Sprite" to="." method="_on_sprite_frame_changed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="area_entered" from="StairCheck" to="." method="_on_StairCheck_area_entered"]
+[connection signal="area_exited" from="StairCheck" to="." method="_on_StairCheck_area_exited"]
+[connection signal="timeout" from="PrevPosTimer" to="." method="_on_prev_pos_timer_timeout"]

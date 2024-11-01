@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://btodruipck8om"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="1_lwg54"]
+[ext_resource type="Script" path="res://Resources/AttackScripts/Tactics/EnergyShield.gd" id="2_u2vr3"]
+
+[resource]
+script = ExtResource("1_lwg54")
+attackname = "Energy Shield"
+desc = "Lose energy instead of health this turn"
+extended_desc = "Lose energy instead of health when taking damage. If no energy is left, lose health. Only applies to the user."
+cost = 0
+damage = 1.0
+cooldown = 1
+ap_penalty = 12
+affects = 4
+timing = 1.5
+timing_window = 0.5
+usescript = ExtResource("2_u2vr3")
+requires1 = false
+requires2 = false

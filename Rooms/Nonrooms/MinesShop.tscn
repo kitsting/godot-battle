@@ -1,0 +1,342 @@
+[gd_scene load_steps=24 format=3 uid="uid://c23a6hr64whu1"]
+
+[ext_resource type="Texture2D" uid="uid://ehmg6hjiap2a" path="res://Graphics/Shop/Mines/ShopCounter.png" id="1"]
+[ext_resource type="Script" path="res://Rooms/Nonrooms/MinesShop.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bqhlyvoalhm1q" path="res://Graphics/Temp/Businessman-Transparent.png" id="2_xm3k0"]
+[ext_resource type="PackedScene" uid="uid://dsby4i53gmptq" path="res://Objects/ShopItem.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://ce7nn4m1b77ih" path="res://Graphics/Shop/Mines/ShopShelf.png" id="3_8r52n"]
+[ext_resource type="Texture2D" uid="uid://evg78mwyvos4" path="res://Graphics/Shop/UI/ItemCount.png" id="4_30mn2"]
+[ext_resource type="Texture2D" uid="uid://bsvoo2tv4ekty" path="res://Graphics/UI/Buttons/KeyC.png" id="5"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFontSmall.tres" id="8_31gpa"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="8_x0hi5"]
+[ext_resource type="Texture2D" uid="uid://dti6e8xai8wr5" path="res://Graphics/UI/Buttons/KeyX.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bmc134egahomd" path="res://Graphics/UI/Buttons/KeyZ.png" id="12"]
+[ext_resource type="PackedScene" uid="uid://jwpnsxxme8k0" path="res://Objects/UI/Elements/InputTextureRect.tscn" id="15"]
+[ext_resource type="Texture2D" uid="uid://08fqs2rbbh2j" path="res://Graphics/Shop/UI/Backing.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bn070ssomr76h" path="res://Graphics/Shop/UI/Arrow.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://d14cde28mw4fd" path="res://Graphics/Shop/UI/CoinCount.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://c7kk4phnqv7va" path="res://Graphics/UI/Coin.png" id="20"]
+[ext_resource type="AudioStream" uid="uid://cilq8ccdjyeb5" path="res://Sounds/UI/ShopBuy.wav" id="23_ni2ca"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyg64"]
+font = ExtResource("8_x0hi5")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2spi"]
+font = ExtResource("8_31gpa")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0m0p"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_laneq"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0cgqn"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rppt"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="CanvasLayer"]
+script = ExtResource("2")
+dialogue = "res://Dialogue/BattlehallShop.dialogue"
+
+[node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.435294, 0.298039, 0.388235, 1)
+
+[node name="Shopkeeper" type="Sprite2D" parent="."]
+position = Vector2(119.344, 90.3438)
+scale = Vector2(0.260732, 0.260732)
+texture = ExtResource("2_xm3k0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(240, 240)
+texture = ExtResource("1")
+
+[node name="Shelf" type="Sprite2D" parent="."]
+position = Vector2(409, 110)
+texture = ExtResource("3_8r52n")
+offset = Vector2(0.5, 0.5)
+
+[node name="ItemCount" type="TextureRect" parent="."]
+visible = false
+offset_left = 273.0
+offset_right = 373.0
+offset_bottom = 24.0
+texture = ExtResource("4_30mn2")
+
+[node name="Count" type="HBoxContainer" parent="ItemCount"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 21.0
+theme_override_constants/separation = 0
+
+[node name="x" type="Label" parent="ItemCount/Count"]
+layout_mode = 2
+text = "  Have: "
+
+[node name="Number" type="Label" parent="ItemCount/Count"]
+layout_mode = 2
+text = "0"
+
+[node name="CoinCount" type="TextureRect" parent="."]
+offset_left = 380.0
+offset_right = 480.0
+offset_bottom = 24.0
+texture = ExtResource("19")
+
+[node name="Count" type="HBoxContainer" parent="CoinCount"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 21.0
+theme_override_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="CoinCount/Count"]
+layout_mode = 2
+texture = ExtResource("20")
+stretch_mode = 3
+
+[node name="x" type="Label" parent="CoinCount/Count"]
+layout_mode = 2
+text = "x "
+
+[node name="Number" type="Label" parent="CoinCount/Count"]
+layout_mode = 2
+text = "0"
+
+[node name="Items" type="VBoxContainer" parent="."]
+offset_left = 271.0
+offset_top = 96.0
+offset_right = 451.0
+offset_bottom = 196.0
+theme_override_constants/separation = 90
+alignment = 2
+
+[node name="TopShelf" type="HBoxContainer" parent="Items"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../BottomShelf")
+theme_override_constants/separation = 60
+alignment = 2
+
+[node name="ShopItem5" parent="Items/TopShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BottomShelf/ShopItem")
+type = "Pin"
+item_name = "AP Max Up"
+cost = 0
+
+[node name="ShopItem6" parent="Items/TopShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BottomShelf/ShopItem2")
+type = "Pin"
+item_name = "AP Move Down"
+cost = 0
+
+[node name="ShopItem7" parent="Items/TopShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BottomShelf/ShopItem3")
+type = "Pin"
+item_name = "AP Regen Up"
+cost = 0
+
+[node name="ShopItem8" parent="Items/TopShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BottomShelf/ShopItem4")
+type = "Pin"
+item_name = "One Hit Kill"
+cost = 0
+
+[node name="BottomShelf" type="HBoxContainer" parent="Items"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../TopShelf")
+theme_override_constants/separation = 60
+
+[node name="ShopItem" parent="Items/BottomShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../TopShelf/ShopItem5")
+focus_neighbor_bottom = NodePath(".")
+cost = 0
+unlimited = true
+
+[node name="ShopItem2" parent="Items/BottomShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../TopShelf/ShopItem6")
+focus_neighbor_bottom = NodePath(".")
+item_name = "Small AP Charm"
+cost = 0
+unlimited = true
+
+[node name="ShopItem3" parent="Items/BottomShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../TopShelf/ShopItem7")
+focus_neighbor_bottom = NodePath(".")
+item_name = "Coolant"
+cost = 0
+unlimited = true
+
+[node name="ShopItem4" parent="Items/BottomShelf" instance=ExtResource("3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../TopShelf/ShopItem8")
+focus_neighbor_bottom = NodePath(".")
+item_name = "Really Good Item"
+cost = 0
+unlimited = true
+
+[node name="Info" type="NinePatchRect" parent="."]
+offset_left = 258.0
+offset_top = 76.0
+offset_right = 463.0
+offset_bottom = 143.0
+texture = ExtResource("16")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="TopArrow" type="TextureRect" parent="Info"]
+layout_mode = 0
+offset_top = 67.0
+offset_right = 40.0
+offset_bottom = 75.0
+texture = ExtResource("17")
+
+[node name="BottomArrow" type="TextureRect" parent="Info"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -8.0
+offset_right = 43.0
+texture = ExtResource("17")
+flip_v = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Info"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Text" type="VBoxContainer" parent="Info/MarginContainer"]
+layout_mode = 2
+
+[node name="Itemname" type="Label" parent="Info/MarginContainer/Text"]
+layout_mode = 2
+text = "Item Name"
+label_settings = SubResource("LabelSettings_qyg64")
+
+[node name="Itemdesc" type="Label" parent="Info/MarginContainer/Text"]
+layout_mode = 2
+text = "Item Description"
+label_settings = SubResource("LabelSettings_l2spi")
+autowrap_mode = 2
+
+[node name="ButtonPrompts" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = -25.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 15
+alignment = 2
+metadata/_edit_group_ = true
+
+[node name="Buy" type="HBoxContainer" parent="ButtonPrompts"]
+layout_mode = 2
+
+[node name="InputTextureRect" parent="ButtonPrompts/Buy" instance=ExtResource("15")]
+layout_mode = 2
+texture = ExtResource("12")
+action_name = "ui_accept"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonAXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonAGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonXXbox.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyZ.png"
+
+[node name="Label" type="Label" parent="ButtonPrompts/Buy"]
+layout_mode = 2
+text = "Buy"
+label_settings = SubResource("LabelSettings_o0m0p")
+
+[node name="Talk" type="HBoxContainer" parent="ButtonPrompts"]
+visible = false
+layout_mode = 2
+
+[node name="InputTextureRect" parent="ButtonPrompts/Talk" instance=ExtResource("15")]
+layout_mode = 2
+texture = ExtResource("12")
+action_name = "ui_accept"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonAXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonAGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonXXbox.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyZ.png"
+
+[node name="Label" type="Label" parent="ButtonPrompts/Talk"]
+layout_mode = 2
+text = "Talk"
+label_settings = SubResource("LabelSettings_laneq")
+
+[node name="Ask" type="HBoxContainer" parent="ButtonPrompts"]
+layout_mode = 2
+
+[node name="InputTextureRect" parent="ButtonPrompts/Ask" instance=ExtResource("15")]
+layout_mode = 2
+texture = ExtResource("5")
+action_name = "more_info"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonXGeneric.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonYGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonSquare.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyC.png"
+
+[node name="Label" type="Label" parent="ButtonPrompts/Ask"]
+layout_mode = 2
+text = "Ask About"
+label_settings = SubResource("LabelSettings_0cgqn")
+
+[node name="Leave" type="HBoxContainer" parent="ButtonPrompts"]
+layout_mode = 2
+
+[node name="InputTextureRect" parent="ButtonPrompts/Leave" instance=ExtResource("15")]
+layout_mode = 2
+texture = ExtResource("9")
+action_name = "ui_cancel"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonBXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonBGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonCircle.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyX.png"
+
+[node name="Label" type="Label" parent="ButtonPrompts/Leave"]
+layout_mode = 2
+text = "Leave"
+label_settings = SubResource("LabelSettings_3rppt")
+
+[node name="PurchaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_ni2ca")

@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c6uoh4ginqhfp"]
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0

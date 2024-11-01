@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=5 format=3 uid="uid://h3x5rcen5ftq"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Objects/Battle/Enemies/bosses/boss_king.tscn" id="1_2j15k"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_204sa"]
+
+[sub_resource type="Resource" id="Resource_hqw8f"]
+script = ExtResource("2_204sa")
+enemyscene = ExtResource("1_2j15k")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "VS Vanadius Sentry"
+description = "BossKing"
+difficulty = 1
+grid = "2 x x
+x 0 x
+1 x x"
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("2_204sa")]([SubResource("Resource_hqw8f")])
+background = "res://Objects/Battle/Backgrounds/Crowd.tscn"
+music = "res://Sounds/Music/endless remix.ogg"
+custom_color = Color(0.75, 0.32, 0.32, 1)
+state = 0

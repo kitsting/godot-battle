@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=5 format=3 uid="uid://cyor52hndg1ek"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bqpk4n7y1y73s" path="res://Objects/Battle/Enemies/bosses/g.tscn" id="1_v2b6d"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_u63gr"]
+
+[sub_resource type="Resource" id="Resource_3yd0i"]
+script = ExtResource("2_u63gr")
+enemyscene = ExtResource("1_v2b6d")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "VS g"
+description = "BossG"
+difficulty = 1
+grid = "2 x x
+x 0 x
+1 x x"
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("2_u63gr")]([SubResource("Resource_3yd0i")])
+background = "res://Objects/Battle/Backgrounds/Cubes.tscn"
+music = "res://Sounds/Music/Kraken of the Sea.ogg"
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

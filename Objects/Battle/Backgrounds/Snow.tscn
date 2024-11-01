@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7gc3h3g2dadp"]
+
+[ext_resource type="Texture2D" uid="uid://b717hb8okk02" path="res://Graphics/Battle/Backgrounds/Forest.png" id="1_4sn58"]
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Snow.gd" id="1_gcui4"]
+[ext_resource type="Texture2D" uid="uid://bktnk4k1n22g0" path="res://Graphics/Battle/Backgrounds/Snow.png" id="3_mrp45"]
+
+[sub_resource type="Gradient" id="Gradient_6srdf"]
+offsets = PackedFloat32Array(0, 0.378205, 0.907051, 1)
+colors = PackedColorArray(6.01634e-07, 2.40654e-07, 0.373308, 1, 0.179384, 0.192653, 0.520453, 1, 0.476621, 0.621027, 0.966644, 1, 0.787198, 0.858644, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kel5w"]
+gradient = SubResource("Gradient_6srdf")
+width = 480
+height = 270
+fill_from = Vector2(0.779292, 0.993037)
+fill_to = Vector2(0.572207, 0.00484408)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_si4pe"]
+emission_shape = 3
+emission_box_extents = Vector3(480, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.4, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 40.0
+angle_max = 60.0
+scale_max = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm6bb"]
+emission_shape = 3
+emission_box_extents = Vector3(480, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.4, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 40.0
+angle_max = 60.0
+scale_min = 2.0
+scale_max = 4.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2j3rs"]
+emission_shape = 3
+emission_box_extents = Vector3(480, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.4, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 45.0
+scale_min = 0.35
+scale_max = 0.8
+
+[node name="Snow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gcui4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_kel5w")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 0
+offset_left = -46.0
+offset_top = 225.0
+offset_right = 434.0
+offset_bottom = 320.0
+rotation = -0.139626
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_4sn58")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.117647)
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(243, 0)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_si4pe")
+lifetime = 15.0
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Particles2" type="GPUParticles2D" parent="Foreground"]
+position = Vector2(243, 0)
+process_material = SubResource("ParticleProcessMaterial_pm6bb")
+lifetime = 15.0
+
+[node name="Foreground2" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Particles2" type="GPUParticles2D" parent="Foreground2"]
+position = Vector2(243, 0)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_2j3rs")
+texture = ExtResource("3_mrp45")
+lifetime = 15.0

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Scripts/Attack.gd" type="Script" id=1]
+[ext_resource path="res://Resources/AttackScripts/DoNothing.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 1 )
+attackname = "Barrier"
+attackid = "Barrier"
+desc = "Form a protective shield"
+extended_desc = "Form a protective shield on a grid space. High chance of not working."
+cost = 40
+damage = 1.0
+cooldown = 0
+affects = "grid"
+timing = 0.0
+timing_window = 0.0
+usescript = ExtResource( 2 )
+requires1 = false
+requires2 = false

@@ -1,0 +1,35 @@
+[gd_resource type="AnimatedTexture" load_steps=9 format=3 uid="uid://chikiyuuyftfj"]
+
+[ext_resource type="Texture2D" uid="uid://c2nqclsfywtny" path="res://Graphics/UI/Arrows/EnemySelect.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5c8uqicc2f8r" path="res://Graphics/UI/Arrows/EnemySelect3.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://btw7h4v06k4y5" path="res://Graphics/UI/Arrows/EnemySelect2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b40101t48hgrg" path="res://Graphics/UI/Arrows/EnemySelect8.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cdpapiup3lml0" path="res://Graphics/UI/Arrows/EnemySelect7.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bfn3qgfnihv8h" path="res://Graphics/UI/Arrows/EnemySelect4.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://lkdlkslh6cxf" path="res://Graphics/UI/Arrows/EnemySelect5.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bgjs1anng3g0y" path="res://Graphics/UI/Arrows/EnemySelect6.png" id="8"]
+
+[resource]
+frames = 11
+speed_scale = 10.0
+frame_0/texture = ExtResource("1")
+frame_1/texture = ExtResource("3")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("5")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("4")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("1")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("3")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("2")
+frame_10/duration = 1.0

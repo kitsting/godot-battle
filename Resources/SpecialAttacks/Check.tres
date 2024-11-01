@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://i2p86vp7x8bf"]
+
+[ext_resource type="Script" path="res://Resources/AttackScripts/DoNothing.gd" id="1"]
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+attackname = "Check"
+desc = "Observe your foes"
+extended_desc = "Get information about a single enemy. Uses a turn."
+cost = 0
+damage = 1.0
+cooldown = 0
+ap_penalty = 0
+affects = 1
+timing = 0.0
+timing_window = 0.0
+usescript = ExtResource("1")
+requires1 = false
+requires2 = false

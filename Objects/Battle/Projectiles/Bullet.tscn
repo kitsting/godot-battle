@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkgwr0lcebos6"]
+
+[ext_resource type="Script" path="res://Objects/Battle/Projectiles/Bullet.gd" id="1_rwt82"]
+[ext_resource type="Texture2D" uid="uid://ckhlfs8vppjqu" path="res://Graphics/Enemies/Bat/BatShadow.png" id="2_4g41d"]
+[ext_resource type="Texture2D" uid="uid://bk4jknvn7fx64" path="res://Graphics/Enemies/Bat/BatFlapping.tres" id="2_vegfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_876pn"]
+size = Vector2(8.18322, 8.16984)
+
+[sub_resource type="Animation" id="Animation_h6q52"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_38hfc"]
+resource_name = "flap"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -1), Vector2(1, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k5lw6"]
+_data = {
+"RESET": SubResource("Animation_h6q52"),
+"flap": SubResource("Animation_38hfc")
+}
+
+[node name="Bullet" type="Area2D" groups=["bullet", "damage"]]
+script = ExtResource("1_rwt82")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(0, 4)
+texture = ExtResource("2_4g41d")
+offset = Vector2(0.5, 0.5)
+
+[node name="Sprite" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, -1)
+texture = ExtResource("2_vegfg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_876pn")
+
+[node name="Flap" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k5lw6")
+}

@@ -1,0 +1,10 @@
+~ BattleWonDefault
+if current_scenario.coins <= 0
+	You win! You get nothing...
+	end
+elif current_scenario.coins == 1
+	You win! You get a coin!
+	end
+else:
+	You win! You get {{current_scenario.coins}} coins!
+	end

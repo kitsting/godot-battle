@@ -1,0 +1,22 @@
+[gd_resource type="AnimatedTexture" load_steps=6 format=3 uid="uid://dmd6env6numuu"]
+
+[ext_resource type="Texture2D" uid="uid://c4ig12o2wfitc" path="res://Graphics/UI/Icons/Animations/Refrain1.png" id="1_b0c0b"]
+[ext_resource type="Texture2D" uid="uid://b4tylgpvwbfvo" path="res://Graphics/UI/Icons/Animations/Refrain2.png" id="2_vi24b"]
+[ext_resource type="Texture2D" uid="uid://d1wsbawfl5ens" path="res://Graphics/UI/Icons/Animations/Refrain3.png" id="3_vruci"]
+[ext_resource type="Texture2D" uid="uid://cshx2alecfrc7" path="res://Graphics/UI/Icons/Animations/Refrain4.png" id="4_q44m6"]
+[ext_resource type="Texture2D" uid="uid://dvlmllf5e0gsc" path="res://Graphics/UI/Icons/Animations/Refrain5.png" id="5_2atgh"]
+
+[resource]
+frames = 5
+pause = true
+speed_scale = 5.0
+frame_0/texture = ExtResource("1_b0c0b")
+frame_0/duration = 5.0
+frame_1/texture = ExtResource("2_vi24b")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_vruci")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_q44m6")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("5_2atgh")
+frame_4/duration = 1.0

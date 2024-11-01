@@ -1,0 +1,815 @@
+[gd_scene load_steps=49 format=3 uid="uid://vdgntihgg6n3"]
+
+[ext_resource type="FontFile" uid="uid://xvckwb2negar" path="res://Fonts/SmallLabelFont.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://d1dh3mmd0u4an" path="res://Graphics/UI/Theme/CheckboxUntickedWhite.png" id="3"]
+[ext_resource type="FontFile" uid="uid://bph7gelssyinn" path="res://Fonts/PixelOperator/PixelOperatorHBSC.ttf" id="3_iryda"]
+[ext_resource type="PackedScene" path="res://Objects/UI/Battle/APMeter.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ci74ppfer3d7r" path="res://Objects/UI/Battle/MenuItem.tscn" id="5"]
+[ext_resource type="Script" path="res://Objects/UI/Battle/BattleUI.gd" id="6"]
+[ext_resource type="AudioStream" uid="uid://cav7rr4y77qqa" path="res://Sounds/Select.wav" id="7"]
+[ext_resource type="Texture2D" uid="uid://cjykqtkacl5cy" path="res://Graphics/UI/Buttons/KeyLeft.png" id="7_d7gar"]
+[ext_resource type="FontFile" path="res://Fonts/SmallLabelFontBold.tres" id="8"]
+[ext_resource type="Texture2D" uid="uid://c1kpjkktfx6d2" path="res://Graphics/UI/Buttons/KeyRight.png" id="8_6xtp3"]
+[ext_resource type="PackedScene" uid="uid://jwpnsxxme8k0" path="res://Objects/UI/Elements/InputTextureRect.tscn" id="13"]
+[ext_resource type="Texture2D" uid="uid://dti6e8xai8wr5" path="res://Graphics/UI/Buttons/KeyX.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://bsvoo2tv4ekty" path="res://Graphics/UI/Buttons/KeyC.png" id="20"]
+[ext_resource type="FontFile" uid="uid://dstoj06rcyyuk" path="res://Fonts/DialogueFontSmallBold.tres" id="21_yni77"]
+[ext_resource type="Texture2D" uid="uid://crsiuh755qtdv" path="res://Graphics/UI/Buttons/KeyUp.png" id="22_s8mdv"]
+[ext_resource type="Texture2D" uid="uid://cd8k32b6p2dcj" path="res://Graphics/UI/Buttons/KeyDown.png" id="23_08ics"]
+[ext_resource type="PackedScene" uid="uid://bhh74tuk85sks" path="res://Objects/UI/Battle/Elements/AttackInfo.tscn" id="24"]
+[ext_resource type="PackedScene" uid="uid://1x6hpy8e4llk" path="res://Objects/UI/Battle/Elements/BottomBar.tscn" id="24_d2qnn"]
+[ext_resource type="Texture2D" uid="uid://bk7sr2rs8wr0n" path="res://Graphics/UI/Icons/Text/CheckHP.png" id="25_5p5ik"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFontSmall.tres" id="25_sspig"]
+[ext_resource type="Texture2D" uid="uid://dbatoamkx68t" path="res://Graphics/UI/Icons/Text/CheckAT.png" id="26_yrvpq"]
+[ext_resource type="Texture2D" uid="uid://cws84n0vp3kne" path="res://Graphics/UI/Buttons/BackArrow.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://40qnnoej3b1i" path="res://Graphics/UI/Icons/Text/CheckDEF.png" id="27_5ur8e"]
+[ext_resource type="Texture2D" uid="uid://hpqtl05vtius" path="res://Graphics/UI/Arrows/TextAdvance/TextAdvance.tres" id="29_f6hjr"]
+[ext_resource type="AudioStream" uid="uid://dylmq7vsnq2rg" path="res://Sounds/UI/Card.wav" id="33_8vl3q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvhsf"]
+font = ExtResource("3_iryda")
+font_size = 14
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r4keb"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5y1k"]
+font = ExtResource("21_yni77")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ivlva"]
+font = ExtResource("21_yni77")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gyqr"]
+font = ExtResource("25_sspig")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="2"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Info:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [280.0, 246.0]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Info:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [246.0, 280.0, 280.0]
+}
+
+[sub_resource type="Animation" id="4"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Info:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [246.0, 280.0, 280.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MoreInfo:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [200.0, 280.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MoreInfo/MorePrompt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MoreInfo/BackPrompt:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MoreInfo:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1mian"]
+resource_name = "DodgeAppear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DodgePrompt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(86, 276), Vector2(86, 245)]
+}
+
+[sub_resource type="Animation" id="Animation_a0g22"]
+resource_name = "DodgeDisappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DodgePrompt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(86, 245), Vector2(86, 276)]
+}
+
+[sub_resource type="Animation" id="Animation_k67f0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DodgePrompt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(86, 276)]
+}
+
+[sub_resource type="Animation" id="8"]
+resource_name = "Reset"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoreInfo:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 280)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Info:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 280)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Analysis:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 280)]
+}
+
+[sub_resource type="Animation" id="5"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Analysis:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [280.0, 184.0]
+}
+
+[sub_resource type="Animation" id="6"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoreInfo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MoreInfo:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [190.0, 280.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MoreInfo/MorePrompt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MoreInfo/BackPrompt:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="7"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoreInfo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MoreInfo:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [280.0, 190.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MoreInfo/MorePrompt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MoreInfo/BackPrompt:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pdh4e"]
+_data = {
+"Appear": SubResource("2"),
+"Disappear": SubResource("3"),
+"DisappearAll": SubResource("4"),
+"DodgeAppear": SubResource("Animation_1mian"),
+"DodgeDisappear": SubResource("Animation_a0g22"),
+"RESET": SubResource("Animation_k67f0"),
+"Reset": SubResource("8"),
+"ShowEnemyInfo": SubResource("5"),
+"ShowLess": SubResource("6"),
+"ShowMore": SubResource("7")
+}
+
+[sub_resource type="Animation" id="9"]
+resource_name = "shake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Info/Margin/HBox/InfoCost:custom_fonts/font")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2"), ExtResource("8"), ExtResource("2"), ExtResource("8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7kh8c"]
+_data = {
+"shake": SubResource("9")
+}
+
+[sub_resource type="Animation" id="11"]
+resource_name = "hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackInfo:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [174.0, 300.0]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackInfo:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [300.0, 174.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvapc"]
+_data = {
+"hide": SubResource("11"),
+"show": SubResource("12")
+}
+
+[sub_resource type="Animation" id="13"]
+resource_name = "Appear"
+length = 0.9
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnoo8"]
+_data = {
+"Appear": SubResource("13")
+}
+
+[node name="BattleUI" type="CanvasLayer" groups=["battle_ui"]]
+layer = 3
+script = ExtResource("6")
+
+[node name="TopUI" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="APMeter" parent="TopUI" instance=ExtResource("4")]
+
+[node name="HealthLabel" type="Label" parent="TopUI"]
+texture_filter = 2
+offset_left = 69.0
+offset_top = 19.0
+offset_right = 117.0
+offset_bottom = 38.0
+rotation = -0.471239
+scale = Vector2(1.3, 1.3)
+text = "health"
+label_settings = SubResource("LabelSettings_pvhsf")
+
+[node name="Health" type="HBoxContainer" parent="TopUI"]
+offset_left = 100.0
+offset_right = 100.0
+theme_override_constants/separation = 75
+
+[node name="DodgePrompt" type="HBoxContainer" parent="."]
+offset_left = 86.0
+offset_top = 276.0
+offset_right = 197.0
+offset_bottom = 295.0
+theme_override_constants/separation = 0
+
+[node name="Up" parent="DodgePrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("22_s8mdv")
+stretch_mode = 2
+action_name = "ui_up"
+xbox_texture = "res://Graphics/UI/Buttons/KeyUp.png"
+nintendo_texture = "res://Graphics/UI/Buttons/KeyUp.png"
+playstation_texture = "res://Graphics/UI/Buttons/KeyUp.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyUp.png"
+
+[node name="Down" parent="DodgePrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("23_08ics")
+stretch_mode = 2
+action_name = "ui_down"
+xbox_texture = "res://Graphics/UI/Buttons/KeyDown.png"
+nintendo_texture = "res://Graphics/UI/Buttons/KeyDown.png"
+playstation_texture = "res://Graphics/UI/Buttons/KeyDown.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyDown.png"
+
+[node name="Left" parent="DodgePrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("7_d7gar")
+stretch_mode = 2
+action_name = "ui_left"
+xbox_texture = "res://Graphics/UI/Buttons/KeyLeft.png"
+nintendo_texture = "res://Graphics/UI/Buttons/KeyLeft.png"
+playstation_texture = "res://Graphics/UI/Buttons/KeyLeft.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyLeft.png"
+
+[node name="Left2" parent="DodgePrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("8_6xtp3")
+stretch_mode = 2
+action_name = "ui_right"
+xbox_texture = "res://Graphics/UI/Buttons/KeyRight.png"
+nintendo_texture = "res://Graphics/UI/Buttons/KeyRight.png"
+playstation_texture = "res://Graphics/UI/Buttons/KeyRight.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyRight.png"
+
+[node name="Spacer" type="Control" parent="DodgePrompt"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DodgePrompt"]
+layout_mode = 2
+text = "Dodge"
+label_settings = SubResource("LabelSettings_r4keb")
+
+[node name="Actions" type="VBoxContainer" parent="."]
+offset_left = 1.0
+offset_top = 180.0
+offset_right = 1.0
+offset_bottom = 252.0
+theme_override_constants/separation = 22
+
+[node name="Attack" parent="Actions" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="Special" parent="Actions" instance=ExtResource("5")]
+layout_mode = 2
+type = 1
+
+[node name="Items" parent="Actions" instance=ExtResource("5")]
+layout_mode = 2
+type = 2
+
+[node name="Defend" parent="Actions" instance=ExtResource("5")]
+layout_mode = 2
+type = 3
+
+[node name="MoreInfo" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 10.0
+offset_right = -1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="BackPrompt" type="HBoxContainer" parent="MoreInfo"]
+layout_mode = 0
+offset_top = -18.0
+offset_right = 37.0
+
+[node name="Arrow" type="TextureRect" parent="MoreInfo/BackPrompt"]
+layout_mode = 2
+texture = ExtResource("27")
+stretch_mode = 2
+
+[node name="InputTextureRect" parent="MoreInfo/BackPrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("17")
+action_name = "ui_cancel"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonBXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonAGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonCircle.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyX.png"
+
+[node name="MorePrompt" type="HBoxContainer" parent="MoreInfo"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = -19.0
+offset_right = 394.0
+
+[node name="InputTextureRect" parent="MoreInfo/MorePrompt" instance=ExtResource("13")]
+layout_mode = 2
+texture = ExtResource("20")
+action_name = "more_info"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonXXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonYGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonSquare.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyC.png"
+
+[node name="Label" type="Label" parent="MoreInfo/MorePrompt"]
+layout_mode = 2
+text = "More Info"
+label_settings = SubResource("LabelSettings_k5y1k")
+vertical_alignment = 1
+
+[node name="InvCapacity" type="HBoxContainer" parent="MoreInfo"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 118.0
+offset_top = -13.0
+offset_right = 223.0
+offset_bottom = -2.0
+
+[node name="Label" type="Label" parent="MoreInfo/InvCapacity"]
+layout_mode = 2
+text = "Capacity: "
+label_settings = SubResource("LabelSettings_k5y1k")
+
+[node name="Have" type="Label" parent="MoreInfo/InvCapacity"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_k5y1k")
+
+[node name="Out Of" type="Label" parent="MoreInfo/InvCapacity"]
+layout_mode = 2
+text = "/"
+label_settings = SubResource("LabelSettings_k5y1k")
+
+[node name="Max" type="Label" parent="MoreInfo/InvCapacity"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_k5y1k")
+
+[node name="Margin" type="MarginContainer" parent="MoreInfo"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="Scroll" type="ScrollContainer" parent="MoreInfo/Margin"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Options" type="GridContainer" parent="MoreInfo/Margin/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Info" parent="." instance=ExtResource("24_d2qnn")]
+
+[node name="Analysis" type="NinePatchRect" parent="."]
+offset_left = 82.0
+offset_top = 280.0
+offset_right = 479.0
+offset_bottom = 370.0
+texture = ExtResource("3")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 5
+
+[node name="Margin" type="MarginContainer" parent="Analysis"]
+layout_mode = 0
+offset_right = 397.0
+offset_bottom = 91.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Analysis/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EnemyInfo" type="HBoxContainer" parent="Analysis/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="EnemyName" type="Label" parent="Analysis/Margin/VBox/EnemyInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enemy Name"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="EnemyStats" type="HBoxContainer" parent="Analysis/Margin/VBox/EnemyInfo"]
+layout_mode = 2
+alignment = 2
+
+[node name="HPIcon" type="TextureRect" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+texture = ExtResource("25_5p5ik")
+stretch_mode = 2
+
+[node name="HPLabel" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+visible = false
+layout_mode = 2
+text = "HP:"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="EnemyHP" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00/00"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="Spacer1" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+text = "|"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="ATIcon" type="TextureRect" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+texture = ExtResource("26_yrvpq")
+stretch_mode = 2
+
+[node name="ATLabel" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+visible = false
+layout_mode = 2
+text = "AT:"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="EnemyAT" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="Spacer2" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+text = "|"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="DFIcon" type="TextureRect" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+texture = ExtResource("27_5ur8e")
+stretch_mode = 2
+
+[node name="DFLabel" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+visible = false
+layout_mode = 2
+text = "DF:"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="EnemyDF" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="DFPercent" type="Label" parent="Analysis/Margin/VBox/EnemyInfo/EnemyStats"]
+layout_mode = 2
+text = "%"
+label_settings = SubResource("LabelSettings_ivlva")
+
+[node name="Description" type="Label" parent="Analysis/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Does Literally nothing and dies"
+label_settings = SubResource("LabelSettings_6gyqr")
+autowrap_mode = 2
+
+[node name="Indicator" type="TextureRect" parent="Analysis/Margin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("29_f6hjr")
+stretch_mode = 2
+
+[node name="AttackInfo" parent="." instance=ExtResource("24")]
+offset_top = 300.0
+offset_bottom = 402.0
+
+[node name="EnemyUIPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pdh4e")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pdh4e")
+}
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7")
+volume_db = -12.0
+bus = &"SFX"
+
+[node name="CostAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7kh8c")
+}
+
+[node name="AttackInfoAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qvapc")
+}
+
+[node name="CardsAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Actions/Defend")
+libraries = {
+"": SubResource("AnimationLibrary_cnoo8")
+}
+
+[node name="CardSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("33_8vl3q")
+volume_db = -4.0
+pitch_scale = 0.8
+max_polyphony = 4
+bus = &"SFX"
+
+[connection signal="animation_finished" from="EnemyUIPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

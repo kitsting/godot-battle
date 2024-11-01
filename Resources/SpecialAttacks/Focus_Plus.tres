@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://q5bxj0k8p70n"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="1_npkpu"]
+[ext_resource type="Script" path="res://Resources/AttackScripts/Tactics/GroupFocus.gd" id="2_gvpv6"]
+
+[resource]
+script = ExtResource("1_npkpu")
+attackname = "Group Focus"
+desc = "Recover all energy next turn"
+extended_desc = "Recover all energy when it's your turn to attack."
+cost = 0
+damage = 1.0
+cooldown = 4
+ap_penalty = 12
+affects = 4
+timing = 1.5
+timing_window = 0.5
+usescript = ExtResource("2_gvpv6")
+requires1 = true
+requires2 = true

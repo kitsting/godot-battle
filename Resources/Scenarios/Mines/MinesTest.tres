@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bb6y2dmmvhll7"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+readable_name = "Mines Test"
+description = "DefaultDesc"
+grid = "x x x
+x 0 x
+1 x x"
+coins = 10
+enemies = PackedStringArray("mines/Bat", "", "", "", "", "", "")
+background = ""
+music = ""
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

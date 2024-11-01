@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=3 format=3 uid="uid://cbcarwl0ch2bm"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="1_27hbb"]
+[ext_resource type="Script" path="res://Resources/AttackScripts/StandardAttack.gd" id="2_wf7at"]
+
+[resource]
+script = ExtResource("1_27hbb")
+attackname = "Slap"
+desc = "Weak attack that does not get hot"
+extended_desc = "Deal a small amount of damage to a single enemy. No energy or input is required."
+cost = 0
+damage = 0.3
+cooldown = 0
+ap_penalty = 0
+affects = 1
+timing = 0.0
+timing_window = 0.0
+usescript = ExtResource("2_wf7at")
+requires1 = false
+requires2 = false

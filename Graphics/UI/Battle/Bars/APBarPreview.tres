@@ -1,0 +1,21 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b8wju7dycqfr3" path="res://Graphics/UI/Battle/Bars/APBarPreview/APBarPreview3.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dadmtehol24nu" path="res://Graphics/UI/Battle/Bars/APBarPreview/APBarPreview1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c642ke1h83n7q" path="res://Graphics/UI/Battle/Bars/APBarPreview/APBarPreview4.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bwf3gcrinlmj2" path="res://Graphics/UI/Battle/Bars/APBarPreview/APBarPreview2.png" id="4"]
+
+[resource]
+frames = 6
+speed_scale = 12.0
+frame_0/texture = ExtResource("2")
+frame_1/texture = ExtResource("4")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("1")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("3")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("1")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("4")
+frame_5/duration = 1.0

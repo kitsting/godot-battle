@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfak7sg6dybpi"]
+
+[ext_resource type="Theme" uid="uid://d1itxkmg7h4un" path="res://default_theme.tres" id="1"]
+[ext_resource type="Script" path="res://Objects/UI/Elements/SelectableButton.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Graphics/UI/Theme/ButtonSelected.tres" id="3"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="4_yrg6c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2vo0y"]
+resource_local_to_scene = true
+font = ExtResource("4_yrg6c")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SelectableButton" type="Button"]
+custom_minimum_size = Vector2(48, 28)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1")
+button_mask = 0
+script = ExtResource("2")
+
+[node name="Select" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="Text" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBox" type="HBoxContainer" parent="Text"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Text/HBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+
+[node name="Icon" type="TextureRect" parent="Text/HBox/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Text/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_2vo0y")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="focus_entered" from="." to="." method="_on_SelectableButton_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_SelectableButton_focus_exited"]

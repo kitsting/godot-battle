@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://1x6hpy8e4llk"]
+
+[ext_resource type="Texture2D" uid="uid://d1dh3mmd0u4an" path="res://Graphics/UI/Theme/CheckboxUntickedWhite.png" id="1_uuup5"]
+[ext_resource type="Script" path="res://Objects/UI/Battle/Elements/BottomBar.gd" id="2_tlcb4"]
+[ext_resource type="FontFile" uid="uid://ddwgewrn7yhmw" path="res://Fonts/battle.ttf" id="3_sp7is"]
+[ext_resource type="FontFile" uid="uid://xnsn8610nwgk" path="res://Fonts/battle_bold.ttf" id="4_i8cu2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqw3r"]
+font = ExtResource("4_i8cu2")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="NinePatchRect"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 10.0
+offset_right = -1.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_uuup5")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+script = ExtResource("2_tlcb4")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBox" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="Margin/HBox"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="InfoMargin" type="MarginContainer" parent="Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 5
+
+[node name="InfoText" type="RichTextLabel" parent="Margin/HBox/InfoMargin"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_sp7is")
+theme_override_fonts/bold_font = ExtResource("4_i8cu2")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+bbcode_enabled = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="CostMargin" type="MarginContainer" parent="Margin/HBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="InfoCost" type="Label" parent="Margin/HBox/CostMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = " -10 Energy "
+label_settings = SubResource("LabelSettings_aqw3r")
+horizontal_alignment = 2

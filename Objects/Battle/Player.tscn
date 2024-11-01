@@ -1,0 +1,478 @@
+[gd_scene load_steps=39 format=3 uid="uid://pp5ltiifdt52"]
+
+[ext_resource type="AudioStream" uid="uid://dt0kd0nfsjlyu" path="res://Sounds/PlayerHurt2.wav" id="1"]
+[ext_resource type="Material" uid="uid://c6uoh4ginqhfp" path="res://NodeResources/Shaders/Glow.tres" id="1_gb3r0"]
+[ext_resource type="AudioStream" uid="uid://be1s8pluw8ve8" path="res://Sounds/PlayerHurt.wav" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://d3ouxgw3knmc7" path="res://NodeResources/Spriteframes/PlayerBattle/23.tres" id="3_a3khg"]
+[ext_resource type="Script" path="res://Objects/Battle/Player.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://br4r78cirghpg" path="res://Graphics/Player/shadow.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://d1lcufcdgqdit" path="res://Graphics/UI/Battle/MoveDown.png" id="7_ca0iu"]
+[ext_resource type="Texture2D" uid="uid://f4u2onqd887y" path="res://Graphics/UI/Battle/Timing/TimingOK.png" id="7_cuj3r"]
+[ext_resource type="Texture2D" uid="uid://ceuskk1p25paw" path="res://Graphics/Player/webbed.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://tfob4nfvy6ok" path="res://Graphics/UI/Battle/MoveLeft.png" id="8_io0qd"]
+[ext_resource type="Texture2D" uid="uid://bnu4h0dkkodx2" path="res://Graphics/UI/Battle/Timing/TimingGood.png" id="8_xsvsl"]
+[ext_resource type="Texture2D" uid="uid://chikiyuuyftfj" path="res://Graphics/UI/Arrows/EnemySelection.tres" id="9"]
+[ext_resource type="Texture2D" uid="uid://cicij32lnsos1" path="res://Graphics/UI/Battle/Timing/TimingGreat.png" id="9_pfpmq"]
+[ext_resource type="Texture2D" uid="uid://d10k40wyqhm44" path="res://Graphics/UI/Arrows/EnemySelectable.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://cnmwao5t86s2n" path="res://Graphics/UI/Battle/Timing/TimingSuperb.png" id="10_q7sqk"]
+[ext_resource type="Texture2D" uid="uid://cwpuiytxnbgny" path="res://Graphics/UI/Battle/Timing/TimingBad2.png" id="11_e4muu"]
+[ext_resource type="AudioStream" uid="uid://dar2t5qgpjre6" path="res://Sounds/Move.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://davd3e1e6ejum" path="res://Sounds/LavaDrain.wav" id="13"]
+[ext_resource type="PackedScene" path="res://NodeResources/Particles/HealParticles.tscn" id="14"]
+[ext_resource type="Texture2D" uid="uid://711levcf5kpe" path="res://Graphics/Player/Attacking/Twinkle5.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://cu3uyrn6o86c2" path="res://Graphics/Player/Attacking/Twinkle1.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://bhnp3m0yo5728" path="res://Graphics/Player/Attacking/Twinkle2.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://dewd31ewkelqj" path="res://Graphics/Player/Attacking/Twinkle3.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://brquord6y7vpk" path="res://Graphics/Player/Attacking/Twinkle4.png" id="22"]
+[ext_resource type="AudioStream" uid="uid://bm7fl680w6m4x" path="res://Sounds/Movent.wav" id="22_h7c0m"]
+[ext_resource type="AudioStream" uid="uid://dyqrhyr3dp0y0" path="res://Sounds/StandardCharged.wav" id="23"]
+[ext_resource type="Texture2D" uid="uid://bklnoiexakalj" path="res://Graphics/Battle/Particles/APRecover.png" id="24_1lk8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f64j5"]
+size = Vector2(16, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkn3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="Animation" id="Animation_f7c3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/white_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReadySound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Twinkle:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_hn070"]
+resource_name = "cold"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, -1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uqiui"]
+resource_name = "fall"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-250.0, -10.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1jicl"]
+resource_name = "glow"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_deic3"]
+resource_name = "ready"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, -1.0, 2.0, -2.0, 3.0, -3.0, 3.0, -3.0, 3.0, -3.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ReadySound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Twinkle:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 0, 2, 4]
+}
+
+[sub_resource type="Animation" id="Animation_8vwe4"]
+resource_name = "scared"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_anm54"]
+_data = {
+"RESET": SubResource("Animation_f7c3s"),
+"cold": SubResource("Animation_hn070"),
+"fall": SubResource("Animation_uqiui"),
+"glow": SubResource("Animation_1jicl"),
+"ready": SubResource("Animation_deic3"),
+"scared": SubResource("Animation_8vwe4")
+}
+
+[sub_resource type="Animation" id="Animation_812of"]
+resource_name = "Heal"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ox8m0"]
+_data = {
+"Heal": SubResource("Animation_812of")
+}
+
+[node name="Player" type="Node2D" groups=["party"]]
+material = ExtResource("1_gb3r0")
+script = ExtResource("4")
+
+[node name="CanMove" type="Node2D" parent="."]
+
+[node name="Down" type="Sprite2D" parent="CanMove"]
+position = Vector2(1.5, 22)
+texture = ExtResource("7_ca0iu")
+
+[node name="Up" type="Sprite2D" parent="CanMove"]
+position = Vector2(1.5, -23)
+texture = ExtResource("7_ca0iu")
+flip_v = true
+
+[node name="Left" type="Sprite2D" parent="CanMove"]
+position = Vector2(-27, 2.5)
+texture = ExtResource("8_io0qd")
+
+[node name="Right" type="Sprite2D" parent="CanMove"]
+position = Vector2(29, 2.5)
+texture = ExtResource("8_io0qd")
+flip_h = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_a3khg")
+animation = &"idle"
+offset = Vector2(0, -10)
+
+[node name="MoveCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Collision" type="Area2D" parent="." groups=["battle_player", "solid"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_f64j5")
+
+[node name="Solid" type="Area2D" parent="." groups=["solid"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="SolidShape" type="CollisionShape2D" parent="Solid"]
+position = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_f64j5")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1")
+bus = &"SFX"
+
+[node name="HurtMove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="HurtLava" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13")
+bus = &"SFX"
+
+[node name="FeetPos" type="Marker2D" parent="."]
+position = Vector2(0, 12)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="TimingOK" type="TextureRect" parent="UI"]
+visible = false
+offset_left = -36.0
+offset_top = -57.0
+offset_right = 39.0
+offset_bottom = -12.0
+texture = ExtResource("7_cuj3r")
+
+[node name="TimingGood" type="TextureRect" parent="UI"]
+visible = false
+offset_left = -36.0
+offset_top = -57.0
+offset_right = 39.0
+offset_bottom = -12.0
+texture = ExtResource("8_xsvsl")
+
+[node name="TimingGreat" type="TextureRect" parent="UI"]
+visible = false
+offset_left = -36.0
+offset_top = -57.0
+offset_right = 39.0
+offset_bottom = -12.0
+texture = ExtResource("9_pfpmq")
+
+[node name="TimingSuperb" type="TextureRect" parent="UI"]
+visible = false
+offset_left = -36.0
+offset_top = -57.0
+offset_right = 39.0
+offset_bottom = -12.0
+texture = ExtResource("10_q7sqk")
+
+[node name="TimingBad" type="TextureRect" parent="UI"]
+visible = false
+offset_left = -36.0
+offset_top = -57.0
+offset_right = 39.0
+offset_bottom = -12.0
+texture = ExtResource("11_e4muu")
+
+[node name="Arrow" type="TextureRect" parent="UI"]
+visible = false
+texture = ExtResource("9")
+flip_h = true
+
+[node name="SmallArrow" type="TextureRect" parent="UI"]
+visible = false
+modulate = Color(1, 1, 1, 0.847059)
+texture = ExtResource("10")
+flip_h = true
+
+[node name="Twinkle" type="AnimatedSprite2D" parent="UI"]
+position = Vector2(13, -12)
+sprite_frames = SubResource("SpriteFrames_qkn3v")
+frame = 4
+speed_scale = 0.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("6")
+offset = Vector2(1, 1)
+
+[node name="Webbed" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+position = Vector2(-1, 0)
+texture = ExtResource("8")
+offset = Vector2(0, -10)
+
+[node name="ItemUse" type="Marker2D" parent="."]
+position = Vector2(8, -8)
+
+[node name="TimingStart" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimingWindow" type="Timer" parent="."]
+one_shot = true
+
+[node name="IFrames" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="ScaredTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_anm54")
+}
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(50, 0)
+stream = ExtResource("12")
+bus = &"SFX"
+
+[node name="CantMoveSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(50, 0)
+stream = ExtResource("22_h7c0m")
+bus = &"SFX"
+
+[node name="LavaCheck" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="RayCastD" type="RayCast2D" parent="."]
+position = Vector2(1, 9)
+target_position = Vector2(0, 16)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastU" type="RayCast2D" parent="."]
+position = Vector2(1, -3)
+target_position = Vector2(0, -16)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastR" type="RayCast2D" parent="."]
+position = Vector2(10, 2)
+target_position = Vector2(20, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastL" type="RayCast2D" parent="."]
+position = Vector2(-8, 2)
+target_position = Vector2(-20, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="ParticlesAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HealParticles")
+libraries = {
+"": SubResource("AnimationLibrary_ox8m0")
+}
+
+[node name="HealParticles" parent="." instance=ExtResource("14")]
+emitting = false
+amount = 15
+
+[node name="APParticles" parent="." instance=ExtResource("14")]
+emitting = false
+amount = 15
+texture = ExtResource("24_1lk8w")
+
+[node name="ReadySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23")
+volume_db = 6.0
+bus = &"SFX"
+
+[connection signal="timeout" from="MoveCooldown" to="." method="_on_MoveCooldown_timeout"]
+[connection signal="area_entered" from="Collision" to="." method="_on_Hitbox_area_entered"]
+[connection signal="area_exited" from="Collision" to="." method="_on_Collision_area_exited"]
+[connection signal="area_entered" from="Solid" to="." method="_on_Hitbox_area_entered"]
+[connection signal="area_exited" from="Solid" to="." method="_on_Collision_area_exited"]
+[connection signal="timeout" from="IFrames" to="." method="_on_IFrames_timeout"]
+[connection signal="timeout" from="ScaredTimer" to="." method="_on_ScaredTimer_timeout"]
+[connection signal="timeout" from="LavaCheck" to="." method="_on_LavaCheck_timeout"]

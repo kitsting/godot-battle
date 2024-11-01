@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpfktjepiguka"]
+
+[ext_resource type="Script" path="res://Objects/BattleCamera.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cuo8m8go3xomu" path="res://Graphics/Tiles/BoundTile.png" id="2_5mxfj"]
+[ext_resource type="PackedScene" uid="uid://dmxe4xno42r2b" path="res://Objects/Overworld/OverworldPlayer.tscn" id="3"]
+[ext_resource type="Script" path="res://Rooms/WorldScript.gd" id="5"]
+
+[sub_resource type="Environment" id="Environment_d1a3r"]
+background_mode = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v88rv"]
+texture = ExtResource("2_5mxfj")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wsbob"]
+sources/0 = SubResource("TileSetAtlasSource_v88rv")
+
+[node name="TemplateRoom" type="Node2D"]
+script = ExtResource("5")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d1a3r")
+
+[node name="BGLayer" type="CanvasLayer" parent="."]
+layer = -50
+
+[node name="Background" type="ColorRect" parent="BGLayer"]
+visible = false
+show_behind_parent = true
+offset_left = -10000.0
+offset_top = -10000.0
+offset_right = 10000.0
+offset_bottom = 10000.0
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 1)
+
+[node name="WorldTiles" type="TileMap" parent="."]
+format = 2
+layer_0/name = "Floor"
+layer_0/z_index = -2
+layer_1/name = "Floor2"
+layer_1/z_index = -2
+layer_2/name = "Ceiling"
+layer_3/name = "Walls"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_wsbob")
+format = 2
+
+[node name="BlueprintTIles" type="TileMap" parent="."]
+format = 2
+
+[node name="Objects" type="Node2D" parent="." groups=["Objects"]]
+y_sort_enabled = true
+
+[node name="OverworldPlayer" parent="Objects" instance=ExtResource("3")]
+position = Vector2(104, 104)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Objects/OverworldPlayer"]
+remote_path = NodePath("../../../Camera")
+update_rotation = false
+update_scale = false
+
+[node name="FObjects" type="Node2D" parent="."]
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Camera" type="Camera2D" parent="." groups=["camera"]]
+process_mode = 3
+position = Vector2(104, 104)
+script = ExtResource("2")

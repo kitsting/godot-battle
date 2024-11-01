@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://b2gxo0g23qk00"
+path="res://.godot/imported/BattleDescriptions.dialogue-67986dceda89d291a33e8bd18d565e77.tres"
+
+[deps]
+
+source_file="res://Dialogue/BattleDescriptions.dialogue"
+dest_files=["res://.godot/imported/BattleDescriptions.dialogue-67986dceda89d291a33e8bd18d565e77.tres"]
+
+[params]
+

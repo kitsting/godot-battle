@@ -1,0 +1,92 @@
+~ DefaultDesc
+
+Look! Enemies!
+end
+
+~ BossAlien
+Alien approaches menacingly
+end
+
+~ BossBiker
+Vroom Vroom
+Vardell Neutral: Wow, these guys are so cool!!!
+end
+
+~ BossChess
+Chess stands before you. I hope you know how to play!
+end
+
+~ BossChessHard
+Chess but HARD!!!
+Vardell Neutral: Hey, we get to fight in this one too!
+end
+
+~ BossG
+The letter G approaches cursedly!
+end
+
+~ BossBat
+Mother Bat approaches angrily.
+end
+
+~ BossHost
+Game Show
+end
+
+~ BossKing
+It's time to beat this guy up, I guess
+end
+
+~ BossSans
+Holy Cicero its sand untertanle!!!!!
+end
+
+~ Delta
+Deltarune
+Vardell Neutral: Hehe, big shot
+Shylen: Stoppp
+end
+
+~ FingorTest
+Fingor looms smugly
+end
+
+~ FingorTest2
+Forgors are here!
+end
+
+~ ForgorTest
+DDR, Forgor Edition (Tip - Defend to move slower!)
+end
+
+~ Test1
+A wild pack of vexballs roll in!
+end
+
+~ Test2
+Vexball and friends appear!
+end
+
+~ Test3
+Perfectly aligned vexballs want to roll you over!
+end
+
+~ Test3D
+Gordon
+movecam 800 -400 1.8
+end
+
+~ Bat1
+
+It's battle time!
+end
+
+~ Bat2
+
+A large swarm of bats comes your way!!
+end
+
+~ Bat3
+
+A couple of bats are in your way...
+end

@@ -1,0 +1,167 @@
+[gd_scene load_steps=14 format=3 uid="uid://b7vx1qosl50q7"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bk4jknvn7fx64" path="res://Graphics/Enemies/Bat/BatFlapping.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://ckhlfs8vppjqu" path="res://Graphics/Enemies/Bat/BatShadow.png" id="3"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/mines/Bat.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://dgif1o7k3er2f" path="res://Graphics/Enemies/Bat/BatHurt.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://b27q560oc5b3w" path="res://Sounds/Enemy/bat_flap_small.wav" id="6_dwavx"]
+[ext_resource type="AudioStream" uid="uid://hmkowt176l3m" path="res://Sounds/Enemy/bat_swoop.wav" id="7_0ugat"]
+
+[sub_resource type="Shader" id="5"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8e1d"]
+resource_local_to_scene = true
+shader = SubResource("5")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="2"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Swoop"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 2),
+"transitions": PackedFloat32Array(1, 1.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, -23), Vector2(0, 0), Vector2(0, -23), Vector2(0, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Squeak:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="1"]
+resource_name = "flap"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.0, 0.0, -3.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmses"]
+_data = {
+"Swoop": SubResource("3"),
+"flap": SubResource("1")
+}
+
+[node name="Bat" groups=["bat"] instance=ExtResource("1")]
+script = ExtResource("4")
+hp = 25
+damage = 15
+enemyname = "Cave Bat"
+enemydesc = "Not dangerous in the air, but will try to swoop at you. Watch your head!"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_o8e1d")
+position = Vector2(0, -23)
+sprite_frames = SubResource("2")
+
+[node name="CollisionShape2D" parent="Sprite/Hitbox" index="0"]
+position = Vector2(0, 12)
+disabled = true
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+offset_top = -24.0
+offset_bottom = -16.0
+
+[node name="HealthPercent" parent="CanvasLayer/ProgressBar" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 28.0
+offset_bottom = 16.0
+
+[node name="Arrows" parent="CanvasLayer" index="2"]
+offset_left = -29.0
+offset_top = -52.0
+offset_right = -15.0
+offset_bottom = -38.0
+
+[node name="SmallArrow" parent="CanvasLayer/Arrows" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 9.0
+offset_bottom = 9.0
+
+[node name="Shadow" type="Sprite2D" parent="." index="4"]
+modulate = Color(1, 1, 1, 0.529412)
+position = Vector2(0, 12)
+texture = ExtResource("3")
+
+[node name="BatAnim" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_pmses")
+}
+
+[node name="Flap" type="AudioStreamPlayer2D" parent="." index="8"]
+stream = ExtResource("6_dwavx")
+volume_db = -4.0
+
+[node name="Squeak" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("7_0ugat")

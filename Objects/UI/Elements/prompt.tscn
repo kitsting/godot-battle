@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7c17o8pl0gsv"]
+
+[ext_resource type="Texture2D" uid="uid://byq6jymnhrxlp" path="res://Graphics/UI/Theme/PanelBack.png" id="1_kuvcg"]
+[ext_resource type="Script" path="res://Objects/UI/Elements/prompt.gd" id="1_kyo0o"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="2_caj6g"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="3_d6wsy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcae5"]
+font = ExtResource("2_caj6g")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Prompt" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_kyo0o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -37.0
+offset_right = 90.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kuvcg")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Confirmation" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_top = 8.0
+offset_right = 48.5
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "Prompt Text"
+label_settings = SubResource("LabelSettings_bcae5")
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -3.0
+offset_right = -17.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="No" parent="NinePatchRect/Buttons" instance=ExtResource("3_d6wsy")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Yes")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Yes")
+focus_previous = NodePath("../Yes")
+text = "Nah"
+
+[node name="Yes" parent="NinePatchRect/Buttons" instance=ExtResource("3_d6wsy")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../No")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../No")
+focus_previous = NodePath("../No")
+text = "Yeah"
+
+[connection signal="pressed" from="NinePatchRect/Buttons/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="NinePatchRect/Buttons/Yes" to="." method="_on_yes_pressed"]

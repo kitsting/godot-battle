@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=7 format=3 uid="uid://dpkbhq4pikn03"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dumkpm67io62h" path="res://Objects/Battle/Enemies/Vexball.tscn" id="1_1u27e"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_gt6c2"]
+
+[sub_resource type="Resource" id="Resource_3nkes"]
+script = ExtResource("2_gt6c2")
+enemyscene = ExtResource("1_1u27e")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_ruti8"]
+script = ExtResource("2_gt6c2")
+enemyscene = ExtResource("1_1u27e")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_viy3b"]
+script = ExtResource("2_gt6c2")
+enemyscene = ExtResource("1_1u27e")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "Test Scenario 1"
+description = "Test1"
+difficulty = 1
+grid = "x x x
+x 0 x
+x x x"
+challenge_desc = ""
+coins = 10
+is_boss = false
+enemies = Array[ExtResource("2_gt6c2")]([SubResource("Resource_3nkes"), SubResource("Resource_ruti8"), SubResource("Resource_viy3b")])
+background = "res://Objects/Battle/Backgrounds/Snow.tscn"
+music = "res://Sounds/Music/Forest Frenzy.ogg"
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

@@ -1,0 +1,211 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0llor8kijoat"]
+
+[ext_resource type="Texture2D" uid="uid://boi4wcpskajxs" path="res://Graphics/UI/Dialogue9Slice.png" id="1_5ripk"]
+[ext_resource type="Script" path="res://Objects/UI/Title/SaveFile.gd" id="1_sy0ei"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="2_46caf"]
+[ext_resource type="Texture2D" uid="uid://cr6kwlohs08ij" path="res://Graphics/UI/Menus/LoadScreen/Locations/File_Mines.png" id="2_k63yg"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="3_c664m"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFontSmall.tres" id="4_ec4q7"]
+[ext_resource type="Texture2D" path="res://Graphics/UI/Theme/ButtonSelected.tres" id="6_g5nje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5cekq"]
+font = ExtResource("2_46caf")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03n6q"]
+font = ExtResource("4_ec4q7")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hhlr"]
+font = ExtResource("2_46caf")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SaveFile" type="Control" groups=["savefile"]]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -155.0
+offset_bottom = -205.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_sy0ei")
+
+[node name="Options" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 56.0
+offset_right = 197.0
+offset_bottom = 138.0
+texture = ExtResource("1_5ripk")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Margin" type="MarginContainer" parent="Options"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+
+[node name="Buttons" type="GridContainer" parent="Options/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="LoadButton" parent="Options/Margin/Buttons" instance=ExtResource("3_c664m")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../DeleteButton")
+focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../CopyButton")
+text = "Load"
+
+[node name="BackButton" parent="Options/Margin/Buttons" instance=ExtResource("3_c664m")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../LoadButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CopyButton")
+focus_next = NodePath("../DeleteButton")
+focus_previous = NodePath("../LoadButton")
+text = "Back"
+
+[node name="DeleteButton" parent="Options/Margin/Buttons" instance=ExtResource("3_c664m")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../LoadButton")
+focus_neighbor_right = NodePath("../CopyButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../CopyButton")
+focus_previous = NodePath("../BackButton")
+text = "Delete"
+
+[node name="CopyButton" parent="Options/Margin/Buttons" instance=ExtResource("3_c664m")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../DeleteButton")
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../LoadButton")
+focus_previous = NodePath("../DeleteButton")
+disabled = true
+text = "Copy"
+
+[node name="Back" type="NinePatchRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5ripk")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Margin" type="MarginContainer" parent="Back"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="GameInfo" type="HBoxContainer" parent="Back/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Back/Margin/GameInfo"]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="Back/Margin/GameInfo/Info"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SaveName" type="Label" parent="Back/Margin/GameInfo/Info/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "You"
+label_settings = SubResource("LabelSettings_5cekq")
+vertical_alignment = 1
+
+[node name="PartyIcons" type="HBoxContainer" parent="Back/Margin/GameInfo/Info/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AreaName" type="Label" parent="Back/Margin/GameInfo/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mines"
+label_settings = SubResource("LabelSettings_03n6q")
+
+[node name="Time" type="Label" parent="Back/Margin/GameInfo/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Last Played: Unknown"
+label_settings = SubResource("LabelSettings_03n6q")
+
+[node name="AreaIcon" type="TextureRect" parent="Back/Margin/GameInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("2_k63yg")
+stretch_mode = 2
+
+[node name="NewGameLabel" type="Label" parent="Back/Margin"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "NEW GAME  "
+label_settings = SubResource("LabelSettings_8hhlr")
+horizontal_alignment = 1
+
+[node name="Select" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_g5nje")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="Options/Margin/Buttons/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Options/Margin/Buttons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Options/Margin/Buttons/DeleteButton" to="." method="_on_delete_button_pressed"]

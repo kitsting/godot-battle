@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=9 format=3 uid="uid://cqh5h3k5p8f7e"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dumkpm67io62h" path="res://Objects/Battle/Enemies/Vexball.tscn" id="1_pq6ll"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_x4kbc"]
+[ext_resource type="PackedScene" uid="uid://cw411ykjli84q" path="res://Objects/Battle/Enemies/Bomb.tscn" id="3_evb20"]
+
+[sub_resource type="Resource" id="Resource_v1ytf"]
+script = ExtResource("2_x4kbc")
+enemyscene = ExtResource("1_pq6ll")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_p8nf5"]
+script = ExtResource("2_x4kbc")
+enemyscene = ExtResource("1_pq6ll")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_ncifm"]
+script = ExtResource("2_x4kbc")
+enemyscene = ExtResource("1_pq6ll")
+is_advanced = false
+general_int = 8
+
+[sub_resource type="Resource" id="Resource_ps61m"]
+script = ExtResource("2_x4kbc")
+enemyscene = ExtResource("3_evb20")
+is_advanced = false
+general_int = 10
+
+[resource]
+script = ExtResource("1")
+readable_name = "Test Scenario 3"
+description = "Test3"
+difficulty = 1
+grid = "m x x
+x 1ice x
+x x m"
+challenge_desc = ""
+coins = 10
+is_boss = false
+enemies = Array[ExtResource("2_x4kbc")]([SubResource("Resource_v1ytf"), SubResource("Resource_p8nf5"), SubResource("Resource_ncifm"), SubResource("Resource_ps61m")])
+background = "res://Objects/Battle/Backgrounds/Snow.tscn"
+music = "res://Sounds/Music/Forest Frenzy.ogg"
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

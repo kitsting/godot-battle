@@ -1,0 +1,200 @@
+[gd_scene load_steps=16 format=3 uid="uid://6ohk42otnvmd"]
+
+[ext_resource type="Script" path="res://Autoloads/GlobalUI.gd" id="1_4mmrh"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFontSmall.tres" id="2_v1qky"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="3_4w4sx"]
+[ext_resource type="Texture2D" uid="uid://xaoxgutvmkiy" path="res://Graphics/UI/Icons/Debug/Collision.png" id="3_nmo3i"]
+[ext_resource type="Texture2D" uid="uid://2yi1g0c2ykdq" path="res://Graphics/UI/Icons/Debug/Cutscenes.png" id="4_kuci1"]
+[ext_resource type="Texture2D" uid="uid://bo5h8hphjyy0w" path="res://Graphics/UI/Icons/Debug/Battles.png" id="5_jkgdx"]
+[ext_resource type="Texture2D" uid="uid://b3w20kuk66haq" path="res://Graphics/UI/Icons/Debug/DevAttacks.png" id="6_cdlq6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qro72"]
+font = ExtResource("2_v1qky")
+font_size = 8
+font_color = Color(1, 1, 1, 0.588235)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.588235)
+
+[sub_resource type="LabelSettings" id="LabelSettings_av2nd"]
+font = ExtResource("2_v1qky")
+font_size = 8
+font_color = Color(1, 1, 1, 0.588235)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.588235)
+
+[sub_resource type="LabelSettings" id="LabelSettings_12qpo"]
+font = ExtResource("2_v1qky")
+font_size = 8
+font_color = Color(1, 1, 1, 0.588235)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.588235)
+
+[sub_resource type="LabelSettings" id="LabelSettings_umivn"]
+font = ExtResource("2_v1qky")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wja3o"]
+font = ExtResource("3_4w4sx")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jtuiu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaNameDisplay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hm5e0"]
+resource_name = "ShowAreaName"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaNameDisplay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y8xhf"]
+_data = {
+"RESET": SubResource("Animation_jtuiu"),
+"ShowAreaName": SubResource("Animation_hm5e0")
+}
+
+[node name="GlobalUI" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_4mmrh")
+
+[node name="Debug" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 402.0
+offset_right = 480.0
+offset_bottom = 93.0
+alignment = 2
+
+[node name="Info" type="Label" parent="Debug"]
+layout_mode = 2
+text = "\\] Hide"
+label_settings = SubResource("LabelSettings_qro72")
+
+[node name="VisibleCollision" type="Label" parent="Debug"]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_av2nd")
+
+[node name="Cutscenes" type="Label" parent="Debug"]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_12qpo")
+
+[node name="FPS" type="Label" parent="Debug"]
+layout_mode = 2
+text = "FPS:"
+label_settings = SubResource("LabelSettings_12qpo")
+
+[node name="Memory" type="Label" parent="Debug"]
+layout_mode = 2
+text = "Mem:"
+label_settings = SubResource("LabelSettings_av2nd")
+clip_text = true
+
+[node name="Icons" type="VBoxContainer" parent="Debug"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Collision" type="TextureRect" parent="Debug/Icons"]
+layout_mode = 2
+texture = ExtResource("3_nmo3i")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Debug/Icons/Collision"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 17.0
+offset_right = 17.0
+offset_bottom = 28.0
+text = "[T]"
+label_settings = SubResource("LabelSettings_umivn")
+
+[node name="Cutscenes" type="TextureRect" parent="Debug/Icons"]
+layout_mode = 2
+texture = ExtResource("4_kuci1")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Debug/Icons/Cutscenes"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 17.0
+offset_right = 17.0
+offset_bottom = 28.0
+text = "[Y]"
+label_settings = SubResource("LabelSettings_umivn")
+
+[node name="Battles" type="TextureRect" parent="Debug/Icons"]
+layout_mode = 2
+texture = ExtResource("5_jkgdx")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Debug/Icons/Battles"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 17.0
+offset_right = 17.0
+offset_bottom = 28.0
+text = "[U]"
+label_settings = SubResource("LabelSettings_umivn")
+
+[node name="DevMoves" type="TextureRect" parent="Debug/Icons"]
+layout_mode = 2
+texture = ExtResource("6_cdlq6")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="Debug/Icons/DevMoves"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 17.0
+offset_right = 17.0
+offset_bottom = 28.0
+text = "[I]"
+label_settings = SubResource("LabelSettings_umivn")
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="AreaNameDisplay" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -29.0
+offset_right = 72.0
+offset_bottom = -10.0
+grow_vertical = 0
+text = "Area Name"
+label_settings = SubResource("LabelSettings_wja3o")
+
+[node name="AreaNameAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y8xhf")
+}
+
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

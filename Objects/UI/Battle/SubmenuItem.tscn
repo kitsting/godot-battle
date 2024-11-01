@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://dnwm5qy4nrfsm"]
+
+[ext_resource type="Texture2D" uid="uid://dcyqx136k3a5o" path="res://Graphics/UI/Arrows/ChoiceSelection.tres" id="2"]
+[ext_resource type="Script" path="res://Objects/UI/Battle/SubmenuItem.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://bcm8hagac420t" path="res://Graphics/UI/Arrows/Selectable.png" id="3_j5bcm"]
+[ext_resource type="Texture2D" uid="uid://etmwpqiefh5l" path="res://Graphics/UI/Icons/Party/23Icon.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cdpnntka87w1m" path="res://Graphics/UI/Icons/Party/PurpleIcon.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://1tom7uvk7fgp" path="res://Graphics/UI/Icons/Party/GreenIcon.png" id="6"]
+[ext_resource type="FontFile" uid="uid://xnsn8610nwgk" path="res://Fonts/battle_bold.ttf" id="6_1hby0"]
+[ext_resource type="FontFile" uid="uid://ddwgewrn7yhmw" path="res://Fonts/battle.ttf" id="7_jbcc4"]
+[ext_resource type="Texture2D" uid="uid://nrnke8adodq7" path="res://Graphics/UI/Icons/Thermometer/ThermometerBack.png" id="8_x7cnu"]
+[ext_resource type="Texture2D" uid="uid://d133f3uevprl6" path="res://Graphics/UI/Icons/Thermometer/ThermometerProgress.png" id="9_m27e8"]
+[ext_resource type="Texture2D" uid="uid://7e4qtcsajgix" path="res://Graphics/UI/Icons/Thermometer/Warning.png" id="10_cepx5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_30rh2"]
+resource_local_to_scene = true
+font = ExtResource("6_1hby0")
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7jvc"]
+resource_local_to_scene = true
+font = ExtResource("7_jbcc4")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hs541"]
+resource_local_to_scene = true
+font = ExtResource("7_jbcc4")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SubmenuItem" type="HBoxContainer"]
+size_flags_horizontal = 3
+focus_mode = 2
+script = ExtResource("3")
+
+[node name="Arrow" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2")
+stretch_mode = 5
+
+[node name="FArrow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_j5bcm")
+stretch_mode = 5
+
+[node name="Icon0" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("4")
+
+[node name="Icon1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("5")
+
+[node name="Icon2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("6")
+
+[node name="Cooldown" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "(5)"
+label_settings = SubResource("LabelSettings_30rh2")
+vertical_alignment = 1
+
+[node name="Stack" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "(1)"
+label_settings = SubResource("LabelSettings_t7jvc")
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "No Text"
+label_settings = SubResource("LabelSettings_hs541")
+vertical_alignment = 1
+
+[node name="Heat" type="TextureProgressBar" parent="."]
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("8_x7cnu")
+texture_progress = ExtResource("9_m27e8")
+
+[node name="Warning" type="TextureRect" parent="Heat"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 12.0
+texture = ExtResource("10_cepx5")
+stretch_mode = 2
+
+[connection signal="focus_entered" from="." to="." method="_on_control_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_control_focus_exited"]

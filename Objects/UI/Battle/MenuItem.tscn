@@ -1,0 +1,188 @@
+[gd_scene load_steps=14 format=3 uid="uid://ci74ppfer3d7r"]
+
+[ext_resource type="Texture2D" uid="uid://d1dh3mmd0u4an" path="res://Graphics/UI/Theme/CheckboxUntickedWhite.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://x5w3ohpsq5on" path="res://Graphics/UI/Icons/Fight.tres" id="3_rxn6t"]
+[ext_resource type="FontFile" uid="uid://ddwgewrn7yhmw" path="res://Fonts/battle.ttf" id="4_hxu25"]
+[ext_resource type="Script" path="res://Objects/UI/Battle/MenuItem.gd" id="5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bu4xr"]
+resource_local_to_scene = true
+font = ExtResource("4_hxu25")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="1"]
+resource_name = "Down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="2"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_bm1hx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxlx4"]
+_data = {
+"Down": SubResource("1"),
+"Lift": SubResource("2"),
+"RESET": SubResource("Animation_bm1hx")
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Popdown"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20)]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Popup"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nvh6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_etyhi"]
+_data = {
+"Popdown": SubResource("4"),
+"Popup": SubResource("3"),
+"RESET": SubResource("Animation_nvh6e")
+}
+
+[node name="MenuItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5")
+
+[node name="BG" type="NinePatchRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 5
+
+[node name="Margin" type="MarginContainer" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="HBox" type="HBoxContainer" parent="BG/Margin"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 80.0
+offset_bottom = 21.0
+size_flags_vertical = 0
+
+[node name="Icon" type="TextureRect" parent="BG/Margin/HBox"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("3_rxn6t")
+stretch_mode = 2
+
+[node name="Text" type="Label" parent="BG/Margin/HBox"]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 55.0
+offset_bottom = 13.0
+text = "FIGHT"
+label_settings = SubResource("LabelSettings_bu4xr")
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gxlx4")
+}
+
+[node name="IntroAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_etyhi")
+}
+
+[connection signal="animation_finished" from="IntroAnim" to="." method="_on_IntroAnim_animation_finished"]

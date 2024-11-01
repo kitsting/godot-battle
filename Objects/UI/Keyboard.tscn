@@ -1,0 +1,435 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/UI/Theme/PanelBack.png" type="Texture" id=1]
+[ext_resource path="res://Objects/UI/Elements/KeyboardButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/UI/Keyboard.gd" type="Script" id=4]
+[ext_resource path="res://Objects/UI/Elements/SelectableButton.tscn" type="PackedScene" id=5]
+
+[node name="Keyboard" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 125.0
+margin_right = -30.0
+margin_bottom = -10.0
+script = ExtResource( 4 )
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_right = 420.0
+margin_bottom = 135.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 24, 24 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="IMargin" type="MarginContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="HBox" type="HBoxContainer" parent="Background/IMargin"]
+margin_right = 404.0
+margin_bottom = 119.0
+custom_constants/separation = 20
+
+[node name="Keys" type="VBoxContainer" parent="Background/IMargin/HBox"]
+margin_right = 284.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+custom_constants/separation = 12
+
+[node name="Uppercase" type="GridContainer" parent="Background/IMargin/HBox/Keys"]
+margin_right = 284.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+columns = 13
+
+[node name="A" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_right = 18.0
+focus_neighbour_left = NodePath("../../../Bottom/Random")
+size_flags_horizontal = 3
+
+[node name="B" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_right = 40.0
+size_flags_horizontal = 3
+text = "B"
+
+[node name="C" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 44.0
+margin_right = 62.0
+size_flags_horizontal = 3
+text = "C"
+
+[node name="D" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 66.0
+margin_right = 84.0
+size_flags_horizontal = 3
+text = "D"
+
+[node name="E" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_right = 106.0
+size_flags_horizontal = 3
+text = "E"
+
+[node name="F" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 110.0
+margin_right = 128.0
+size_flags_horizontal = 3
+text = "F"
+
+[node name="G" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 132.0
+margin_right = 150.0
+size_flags_horizontal = 3
+text = "G"
+
+[node name="H" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 154.0
+margin_right = 172.0
+size_flags_horizontal = 3
+text = "H"
+
+[node name="I" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 176.0
+margin_right = 194.0
+size_flags_horizontal = 3
+text = "I"
+
+[node name="J" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 198.0
+margin_right = 216.0
+size_flags_horizontal = 3
+text = "J"
+
+[node name="K" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 220.0
+margin_right = 238.0
+size_flags_horizontal = 3
+text = "K"
+
+[node name="L" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 242.0
+margin_right = 260.0
+size_flags_horizontal = 3
+text = "L"
+
+[node name="M" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 264.0
+margin_right = 282.0
+size_flags_horizontal = 3
+text = "M"
+
+[node name="N" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_top = 28.0
+margin_right = 18.0
+margin_bottom = 52.0
+focus_neighbour_left = NodePath("../../../Bottom/Clear")
+text = "N"
+
+[node name="O" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_top = 28.0
+margin_right = 40.0
+margin_bottom = 52.0
+text = "O"
+
+[node name="P" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 44.0
+margin_top = 28.0
+margin_right = 62.0
+margin_bottom = 52.0
+text = "P"
+
+[node name="Q" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 66.0
+margin_top = 28.0
+margin_right = 84.0
+margin_bottom = 52.0
+text = "Q"
+
+[node name="R" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_top = 28.0
+margin_right = 106.0
+margin_bottom = 52.0
+text = "R"
+
+[node name="S" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 110.0
+margin_top = 28.0
+margin_right = 128.0
+margin_bottom = 52.0
+text = "S"
+
+[node name="T" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 132.0
+margin_top = 28.0
+margin_right = 150.0
+margin_bottom = 52.0
+text = "T"
+
+[node name="U" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 154.0
+margin_top = 28.0
+margin_right = 172.0
+margin_bottom = 52.0
+text = "U"
+
+[node name="V" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 176.0
+margin_top = 28.0
+margin_right = 194.0
+margin_bottom = 52.0
+text = "V"
+
+[node name="W" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 198.0
+margin_top = 28.0
+margin_right = 216.0
+margin_bottom = 52.0
+text = "W"
+
+[node name="X" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 220.0
+margin_top = 28.0
+margin_right = 238.0
+margin_bottom = 52.0
+text = "X"
+
+[node name="Y" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 242.0
+margin_top = 28.0
+margin_right = 260.0
+margin_bottom = 52.0
+text = "Y"
+
+[node name="Z" parent="Background/IMargin/HBox/Keys/Uppercase" instance=ExtResource( 3 )]
+margin_left = 264.0
+margin_top = 28.0
+margin_right = 282.0
+margin_bottom = 52.0
+focus_neighbour_right = NodePath("../../../Bottom/Clear")
+text = "Z"
+
+[node name="Lowercase" type="GridContainer" parent="Background/IMargin/HBox/Keys"]
+margin_top = 64.0
+margin_right = 284.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+columns = 13
+
+[node name="A" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_right = 18.0
+focus_neighbour_left = NodePath("../../../Bottom/Delete")
+size_flags_horizontal = 3
+text = "a"
+
+[node name="B" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_right = 40.0
+size_flags_horizontal = 3
+text = "b"
+
+[node name="C" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 44.0
+margin_right = 62.0
+size_flags_horizontal = 3
+text = "c"
+
+[node name="D" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 66.0
+margin_right = 84.0
+size_flags_horizontal = 3
+text = "d"
+
+[node name="E" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_right = 106.0
+size_flags_horizontal = 3
+text = "e"
+
+[node name="F" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 110.0
+margin_right = 128.0
+size_flags_horizontal = 3
+text = "f"
+
+[node name="G" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 132.0
+margin_right = 150.0
+size_flags_horizontal = 3
+text = "g"
+
+[node name="H" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 154.0
+margin_right = 172.0
+size_flags_horizontal = 3
+text = "h"
+
+[node name="I" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 176.0
+margin_right = 194.0
+size_flags_horizontal = 3
+text = "i"
+
+[node name="J" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 198.0
+margin_right = 216.0
+size_flags_horizontal = 3
+text = "j"
+
+[node name="K" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 220.0
+margin_right = 238.0
+size_flags_horizontal = 3
+text = "k"
+
+[node name="L" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 242.0
+margin_right = 260.0
+size_flags_horizontal = 3
+text = "l"
+
+[node name="M" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 264.0
+margin_right = 282.0
+size_flags_horizontal = 3
+text = "m"
+
+[node name="N" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_top = 28.0
+margin_right = 18.0
+margin_bottom = 52.0
+focus_neighbour_left = NodePath("../../../Bottom/Done")
+text = "n"
+
+[node name="O" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_top = 28.0
+margin_right = 40.0
+margin_bottom = 52.0
+text = "o"
+
+[node name="P" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 44.0
+margin_top = 28.0
+margin_right = 62.0
+margin_bottom = 52.0
+text = "p"
+
+[node name="Q" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 66.0
+margin_top = 28.0
+margin_right = 84.0
+margin_bottom = 52.0
+text = "q"
+
+[node name="R" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_top = 28.0
+margin_right = 106.0
+margin_bottom = 52.0
+text = "r"
+
+[node name="S" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 110.0
+margin_top = 28.0
+margin_right = 128.0
+margin_bottom = 52.0
+text = "s"
+
+[node name="T" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 132.0
+margin_top = 28.0
+margin_right = 150.0
+margin_bottom = 52.0
+text = "t"
+
+[node name="U" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 154.0
+margin_top = 28.0
+margin_right = 172.0
+margin_bottom = 52.0
+text = "u"
+
+[node name="V" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 176.0
+margin_top = 28.0
+margin_right = 194.0
+margin_bottom = 52.0
+text = "v"
+
+[node name="W" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 198.0
+margin_top = 28.0
+margin_right = 216.0
+margin_bottom = 52.0
+text = "w"
+
+[node name="X" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 220.0
+margin_top = 28.0
+margin_right = 238.0
+margin_bottom = 52.0
+text = "x"
+
+[node name="Y" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 242.0
+margin_top = 28.0
+margin_right = 260.0
+margin_bottom = 52.0
+text = "y"
+
+[node name="Z" parent="Background/IMargin/HBox/Keys/Lowercase" instance=ExtResource( 3 )]
+margin_left = 264.0
+margin_top = 28.0
+margin_right = 282.0
+margin_bottom = 52.0
+text = "z"
+
+[node name="Bottom" type="VBoxContainer" parent="Background/IMargin/HBox"]
+margin_left = 304.0
+margin_right = 404.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 3
+custom_constants/separation = 2
+
+[node name="Random" parent="Background/IMargin/HBox/Bottom" instance=ExtResource( 5 )]
+margin_right = 100.0
+margin_bottom = 28.0
+focus_neighbour_right = NodePath("../../Keys/Uppercase/A")
+text = "Don't Care"
+
+[node name="Clear" parent="Background/IMargin/HBox/Bottom" instance=ExtResource( 5 )]
+margin_top = 30.0
+margin_right = 100.0
+margin_bottom = 58.0
+focus_neighbour_right = NodePath("../../Keys/Uppercase/N")
+text = "Clear"
+
+[node name="Delete" parent="Background/IMargin/HBox/Bottom" instance=ExtResource( 5 )]
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 88.0
+focus_neighbour_right = NodePath("../../Keys/Lowercase/A")
+text = "Backspace"
+
+[node name="Done" parent="Background/IMargin/HBox/Bottom" instance=ExtResource( 5 )]
+margin_top = 90.0
+margin_right = 100.0
+margin_bottom = 119.0
+focus_neighbour_right = NodePath("../../Keys/Lowercase/N")
+text = "Done"
+
+[connection signal="pressed" from="Background/IMargin/HBox/Bottom/Random" to="." method="_on_Random_pressed"]
+[connection signal="pressed" from="Background/IMargin/HBox/Bottom/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="pressed" from="Background/IMargin/HBox/Bottom/Delete" to="." method="_on_Delete_pressed"]
+[connection signal="pressed" from="Background/IMargin/HBox/Bottom/Done" to="." method="_on_Done_pressed"]

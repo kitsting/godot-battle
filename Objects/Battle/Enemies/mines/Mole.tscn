@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Enemies/Mole/HoleMole.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+defense = 5
+enemyname = "Hole Mole"
+enemydesc = "Will try to dig under you. Watch out!"
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 12 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, 2 )
+frames = SubResource( 1 )
+
+[node name="Arrow" parent="CanvasLayer" index="2"]
+margin_top = -30.0
+margin_bottom = -14.0
+
+[node name="SmallArrow" parent="CanvasLayer" index="3"]
+margin_top = -25.0
+margin_bottom = -9.0

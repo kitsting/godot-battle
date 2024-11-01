@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Badge.gd" id="1"]
+[ext_resource type="Texture" uid="uid://cgq2vgq5gn00x" path="res://Graphics/Badges/APMoveDown.png" id="2"]
+
+[resource]
+script = ExtResource( 1 )
+badge_name = "AP Move Down"
+badge_id = "APMoveDown"
+readable_name = "Athletic Pin"
+badge_desc = "Reduces the AP cost of moving by 1"
+badge_sprite = ExtResource( 2 )
+badge_slots = 1
+badge_type = "Party"

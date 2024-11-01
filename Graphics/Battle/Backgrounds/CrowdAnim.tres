@@ -1,0 +1,45 @@
+[gd_resource type="AnimatedTexture" load_steps=14 format=3]
+
+[ext_resource type="Texture" uid="uid://did3t48uk2gw" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd6.png" id="1"]
+[ext_resource type="Texture" uid="uid://podoro71vk05" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd8.png" id="2"]
+[ext_resource type="Texture" uid="uid://5f6a7y6vwb4y" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd11.png" id="3"]
+[ext_resource type="Texture" uid="uid://8it07f1eno7i" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd3.png" id="4"]
+[ext_resource type="Texture" uid="uid://bl36gra6r07hj" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd7.png" id="5"]
+[ext_resource type="Texture" uid="uid://da1tqer1odot" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd5.png" id="6"]
+[ext_resource type="Texture" uid="uid://c8l50iowbk3ki" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd12.png" id="7"]
+[ext_resource type="Texture" uid="uid://vivysubtnmp5" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd13.png" id="8"]
+[ext_resource type="Texture" uid="uid://bcyfyru108w6i" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd1.png" id="9"]
+[ext_resource type="Texture" uid="uid://qqladeuud1wa" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd4.png" id="10"]
+[ext_resource type="Texture" uid="uid://do2qin7papqa5" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd10.png" id="11"]
+[ext_resource type="Texture" uid="uid://dhsco1oqm0hki" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd9.png" id="12"]
+[ext_resource type="Texture" uid="uid://durn0nb1wxpim" path="res://Graphics/Battle/Backgrounds/CrowdFrames/Crowd2.png" id="13"]
+
+[resource]
+flags = 2
+frames = 13
+fps = 12.0
+frame_0/texture = ExtResource( 9 )
+frame_1/texture = ExtResource( 13 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 10 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 6 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 1 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 5 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 2 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 12 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 11 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 3 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 7 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 8 )
+frame_12/delay_sec = 0.0

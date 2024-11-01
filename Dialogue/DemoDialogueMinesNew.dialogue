@@ -1,0 +1,212 @@
+~ Intro
+
+Shylen: So...
+Shylen: We're back in the mines.
+Vardell Sus: I bet they don't even remember the first time.
+Shylen: Hmmm... do you?
+- Yes
+	Shylen: Good to hear
+- No
+	Vardell Neutral: That's what I thought
+Shylen: Anyways, you and [b][color=#8aff8b]Vardell[/color][/b] should get going.
+Shylen: I need to stay here to make sure all this iron smelts.
+wait 1.5
+Vardell Neutral: Alright, let's go...
+Vardell Sus: I forgot your name. Could you tell me again?
+input name
+wait 1
+if lower(registry_lookup("playername")) == "vandus"
+	Vardell Neutral: {{registry_lookup("playername")}}, huh?
+	Vardell Sus: Very creative
+elif lower(registry_lookup("playername")) in ["alex","john","pope","daniel"]
+	Vardell Sus: {{registry_lookup("playername")}}, you say?
+	Vardell Neutral: I think I know somebody else with that name.
+elif "obama" in lower(registry_lookup("playername"))
+	Vardell Flustered: You're Barack Obama, the 44th President of the US??? Wow!!!
+else
+	Vardell Neutral: Your name's {{registry_lookup("playername")}}? I already knew that, of course.
+Vardell Neutral: ...
+Vardell Sus: Let's go.
+
+
+~ InspectCraftingTable
+
+It's a crafting table. There's 9 slots on top for items.
+For some reason, it reminds you of fighting.
+
+~ InspectFurnace
+
+It's a very hot furnace. Inside, there's some iron. Not enough for a chestplate, though.
+
+
+~ InspectRoadblock
+
+From the looks of it, this path is blocked off.
+It would be rude to go past the roadblocks.
+end
+
+
+~ TreasureChest
+
+if interacting_object.opened == false
+	Treasure! Open it?
+	- Yes
+		if interacting_object.contents == "item"
+			if add_inventory(interacting_object.item) == true
+				do interacting_object.open()
+				Inside was {{interacting_object.item}}. It was added to your inventory.
+				end
+			else
+				Inside was {{interacting_object.item}}. But your inventory is full...
+				end
+		elif interacting_object.contents == "badge"
+			do interacting_object.open()
+			if !badge_in_inventory(interacting_object.item)
+				do add_badge(interacting_object.item)
+				Inside was a {{interacting_object.item}} pin. It was added to your badge inventory.
+			else
+				Inside was a {{interacting_object.item}} pin. But you already have that pin...
+				
+			end
+	- No
+		You decided it was best to leave the treasure alone.
+		end
+else
+	Treasure! It's already open...
+	end
+	
+	
+~ CameraTest
+movecam 500 100 1.5 1
+wait 1
+resetcam 1.5
+end
+
+
+
+~ CutsceneTest
+movecam 0 80 0.8 1
+wait 0.25
+Gotta go fast!!!
+wait 0.1
+do get_tree().call_group("follower", "can_follow", false)
+do get_tree().call_group("Vardell","set_anim","down_walk")
+do get_tree().call_group("Vardell", "move", 0, 500, 1)
+removeparty Vardell
+wait 1.5
+do get_tree().call_group("follower", "can_follow", true)
+resetcam 0.5
+end
+
+
+~ BatIntro
+Vardell Neutral: Shh!
+do get_tree().call_group("follower", "can_follow", false)
+do get_tree().call_group("Vardell","set_anim","down")
+Vardell Neutral: What's that?
+movecam 0 125 0.8 1
+Vardell Scared: Is that... a bat?!?!
+resetcam 0.5
+Vardell Scared: I hate bats!!!
+wait 0.5
+Vardell Neutral: ...
+wait 0.75
+do get_tree().call_group("Vardell","emote","exclamation")
+wait 0.65
+Vardell Neutral: I have an idea!
+Vardell Neutral: Why don't YOU go fight it, and I'll just stay here!
+Vardell Neutral: Do you know how to fight?
+- No
+	Vardell Neutral: You'll be fine! Go get 'em!
+- Yes
+	Vardell Neutral: Good! Go get 'em!
+removeparty Vardell
+do get_tree().call_group("cutscene_barrier", "set_active", true)
+do get_tree().call_group("follower", "can_follow", true)
+end
+
+
+~ BatIntroEscape
+Vardell Neutral: Where do you think you're going?
+end
+
+~ BatIntroCompleted
+if !has_party("Vardell")
+	wait 0.35
+	wait 0.5
+	Vardell Neutral: Nice job!
+	addparty Vardell
+	do get_tree().call_group("cutscene_barrier", "set_active", false)
+	do get_tree().call_group("follower", "can_follow", true)
+	wait 2
+	Vardell Neutral: Let's get a move on.
+end
+
+
+~ BatIntroAbandon
+if !has_party("Vardell")
+	Vardell None: What the heck?!?!
+	spawnfollower -100 295 Vardell
+	do get_tree().call_group("follower", "can_follow", false)
+	wait 0.3
+	do get_tree().call_group("Vardell","set_anim","right_walk")
+	do get_tree().call_group("Vardell", "move", 110, 0, 1, false)
+	wait 1
+	do get_tree().call_group("Vardell","set_anim","up_walk")
+	do get_tree().call_group("Vardell", "move", 0, -18, 0.3, true)
+	wait 0.3
+	do get_tree().call_group("Vardell","set_anim","left")
+	wait 0.2
+	Vardell Angry: Were you just gonna leave me there?!
+	wait 0.5
+	Vardell Peeved: ...
+	do get_tree().call_group("Vardell","set_anim","left_walk")
+	do get_tree().call_group("Vardell", "move", 20, 0, 1, false)
+	wait 1
+	do get_tree().call_group("Vardell","set_anim","right")
+	Vardell Neutral: Let's go.
+	addparty Vardell
+	do get_tree().call_group("follower", "can_follow", true)
+end
+
+
+~ SplitPathRoom1
+Vardell Neutral: Look!
+movecam 0 35 0.5 1
+wait 0.5
+Vardell Neutral: There's a fork in the path.
+do get_tree().call_group("follower", "can_follow", false)
+do get_tree().call_group("Vardell","set_anim","down_walk")
+do get_tree().call_group("Vardell", "move", 0, 186, 2, false)
+wait 2
+do get_tree().call_group("Vardell","set_anim","down")
+wait 0.5
+do get_tree().call_group("Vardell","set_anim","left")
+wait 0.75
+do get_tree().call_group("Vardell","set_anim","right")
+wait 1
+do get_tree().call_group("Vardell","set_anim","up")
+Vardell Neutral: We should split up.
+wait 0.25
+do get_tree().call_group("Vardell","set_anim","right_walk")
+do get_tree().call_group("Vardell", "move", 100, 0, 2)
+wait 2
+do get_tree().call_group("Vardell","set_anim","left")
+wait 0.25
+Vardell Neutral: I'll go this way, and you go the other way.
+do get_tree().call_group("Vardell","set_anim","right_walk")
+do get_tree().call_group("Vardell", "move", 276, 0, 1, false)
+wait 1
+do get_tree().call_group("Vardell","set_anim","down_walk")
+do get_tree().call_group("Vardell", "move", 0, 1200, 10)
+removeparty Vardell
+do get_tree().call_group("follower", "can_follow", true)
+resetcam 0.5
+end
+
+
+~ EnterNameTest
+input name
+wait 5
+Cool
+end

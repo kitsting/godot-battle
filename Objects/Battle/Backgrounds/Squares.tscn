@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bxm04ncvju10u" path="res://Graphics/Battle/Backgrounds/Squares.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Backgrounds/Squares.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://oeag7i61gv7d" path="res://Graphics/Battle/Backgrounds/SquaresBG.png" id="2_du6q5"]
+[ext_resource type="Material" uid="uid://dqixacdjn28e2" path="res://NodeResources/Shaders/Scroll2.tres" id="3_xq7qy"]
+
+[sub_resource type="Shader" id="Shader_kwqu7"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform float scroll_speed_x : hint_range(-2,2) = 1;
+uniform float scroll_speed_y : hint_range(-2,2) = 1;
+uniform sampler2D noise;
+void fragment() {
+    vec2 uv = vec2(UV.x + (TIME * scroll_speed_x), UV.y + (TIME * scroll_speed_y));
+    COLOR.rgba = texture(TEXTURE, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce42g"]
+resource_local_to_scene = true
+shader = SubResource("Shader_kwqu7")
+shader_parameter/scroll_speed_x = 0.25
+shader_parameter/scroll_speed_y = 0.0
+
+[node name="Squares" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[node name="Background2" type="TextureRect" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+material = SubResource("ShaderMaterial_ce42g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_du6q5")
+stretch_mode = 1
+
+[node name="Background" type="TextureRect" parent="."]
+material = ExtResource("3_xq7qy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1")
+stretch_mode = 1

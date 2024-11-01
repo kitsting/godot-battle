@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c8fpxc1rwpaxm"]
+
+[ext_resource type="Script" path="res://Resources/AttackScripts/StandardAttack.gd" id="1"]
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+attackname = "(DEV) Kill All"
+attackid = "KillAll"
+desc = "Violently murder all enemies"
+extended_desc = "Instantly kill all enemies. No further action is needed. Should only be used by a trained professional."
+cost = 20
+damage = 250.0
+cooldown = 0
+affects = 3
+timing = 0.0
+timing_window = 0.0
+usescript = ExtResource("1")
+requires1 = false
+requires2 = false

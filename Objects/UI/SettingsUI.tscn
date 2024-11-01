@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc2wvopxwd2hi"]
+
+[ext_resource type="Script" path="res://Objects/UI/SettingsUI.gd" id="1_diwag"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="2_1ty85"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="3_paxee"]
+[ext_resource type="PackedScene" uid="uid://cvo7tsb3tdm87" path="res://Objects/UI/Elements/option_slider.tscn" id="4_r1qu5"]
+[ext_resource type="PackedScene" uid="uid://lkbtkxwtrig5" path="res://Objects/UI/Elements/option_checkbox.tscn" id="5_nbel3"]
+[ext_resource type="PackedScene" uid="uid://swcbpcsyiy18" path="res://Objects/UI/Elements/CycleOption.tscn" id="6_pl12j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhhdc"]
+font = ExtResource("3_paxee")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SettingsUIAudio" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_diwag")
+
+[node name="Top" type="HBoxContainer" parent="."]
+offset_right = 480.0
+offset_bottom = 30.0
+
+[node name="Button" parent="Top" instance=ExtResource("2_1ty85")]
+custom_minimum_size = Vector2(60, 30)
+offset_right = 60.0
+offset_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = " Back "
+desc = "Go back"
+
+[node name="TopLabel" type="Label" parent="Top"]
+offset_left = 64.0
+offset_right = 480.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "GAME SETTINGS"
+label_settings = SubResource("LabelSettings_fhhdc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 34.0
+offset_right = 480.0
+offset_bottom = 42.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_top = 46.0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+scroll_deadzone = 40
+
+[node name="VBox" type="VBoxContainer" parent="ScrollContainer"]
+offset_right = 480.0
+offset_bottom = 224.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Mus_Vol" parent="ScrollContainer/VBox" instance=ExtResource("4_r1qu5")]
+editor_description = "Controls how loud music is"
+custom_minimum_size = Vector2(0, 21)
+offset_right = 480.0
+offset_bottom = 21.0
+label = "Music:  "
+property = "music_volume"
+
+[node name="Sound_Vol" parent="ScrollContainer/VBox" instance=ExtResource("4_r1qu5")]
+editor_description = "Controls how loud sound effects are"
+custom_minimum_size = Vector2(0, 21)
+offset_top = 25.0
+offset_right = 480.0
+offset_bottom = 46.0
+label = "Sounds:"
+property = "sound_volume"
+
+[node name="Spacer2" type="Control" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 50.0
+offset_right = 480.0
+offset_bottom = 56.0
+
+[node name="Fullscreen_Box" parent="ScrollContainer/VBox" instance=ExtResource("5_nbel3")]
+editor_description = "Whether or not the game takes up the entire screen"
+custom_minimum_size = Vector2(0, 25)
+offset_top = 60.0
+offset_right = 480.0
+offset_bottom = 85.0
+size_flags_horizontal = 3
+label = "Fullscreen:"
+property = "fullscreen"
+
+[node name="Aspect_Box" parent="ScrollContainer/VBox" instance=ExtResource("5_nbel3")]
+editor_description = "Keeps the game at a 16:9 ratio. Causes black bars."
+custom_minimum_size = Vector2(0, 25)
+offset_top = 89.0
+offset_right = 480.0
+offset_bottom = 114.0
+size_flags_horizontal = 3
+label = "Keep Aspect:"
+property = "keep_aspect"
+
+[node name="ButtonPrompts" parent="ScrollContainer/VBox" instance=ExtResource("6_pl12j")]
+offset_top = 118.0
+offset_right = 480.0
+offset_bottom = 137.0
+label = "Button Prompts:"
+property = "buttons"
+desc = "The button prompts shown in menus"
+keys = ["Auto", "Keyboard", "Xbox", "Playstation", "Nintendo"]
+values = [0.0, 1.0, 2.0, 3.0, 4.0]
+
+[node name="Spacer3" type="Control" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 141.0
+offset_right = 480.0
+offset_bottom = 147.0
+
+[node name="Screenshake2" parent="ScrollContainer/VBox" instance=ExtResource("6_pl12j")]
+offset_top = 151.0
+offset_right = 480.0
+offset_bottom = 170.0
+label = "Screenshake Effects:"
+property = "screenshake"
+desc = "Intensity of screen shaking effects"
+keys = ["Disabled", "Reduced", "Full"]
+values = [0.0, 0.5, 1.0]
+
+[node name="BattleBG2" parent="ScrollContainer/VBox" instance=ExtResource("6_pl12j")]
+offset_top = 174.0
+offset_right = 480.0
+offset_bottom = 193.0
+label = "Battle Background Effects:"
+property = "background_mode"
+desc = "Intensity of backgrounds when battling"
+keys = ["Disabled", "Reduced", "Full"]
+values = [0.0, 0.5, 1.0]
+
+[connection signal="pressed" from="Top/Button" to="." method="_on_Button_pressed"]

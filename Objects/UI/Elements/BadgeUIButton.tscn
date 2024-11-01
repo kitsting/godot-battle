@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://cp2nmjpblfev6"]
+
+[ext_resource type="Texture2D" uid="uid://1uh8o56xdbof" path="res://Graphics/UI/Menus/BadgeUI/BadgeEmptyNew.png" id="1_625rg"]
+[ext_resource type="Script" path="res://Objects/UI/Elements/BadgeUIButton.gd" id="2_jd67p"]
+[ext_resource type="Texture2D" path="res://Graphics/UI/Theme/ButtonSelected.tres" id="3_tft6h"]
+[ext_resource type="Shader" uid="uid://dkj5ldbd7a0kw" path="res://NodeResources/Shaders/BadgeEdgeShaderGray.tres" id="3_v1dv2"]
+[ext_resource type="Texture2D" uid="uid://bsnicwhe8mltp" path="res://Graphics/UI/Menus/BadgeUI/BadgeSlotNone.png" id="4_hqhv8"]
+[ext_resource type="Texture2D" uid="uid://3q4kspg53nd7" path="res://Graphics/Badges/1HitKill.png" id="4_ox2d6"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="4_ykqct"]
+[ext_resource type="Texture2D" uid="uid://cop55gd316fqa" path="res://Graphics/UI/Menus/BadgeUI/Shimmer.png" id="8_5e666"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mopt7"]
+shader = ExtResource("3_v1dv2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlt3a"]
+resource_local_to_scene = true
+font = ExtResource("4_ykqct")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_bgm5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShimmerMask/Shimmer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, -20)]
+}
+
+[sub_resource type="Animation" id="Animation_n76k2"]
+resource_name = "Shimmer"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShimmerMask/Shimmer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, -20), Vector2(-20, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8pt7q"]
+_data = {
+"RESET": SubResource("Animation_bgm5t"),
+"Shimmer": SubResource("Animation_n76k2")
+}
+
+[node name="BadgeUIButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_625rg")
+script = ExtResource("2_jd67p")
+
+[node name="Edge" type="Control" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Edge1" type="TextureRect" parent="Edge"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_mopt7")
+layout_mode = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+texture = ExtResource("4_ox2d6")
+
+[node name="Edge2" type="TextureRect" parent="Edge"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_mopt7")
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 41.0
+offset_bottom = 41.0
+texture = ExtResource("4_ox2d6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Select" type="NinePatchRect" parent="CanvasLayer"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 43.0
+offset_bottom = 43.0
+texture = ExtResource("3_tft6h")
+region_rect = Rect2(0, 0, 24, 24)
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="Equipped" type="Label" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "E  "
+label_settings = SubResource("LabelSettings_mlt3a")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ShimmerAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8pt7q")
+}
+
+[node name="ShimmerMask" type="TextureRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_625rg")
+
+[node name="Shimmer" type="TextureRect" parent="ShimmerMask"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+texture = ExtResource("8_5e666")
+
+[node name="Overlay" type="TextureRect" parent="ShimmerMask"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_hqhv8")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,15 @@
+[gd_resource type="AnimatedTexture" load_steps=4 format=3 uid="uid://bk4jknvn7fx64"]
+
+[ext_resource type="Texture2D" uid="uid://b52q1s7uomrsi" path="res://Graphics/Enemies/Bat/BatStill.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dmpj8krbbretu" path="res://Graphics/Enemies/Bat/BatFlap1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dm1m22bdsd0ib" path="res://Graphics/Enemies/Bat/BatFlap2.png" id="3"]
+
+[resource]
+resource_local_to_scene = true
+frames = 3
+speed_scale = 8.0
+frame_0/texture = ExtResource("1")
+frame_1/texture = ExtResource("2")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3")
+frame_2/duration = 1.0

@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqpk4n7y1y73s"]
+
+[ext_resource type="Texture2D" uid="uid://d0hofmly31n8t" path="res://Graphics/Enemies/boss_g.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="2"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/bosses/g.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="4_44cnt"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="5_6swfb"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="6_4wqdh"]
+[ext_resource type="AudioStream" uid="uid://b27q560oc5b3w" path="res://Sounds/Enemy/bat_flap_small.wav" id="7_bp3rn"]
+[ext_resource type="Texture2D" uid="uid://0d46gfc50qwx" path="res://Graphics/Enemies/Bat/BigBatShadow.png" id="8_flx74"]
+
+[sub_resource type="Shader" id="Shader_w6368"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qemw1"]
+resource_local_to_scene = true
+shader = SubResource("Shader_w6368")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jb77p"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("2")]
+script = ExtResource("4")
+boss = true
+hp = 100
+damage = 5
+enemyname = "g"
+enemydesc = "A cursed looking letter. Should be an Earthbound enemy."
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_qemw1")
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_jb77p")
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+offset_left = -28.0
+offset_top = 3.0
+offset_right = 28.0
+offset_bottom = 11.0
+texture_under = ExtResource("4_44cnt")
+texture_over = ExtResource("5_6swfb")
+texture_progress = ExtResource("6_4wqdh")
+
+[node name="HealthPercent" parent="CanvasLayer/ProgressBar" index="0"]
+visible = true
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 53.0
+offset_bottom = 24.0
+
+[node name="Arrows" parent="CanvasLayer" index="2"]
+offset_left = -33.0
+offset_top = -63.0
+offset_right = -19.0
+offset_bottom = -49.0
+
+[node name="SmallArrow" parent="CanvasLayer/Arrows" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 9.0
+offset_bottom = 9.0
+
+[node name="Flap" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("7_bp3rn")
+volume_db = -4.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="Shadow" type="Sprite2D" parent="." index="7"]
+modulate = Color(1, 1, 1, 0.470588)
+show_behind_parent = true
+position = Vector2(0, 11)
+texture = ExtResource("8_flx74")

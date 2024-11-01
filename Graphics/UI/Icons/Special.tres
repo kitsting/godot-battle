@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=4 format=3 uid="uid://bmkreu35s1mgl"]
+
+[ext_resource type="Texture2D" uid="uid://6vdkp5f12sj7" path="res://Graphics/UI/Icons/Animations/SpecialAnim1.png" id="1_fginc"]
+[ext_resource type="Texture2D" uid="uid://4tueljn5fd80" path="res://Graphics/UI/Icons/Animations/SpecialAnim2.png" id="2_no717"]
+[ext_resource type="Texture2D" uid="uid://c81cqjk2j06wt" path="res://Graphics/UI/Icons/Animations/SpecialAnim3.png" id="3_j7fcj"]
+
+[resource]
+frames = 4
+pause = true
+speed_scale = 3.0
+frame_0/texture = ExtResource("1_fginc")
+frame_1/texture = ExtResource("2_no717")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_j7fcj")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("2_no717")
+frame_3/duration = 1.0

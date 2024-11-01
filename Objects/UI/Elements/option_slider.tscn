@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvo7tsb3tdm87"]
+
+[ext_resource type="Texture2D" uid="uid://dcyqx136k3a5o" path="res://Graphics/UI/Arrows/ChoiceSelection.tres" id="1_d4n1h"]
+[ext_resource type="Script" path="res://Objects/UI/Elements/option_slider.gd" id="1_ik0if"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="2_53dtl"]
+[ext_resource type="Theme" uid="uid://d1itxkmg7h4un" path="res://default_theme.tres" id="3_78eo3"]
+[ext_resource type="Texture2D" uid="uid://bcm8hagac420t" path="res://Graphics/UI/Arrows/Selectable.png" id="3_u2isv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kx350"]
+resource_local_to_scene = true
+font = ExtResource("2_53dtl")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="OptionSlider" type="HBoxContainer"]
+offset_right = 479.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ik0if")
+
+[node name="Arrow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_d4n1h")
+stretch_mode = 3
+
+[node name="FArrow" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_u2isv")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Label:"
+label_settings = SubResource("LabelSettings_kx350")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_78eo3")
+step = 5.0
+value = 100.0
+tick_count = 21
+
+[node name="Percent" type="Label" parent="."]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+text = "100%"
+label_settings = SubResource("LabelSettings_kx350")
+
+[connection signal="focus_entered" from="HSlider" to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="HSlider" to="." method="_on_focus_exited"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

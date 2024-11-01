@@ -1,0 +1,44 @@
+~ Enter
+Want some items?
+end
+
+~ Exit
+See you around!
+end
+
+~ Talk
+Talking dialogue
+end
+
+~ AskBread
+This stuff is super stale. Please take it.
+end
+
+~ AskCoolant
+This stuff will cool you down if you start to overheat. Take as much as you need.
+end
+
+~ AskSmallAPCharm
+This thing is cool. If you use it, you'll instantly get some energy.
+end
+
+~ AskReallyGoodItem
+This is a really good item. You'll love it.
+end
+
+~ AskAPMaxUp
+If you wear this pin, you'll be able to hold more energy at a time
+end
+
+~ AskAPMoveDown
+If you wear this pin, then moving during battle will cost less energy
+end
+
+~ AskAPRegenUp
+If you wear this pin, you'll recover more energy at the start of every turn
+end
+
+~ AskOneHitKill
+If you wear this pin, everyone in your party will permanently be capped at 1 health
+Why would you ever wear this?
+end

@@ -1,0 +1,136 @@
+~ VexPainting
+
+Looks like a vex ball. Fight it?
+- Yes
+	dobattle Test1
+- No
+	end
+	
+	
+~ FingorPainting
+What even is this? Find out?
+- Umm... sure
+	dobattle FingorTest
+- No thanks
+	end
+	
+	
+~ ChessPainting
+Looks like a chess board. Wanna play?
+- I love chess!
+	dobattle BossChess
+- I hate chess
+	end
+	
+	
+~ VexManyPainting
+
+Looks like a lot of vex balls. Fight them?
+- Yup
+	dobattle Test3
+- Nah
+	end
+	
+	
+~ ForgorPainting
+
+This painting intimidates you. Try your luck?
+- Yeah
+	dobattle FingorTest2
+- I'll pass
+	end
+	
+	
+~ SpamtonPainting
+
+Deltarune? Still?
+- Mhm
+	dobattle Delta
+- Wait no
+	end
+	
+	
+~ ChessHardPainting
+This is a very weird looking chess board. Still wanna play?
+- Hell yeah
+	dobattle BossChessHard
+- Nope!
+	end
+	
+	
+	
+~ G
+
+Looks like an earthbound enemy
+- Fight
+	dobattle BossG
+- Do not
+	end
+
+
+
+~ Book1
+It's a book! Wanna learn about anything?
+- No
+	end
+- Standard Attacks
+	Short tip: The longer you wait between selecting your attack and swinging your weapon, the more damage you'll do.
+	Don't wait too long though!
+	end
+- Items and health
+	Use your items! They'll automatically be replenished at the end of a battle.
+	You can only use them on yourself, though.
+	Don't worry about taking damage, either! Your health is also fully restored after every battle.
+	end
+- Party
+	Just because you have friends, doesn't mean they'll always be there for you.
+	In some battles, your party members may not take part. They'll still be rooting for you, though!
+	end
+	
+	
+~ Book2
+It's another book! Wanna read about anything?
+- Nah
+	end
+- Overheating
+	If you use an attack too many times, it'll start to overheat!
+	It'll cost more energy to use the hotter it is.
+	To cool it down, either don't use it for a little while, or use an item.
+	The shop over there sells coolants, if you need them.
+	end
+- Group attacks
+	For some attacks, you'll need one or more specific party members to be present.
+	They need to be alive, too!
+	Using these moves on your turn also uses up the turn of the required party members.
+	end
+- Pins
+	You can equip pins in the pause menu! They all have unique effects.
+	You can only equip 3 to start, but you might be able to find a way to equip more...
+	The shop over there sells pins, if you want to try them out!
+	end
+	
+	
+~ Book3
+
+Yet another book? Anything in it look interesting?
+- Nope
+	end
+- Saving
+	The game saves automatically every time you enter a new room, use a save point, or win a battle. Don't worry about losing progress.
+	If you somehow end up playing without a save file selected, the game will still save! You can find the save file in your APPDATA folder.
+	end
+- Settings
+	You can access the settings from the pause menu! Most of the options are self explanatory.
+	There's some accessibility options in there too, so it's worth a look to make sure the game is confortable to play.
+	end
+- Where more game
+	This demo only includes the Battle Hall, which is a showcase of the battle system.
+	There aren't any other areas to explore just yet. Those will be ready soon, though!
+	end
+	
+	
+	
+~ Roadblocks
+Looks like this area is under construction.
+Maybe you'll be able to come back here later, when it's done.
+end

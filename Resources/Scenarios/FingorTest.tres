@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=7 format=3 uid="uid://d05icds4dauxd"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://boxx78gigil1l" path="res://Objects/Battle/Enemies/fingor/Fingor.tscn" id="1_8b64r"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_2s7ok"]
+
+[sub_resource type="Resource" id="Resource_8lm61"]
+script = ExtResource("2_2s7ok")
+enemyscene = ExtResource("1_8b64r")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_l1epo"]
+script = ExtResource("2_2s7ok")
+enemyscene = ExtResource("1_8b64r")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_6b71p"]
+script = ExtResource("2_2s7ok")
+enemyscene = ExtResource("1_8b64r")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "Test Scenario 4"
+description = "FingorTest"
+difficulty = 1
+grid = "x x x
+x 0 x
+x x x"
+challenge_desc = ""
+coins = 10
+is_boss = false
+enemies = Array[ExtResource("2_2s7ok")]([SubResource("Resource_8lm61"), SubResource("Resource_l1epo"), SubResource("Resource_6b71p")])
+background = "res://Objects/Battle/Backgrounds/Squares.tscn"
+music = ""
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://djm1hivsst0wv"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://chqqx1udn0iux" path="res://Objects/Battle/Enemies/BulletSpawner.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="7"]
+
+[sub_resource type="GDScript" id="GDScript_ddcel"]
+script/source = "extends \"res://Objects/Battle/Enemies/EnemyTemplate.gd\"
+
+var count = 0
+var prevpos = 40
+
+var monologue = [
+	\"I crash landed here years ago. I still don't know how.\",
+	\"For my whole life, I've been trying to find a way to get back home.\",
+	\"Then, some strange man approched me. He gave me this strange badge and only asked for my allegiance with him in return.\",
+	\"This badge... I know it holds the power to get me back home. I just don't know how to use it.\",
+	\"Maybe, with your life force, I can finally unlock the power of this object...\",
+]
+var monologue_pos = 0
+
+
+func attack():
+	if BattleSystem.dialogue:
+		yield(TextSystem,\"text_finished\")
+	$BulletSpawner.spawn(7+($BulletSpawner.spawnedbullets*0.05))
+	yield($BulletSpawner,\"done_spawning\")
+	emit_signal(\"done_attacking\")
+
+
+func on_hit():
+	if !BattleSystem.dialogue_queued:
+		if monologue_pos < monologue.size() and !System.demomode:
+			BattleSystem.queue_dialogue([
+				[monologue[monologue_pos],\"g_portrait.png\"],
+			])
+			monologue_pos += 1
+
+func idle(delta):
+	$BulletSpawner.fivemode = true
+	count += 0.03 * delta * 60
+	$Sprite.position.y = sin(count) * 10
+	$BulletSpawner.position.y = 30 + sin(count) * 30
+"
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lurcm"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abagr"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("2")]
+script = SubResource("GDScript_ddcel")
+hp = 300
+enemyname = "Alien"
+enemydesc = "Who is this? Why? How?"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_lurcm")
+sprite_frames = SubResource("SpriteFrames_abagr")
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+texture_under = ExtResource("6")
+texture_over = ExtResource("7")
+texture_progress = ExtResource("5")
+
+[node name="BulletSpawner" parent="." index="6" instance=ExtResource("3")]
+position = Vector2(113.5, 2)

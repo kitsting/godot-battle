@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b0tm6s0mwuujl"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="1_437mi"]
+[ext_resource type="Script" path="res://Resources/AttackScripts/Tactics/Focus.gd" id="2_qtpee"]
+
+[resource]
+script = ExtResource("1_437mi")
+attackname = "Focus"
+desc = "Recover more energy next turn"
+extended_desc = "Recover additional energy when it's your turn to attack."
+cost = 0
+damage = 1.0
+cooldown = 1
+ap_penalty = 4
+affects = 0
+timing = 1.5
+timing_window = 0.5
+usescript = ExtResource("2_qtpee")
+requires1 = false
+requires2 = false

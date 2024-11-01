@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=7 format=3 uid="uid://u363ca55qwvb"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Objects/Battle/Enemies/fingor/Forgor.tscn" id="1_4skmb"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="2_p0rpi"]
+
+[sub_resource type="Resource" id="Resource_4pmf7"]
+script = ExtResource("2_p0rpi")
+enemyscene = ExtResource("1_4skmb")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_5os8f"]
+script = ExtResource("2_p0rpi")
+enemyscene = ExtResource("1_4skmb")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_mngpu"]
+script = ExtResource("2_p0rpi")
+enemyscene = ExtResource("1_4skmb")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "DDR: Forgor Edition"
+description = "ForgorTest"
+difficulty = 1
+grid = "x cdown x
+cright 0 cleft
+x cup x"
+challenge_desc = "Y'all ready to get funky? Forgor is here and ready to dance! Watch out for its sick moves."
+coins = 10
+is_boss = false
+enemies = Array[ExtResource("2_p0rpi")]([SubResource("Resource_4pmf7"), SubResource("Resource_5os8f"), SubResource("Resource_mngpu")])
+background = "res://Objects/Battle/Backgrounds/Breathe.tscn"
+music = ""
+custom_color = Color(0.015686, 0.188235, 0.407843, 1)
+state = 0

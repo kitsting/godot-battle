@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bako0g2sm3n5g"]
+
+[ext_resource type="TileSet" uid="uid://b076cpvafnflw" path="res://NodeResources/Tilesets/test_tileset.tres" id="1"]
+[ext_resource type="PackedScene" path="res://Objects/Overworld/RoomTransition.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dmxe4xno42r2b" path="res://Objects/Overworld/OverworldPlayer.tscn" id="3"]
+[ext_resource type="Script" path="res://Rooms/WorldScript.gd" id="5"]
+
+[node name="TemplateRoom" type="Node2D"]
+script = ExtResource("5")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(241.5, 127)
+scale = Vector2(8.54688, 4.96875)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1")
+format = 2
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="OverworldPlayer" parent="Objects" instance=ExtResource("3")]
+position = Vector2(104, 104)
+
+[node name="FObjects" type="Node2D" parent="."]
+
+[node name="RoomTransition" parent="FObjects" instance=ExtResource("2")]
+position = Vector2(64, 11)
+scale = Vector2(3, 1)
+dir = 1
+destination = "res://Rooms/A1 Desert/DesertMountain.tscn"
+
+[node name="RoomTransition2" parent="FObjects" instance=ExtResource("2")]
+position = Vector2(468, 208)
+scale = Vector2(1, 3)
+dir = 2
+destination = "res://Rooms/A3 Snow/SnowMountain.tscn"
+
+[node name="Label" type="Label" parent="."]
+text = "Short sewer/cave area"
+
+[node name="Label2" type="Label" parent="."]
+text = "Miniboss"

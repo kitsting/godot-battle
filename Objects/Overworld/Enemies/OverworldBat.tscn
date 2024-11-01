@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4lq3lsjqnoit"]
+
+[ext_resource type="Texture2D" uid="uid://ckhlfs8vppjqu" path="res://Graphics/Enemies/Bat/BatShadow.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bk4jknvn7fx64" path="res://Graphics/Enemies/Bat/BatFlapping.tres" id="2"]
+[ext_resource type="Script" path="res://Objects/Overworld/Enemies/OverworldBat.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://mif6jedqof5n" path="res://Graphics/ExclamationMark.png" id="4"]
+[ext_resource type="AudioStream" uid="uid://cav7rr4y77qqa" path="res://Sounds/Select.wav" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(11, 6)
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 87.0
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(9, 4)
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Flap"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_frky6"]
+_data = {
+"Flap": SubResource("4")
+}
+
+[node name="OverworldBat" type="CharacterBody2D"]
+self_modulate = Color(1, 1, 1, 0.529412)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.529412)
+texture = ExtResource("1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("2")
+
+[node name="Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-0.5, 0)
+shape = SubResource("1")
+
+[node name="Aware" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5, -34)
+texture = ExtResource("4")
+
+[node name="Awareness" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Awareness"]
+position = Vector2(-1, -23)
+shape = SubResource("2")
+
+[node name="ShowAware" type="Timer" parent="."]
+one_shot = true
+
+[node name="Tangible" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("3")
+
+[node name="VisibilityNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-15, -35, 30, 45)
+
+[node name="Knows" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5")
+volume_db = -6.0
+
+[node name="FlapAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_frky6")
+}
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Collision" to="." method="_on_Collision_body_entered"]
+[connection signal="body_entered" from="Awareness" to="." method="_on_Awareness_body_entered"]
+[connection signal="timeout" from="ShowAware" to="." method="_on_ShowAware_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]

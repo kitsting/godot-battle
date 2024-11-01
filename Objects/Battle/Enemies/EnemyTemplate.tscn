@@ -1,0 +1,548 @@
+[gd_scene load_steps=26 format=3 uid="uid://dja4somqhrbfm"]
+
+[ext_resource type="AudioStream" uid="uid://dt0kd0nfsjlyu" path="res://Sounds/PlayerHurt2.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://cqxye0qyu5w2k" path="res://Graphics/UI/Battle/Bars/EnemyHealthFull.png" id="3"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/EnemyTemplate.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://dwny2tqyotmo7" path="res://Graphics/UI/Battle/Bars/EnemyHealthEmpty.png" id="6"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/EnemyHitbox.gd" id="7"]
+[ext_resource type="FontFile" uid="uid://xvckwb2negar" path="res://Fonts/SmallLabelFont.tres" id="7_175xr"]
+[ext_resource type="Texture2D" uid="uid://chikiyuuyftfj" path="res://Graphics/UI/Arrows/EnemySelection.tres" id="8"]
+[ext_resource type="Texture2D" uid="uid://d10k40wyqhm44" path="res://Graphics/UI/Arrows/EnemySelectable.png" id="9"]
+[ext_resource type="Material" uid="uid://c6uoh4ginqhfp" path="res://NodeResources/Shaders/Glow.tres" id="10"]
+[ext_resource type="AudioStream" uid="uid://b87lqh3lf7mlu" path="res://Sounds/Misc/ineffective.wav" id="11"]
+[ext_resource type="Texture2D" uid="uid://7ng6q65byuc6" path="res://Graphics/UI/Battle/Bars/EnemyHealthOverlay.png" id="12"]
+[ext_resource type="AudioStream" uid="uid://b0yarud8s8ell" path="res://Sounds/Enemy/generic/boss_light.wav" id="12_trn46"]
+
+[sub_resource type="SpriteFrames" id="9"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(12, 12)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbjk6"]
+font = ExtResource("7_175xr")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_hgbsl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DeathBeams/Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DeathBeams/Polygon2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/DeathBeams/Polygon2D3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/DeathBeams/Polygon2D4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathLight:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DeathLight:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_rcfl1"]
+resource_name = "boss_death"
+length = 4.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.4, 1.6, 1.8, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(2, 1), Vector2(1, 2), Vector2(1.5, 1.5), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4), Vector2(1.4, 1.6), Vector2(1.6, 1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DeathBeams/Polygon2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DeathBeams/Polygon2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/DeathBeams/Polygon2D3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/DeathBeams/Polygon2D4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathLight:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3, 3.3, 3.6, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DeathLight:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3, 3.3, 3.6, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.1, 1.2, 1.4]
+}
+
+[sub_resource type="Animation" id="Animation_fx6jf"]
+resource_name = "exhausted"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExhaustSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExhaustSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_70prc"]
+resource_name = "idle"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/LegL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 1, 1.1, 1.2, 1.8, 1.9, 2, 2.9, 3, 3.1, 3.9, 4, 4.1, 4.7, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/LegR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 1.4, 1.5, 1.6, 2.5, 2.6, 2.7, 3.4, 3.5, 3.6, 4.2, 4.3, 4.4, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-13.0, 13.0, 15.0, 13.0, -13.0, -15.0, -13.0, 13.0, 15.0, 15.0, -13.0, -15.0, -13.0, 13.0, 15.0, 13.0, -13.0, -15.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1, 1.1, 1.8, 1.9, 2, 2.7, 2.8, 2.9, 3.6, 3.7, 3.8, 4.5, 4.6, 4.7, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0, -4.0, 11.0, 12.0, 11.0, -4.0, -5.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/ArmR:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.6, 1.3, 1.4, 1.5, 2.2, 2.3, 2.4, 3.2, 3.3, 3.4, 4.2, 4.3, 4.4, 5, 5.1, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [17.0, 18.0, 17.0, -17.0, -18.0, -17.0, 17.0, 18.0, 17.0, -17.0, -18.0, -17.0, 17.0, 18.0, 17.0, -17.0, -18.0, -17.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/WingL:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.3, 1.4, 1.5, 2.6, 2.7, 2.8, 3.9, 4, 4.1, 5.4, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite/WingR:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7, 0.8, 0.9, 1.5, 1.6, 1.7, 2.2, 2.3, 2.4, 2.8, 2.9, 3, 3.4, 3.5, 3.6, 4, 4.1, 4.2, 4.7, 4.8, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0, -14.0, -15.0, -14.0, 7.0, 8.0, 7.0]
+}
+
+[sub_resource type="Animation" id="Animation_3ffp0"]
+resource_name = "reborn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExhaustSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExhaustSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExhaustSprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "shake"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.0, -3.0, 8.0, -8.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2rkii"]
+_data = {
+"RESET": SubResource("Animation_hgbsl"),
+"boss_death": SubResource("Animation_rcfl1"),
+"exhausted": SubResource("Animation_fx6jf"),
+"idle": SubResource("Animation_70prc"),
+"reborn": SubResource("Animation_3ffp0"),
+"shake": SubResource("2")
+}
+
+[sub_resource type="Animation" id="Animation_pcaal"]
+resource_name = "glow"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3e240"]
+resource_name = "stop glowing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0ucy"]
+_data = {
+"glow": SubResource("Animation_pcaal"),
+"stop glowing": SubResource("Animation_3e240")
+}
+
+[node name="Enemy" type="Node2D" groups=["enemy"]]
+position = Vector2(0, -12)
+script = ExtResource("4")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("10")
+sprite_frames = SubResource("9")
+animation = &"idle"
+
+[node name="Hitbox" type="Area2D" parent="Sprite" groups=["enemy_hitbox"]]
+script = ExtResource("7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+shape = SubResource("1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="DeathBeams" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/DeathBeams"]
+visible = false
+polygon = PackedVector2Array(-238, -239, -261, -222, -4, -12)
+
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/DeathBeams"]
+visible = false
+polygon = PackedVector2Array(371, -81, 374, -68, -1, -12)
+
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/DeathBeams"]
+visible = false
+polygon = PackedVector2Array(-144, 270, -121, 278, 1, -10)
+
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/DeathBeams"]
+visible = false
+polygon = PackedVector2Array(67, -307, 84, -301, 2, -15)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = -17.0
+offset_right = 17.0
+offset_bottom = 8.0
+value = 100.0
+texture_under = ExtResource("6")
+texture_over = ExtResource("12")
+texture_progress = ExtResource("3")
+
+[node name="HealthPercent" type="Label" parent="CanvasLayer/ProgressBar"]
+visible = false
+layout_mode = 0
+offset_left = 26.0
+offset_top = 9.0
+offset_right = 54.0
+offset_bottom = 20.0
+text = "100%"
+label_settings = SubResource("LabelSettings_lbjk6")
+
+[node name="Arrows" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -22.0
+offset_top = -33.0
+offset_right = -8.0
+offset_bottom = -19.0
+
+[node name="Arrow" type="TextureRect" parent="CanvasLayer/Arrows"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("8")
+
+[node name="SmallArrow" type="TextureRect" parent="CanvasLayer/Arrows"]
+modulate = Color(1, 1, 1, 0.847059)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 14.0
+offset_bottom = 14.0
+texture = ExtResource("9")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2")
+bus = &"SFX"
+
+[node name="Reflect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11")
+bus = &"SFX"
+
+[node name="DeathLight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_trn46")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2rkii")
+}
+
+[node name="GlowPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b0ucy")
+}
+
+[node name="ExplosionLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ExplosionLayer"]
+offset_left = -1000.0
+offset_top = -1012.0
+offset_right = 1000.0
+offset_bottom = 988.0
+color = Color(0.776471, 0.776471, 0.776471, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

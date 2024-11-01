@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="PartyMember" load_steps=4 format=3 uid="uid://0xa71hx310iu"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/PartyMember.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://c73mf75pvedox" path="res://NodeResources/Spriteframes/PlayerBattle/green.tres" id="1_xqgtv"]
+[ext_resource type="SpriteFrames" uid="uid://7n27gdkvab7c" path="res://NodeResources/Spriteframes/PlayerOverworld/FollowerVardell.tres" id="2_80mry"]
+
+[resource]
+script = ExtResource("1")
+name = "Vardell"
+use_playername = false
+attack = 18
+defense = -2
+ap_reduction = 0
+health_icon = "res://Graphics/UI/Icons/Party/GreenIcon.png"
+select_color = Color(0.2, 0.67, 0.32, 1)
+unselect_color = Color(0.17, 0.37, 0.24, 1)
+overworld_sprites = Array[SpriteFrames]([ExtResource("2_80mry")])
+battle_sprites = Array[SpriteFrames]([ExtResource("1_xqgtv")])
+costume = 0
+basic_attacks = Array[String](["Slap", "EnergySword"])
+special_attacks = Array[String](["Check", "EnergyShield", "Defend", "Focus"])
+fears = Array[String](["bat"])

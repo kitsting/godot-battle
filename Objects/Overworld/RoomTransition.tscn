@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca2d4qixd2dw3"]
+
+[ext_resource type="Script" path="res://Objects/Overworld/RoomTransition.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dkpo4jc5oko7n" path="res://Graphics/Overworld/Transition/TransDown.png" id="2_kcavq"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(16, 16)
+
+[node name="RoomTransition" type="Node2D" groups=["transition"]]
+z_index = 5
+script = ExtResource("2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_kcavq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

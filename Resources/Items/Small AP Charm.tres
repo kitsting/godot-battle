@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cfbxipdd1uo5" path="res://Graphics/Battle/MiniItem/Charm.png" id="1_or2aa"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://c1b74ylxftpss" path="res://Graphics/UI/Items/SmallAPCharm.png" id="3"]
+[ext_resource type="Script" path="res://Resources/ItemScripts/BasicItem.gd" id="3_nip1q"]
+
+[resource]
+script = ExtResource("2")
+attackname = "Small Energy Charm"
+attackid = "Small AP Charm"
+desc = "Recovers 30 Energy"
+extended_desc = "A small trinket that looks like a necklace of some sort. The gem in the middle is mesmerizing to look at. Recovers 30 AP"
+texture = ExtResource("3")
+mini_texture = ExtResource("1_or2aa")
+cost = 0
+heals_hp = 0
+heals_ap = 30
+affects = 4
+custom_script = false
+usescript = ExtResource("3_nip1q")
+requires1 = false
+requires2 = false

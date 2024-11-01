@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://swcbpcsyiy18"]
+
+[ext_resource type="Script" path="res://Objects/UI/Elements/CycleOption.gd" id="1_up3dd"]
+[ext_resource type="Texture2D" uid="uid://dcyqx136k3a5o" path="res://Graphics/UI/Arrows/ChoiceSelection.tres" id="2_rn54b"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="3_frpt0"]
+[ext_resource type="Texture2D" uid="uid://bcm8hagac420t" path="res://Graphics/UI/Arrows/Selectable.png" id="3_lxod2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vg8be"]
+resource_local_to_scene = true
+font = ExtResource("3_frpt0")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CycleOption" type="HBoxContainer"]
+offset_right = 479.0
+offset_bottom = 20.0
+focus_mode = 2
+script = ExtResource("1_up3dd")
+
+[node name="Arrow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_rn54b")
+stretch_mode = 5
+
+[node name="FArrow" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_lxod2")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Label:"
+label_settings = SubResource("LabelSettings_vg8be")
+
+[node name="LeftArrow" type="Label" parent="."]
+layout_mode = 2
+text = "< "
+label_settings = SubResource("LabelSettings_vg8be")
+
+[node name="Selection" type="Label" parent="."]
+layout_mode = 2
+text = "Selection"
+label_settings = SubResource("LabelSettings_vg8be")
+
+[node name="RightArrow" type="Label" parent="."]
+layout_mode = 2
+text = " >"
+label_settings = SubResource("LabelSettings_vg8be")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

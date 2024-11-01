@@ -1,0 +1,33 @@
+[gd_resource type="FontFile" load_steps=2 format=3 uid="uid://dstoj06rcyyuk"]
+
+[ext_resource type="FontFile" uid="uid://by2gdsi6fpd1s" path="res://Fonts/PixelOperator/PixelOperator8-Bold.ttf" id="1"]
+
+[resource]
+fallbacks = [ExtResource("1")]
+face_index = null
+embolden = null
+transform = null
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/8/0/kerning_overrides/8/0 = Vector2(0, 0)
+cache/0/8/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/8/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/8/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/50/0/kerning_overrides/8/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)

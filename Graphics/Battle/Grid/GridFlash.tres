@@ -1,0 +1,32 @@
+[gd_resource type="AnimatedTexture" load_steps=7 format=3 uid="uid://xfh0d2u812do"]
+
+[ext_resource type="Texture2D" uid="uid://8rhc3dcac63h" path="res://Graphics/Battle/Grid/GridPiece6.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bdpb33n741k1u" path="res://Graphics/Battle/Grid/GridPiece3.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c85j4ytodwihu" path="res://Graphics/Battle/Grid/GridPiece1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b1xn66rurl346" path="res://Graphics/Battle/Grid/GridPiece4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cvoespsmfeu07" path="res://Graphics/Battle/Grid/GridPiece2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://biihquhdi6hto" path="res://Graphics/Battle/Grid/GridPiece5.png" id="6"]
+
+[resource]
+frames = 10
+speed_scale = 8.0
+frame_0/texture = ExtResource("3")
+frame_0/duration = 15.0
+frame_1/texture = ExtResource("5")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("1")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("6")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("4")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("2")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("5")
+frame_9/duration = 1.0

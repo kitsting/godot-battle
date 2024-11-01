@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://6ou1ogv1skp1"
+path="res://.godot/imported/DemoDialogueMinesNew.dialogue-217c076f0cb850f10d53d5341123ca52.tres"
+
+[deps]
+
+source_file="res://Dialogue/DemoDialogueMinesNew.dialogue"
+dest_files=["res://.godot/imported/DemoDialogueMinesNew.dialogue-217c076f0cb850f10d53d5341123ca52.tres"]
+
+[params]
+

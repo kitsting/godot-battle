@@ -1,0 +1,251 @@
+[gd_scene load_steps=12 format=3 uid="uid://dlbil0bq74byo"]
+
+[ext_resource type="Script" path="res://Rooms/Nonrooms/LoadFile.gd" id="1_k4nyo"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="2_qjpfe"]
+[ext_resource type="PackedScene" uid="uid://d0llor8kijoat" path="res://Objects/UI/Title/SaveFile.tscn" id="3_r0g7o"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="4_kjjuh"]
+[ext_resource type="FontFile" uid="uid://dstoj06rcyyuk" path="res://Fonts/DialogueFontSmallBold.tres" id="5_8odjd"]
+[ext_resource type="Texture2D" uid="uid://byq6jymnhrxlp" path="res://Graphics/UI/Theme/PanelBack.png" id="5_ru5x1"]
+[ext_resource type="PackedScene" uid="uid://b1ksfv0lrb2e7" path="res://Objects/UI/Title/DeleteConfirm.tscn" id="5_v52sq"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFont.tres" id="7_yg6u4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_axdei"]
+line_spacing = -5.0
+font = ExtResource("4_kjjuh")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_baamj"]
+font = ExtResource("5_8odjd")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_0lc06"]
+font = ExtResource("7_yg6u4")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TitleScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4nyo")
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -115.0
+offset_right = 131.0
+offset_bottom = -20.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Start" parent="MainMenu" instance=ExtResource("2_qjpfe")]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Start"
+
+[node name="Settings" parent="MainMenu" instance=ExtResource("2_qjpfe")]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Settings"
+
+[node name="Quit" parent="MainMenu" instance=ExtResource("2_qjpfe")]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Exit Game"
+
+[node name="Files" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 189.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="SaveFile1" parent="Files" instance=ExtResource("3_r0g7o")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../SaveFile2")
+focus_next = NodePath("../SaveFile2")
+focus_previous = NodePath("../Buttons/Refresh")
+
+[node name="SaveFile2" parent="Files" instance=ExtResource("3_r0g7o")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../SaveFile1")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../SaveFile3")
+focus_next = NodePath("../SaveFile3")
+focus_previous = NodePath("../SaveFile1")
+save_slot = "2"
+
+[node name="SaveFile3" parent="Files" instance=ExtResource("3_r0g7o")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../SaveFile2")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Buttons/Refresh")
+focus_next = NodePath("../Buttons/Refresh")
+focus_previous = NodePath("../SaveFile2")
+save_slot = "3"
+
+[node name="Spacer" type="Control" parent="Files"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Files"]
+layout_mode = 2
+
+[node name="PaddingL" type="Control" parent="Files/Buttons"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Copy" parent="Files/Buttons" instance=ExtResource("2_qjpfe")]
+visible = false
+layout_mode = 2
+disabled = true
+text = "Copy"
+desc = "Copy one save slot to another. The save being overwritten will be unrecoverable."
+
+[node name="Delete" parent="Files/Buttons" instance=ExtResource("2_qjpfe")]
+visible = false
+layout_mode = 2
+text = "Delete"
+desc = "Delete a save file. It will either be recycled or deleted, depending on the system."
+
+[node name="Refresh" parent="Files/Buttons" instance=ExtResource("2_qjpfe")]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../SaveFile3")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../../SaveFile1")
+focus_previous = NodePath("../../SaveFile3")
+text = "Refresh save list"
+
+[node name="PaddingR" type="Control" parent="Files/Buttons"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="DeleteModeIndicator" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+text = "Delete Mode ON"
+
+[node name="TempTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 132.0
+offset_bottom = 79.0
+text = "Relhm
+   seeker"
+label_settings = SubResource("LabelSettings_axdei")
+
+[node name="Discalimer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 71.0
+offset_right = 143.0
+offset_bottom = 141.0
+text = "(It's all one word)"
+label_settings = SubResource("LabelSettings_baamj")
+
+[node name="DemoText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 91.0
+offset_right = 143.0
+offset_bottom = 102.0
+text = "\"Battle Test\" Demo"
+label_settings = SubResource("LabelSettings_baamj")
+
+[node name="DeleteConfirm" parent="." instance=ExtResource("5_v52sq")]
+visible = false
+z_index = 5
+layout_mode = 1
+
+[node name="Fadein" type="ColorRect" parent="."]
+visible = false
+z_index = 200
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SettingsRect" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 148.0
+offset_top = 4.0
+offset_right = 474.0
+offset_bottom = 265.0
+texture = ExtResource("5_ru5x1")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="SettingsMargin" type="MarginContainer" parent="SettingsRect"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DescRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 145.0
+offset_bottom = 146.0
+texture = ExtResource("5_ru5x1")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="DescMargin" type="MarginContainer" parent="DescRect"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CurrentDesc" type="Label" parent="DescRect/DescMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_0lc06")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="MainMenu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Files/Buttons/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Files/Buttons/Refresh" to="." method="_on_refresh_pressed"]

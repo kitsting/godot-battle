@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=3 format=3 uid="uid://vnjyik8udnf8"]
+
+[ext_resource type="Script" path="res://Resources/AttackScripts/StandardAttack.gd" id="1"]
+[ext_resource type="Script" path="res://Resources/Scripts/Attack.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+attackname = "Power Strike"
+desc = "Deal lots of damage to one enemy"
+extended_desc = "Deal lots of damage to a single enemy. No input is required."
+cost = 50
+damage = 4.0
+cooldown = 0
+ap_penalty = 10
+affects = 1
+timing = 0.0
+timing_window = 0.0
+usescript = ExtResource("1")
+requires1 = false
+requires2 = false

@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2pvj2op2htyt"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="1"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/bosses/biker_base.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cmpl7paormepd" path="res://Graphics/Enemies/boss_biker.png" id="3_d2nmg"]
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48wy4"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rljhc"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d2nmg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Biker" instance=ExtResource("1")]
+script = ExtResource("2")
+hp = 100
+damage = 15
+defense = 5
+enemyname = "Biker"
+enemydesc = "You wish you could be this cool"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_48wy4")
+sprite_frames = SubResource("SpriteFrames_rljhc")
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+offset_top = 21.0
+offset_bottom = 29.0
+
+[node name="Arrows" parent="CanvasLayer" index="2"]
+offset_left = -35.0
+offset_top = -49.0
+offset_right = -21.0
+offset_bottom = -35.0

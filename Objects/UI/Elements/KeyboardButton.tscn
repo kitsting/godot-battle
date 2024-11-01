@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Objects/UI/Elements/KeyboardButton.gd" type="Script" id=2]
+
+[node name="Key" type="Button"]
+margin_right = 33.0
+margin_bottom = 24.0
+theme = ExtResource( 1 )
+text = "A"
+flat = true
+script = ExtResource( 2 )
+
+[connection signal="focus_entered" from="." to="." method="_on_Key_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_Key_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_Key_pressed"]

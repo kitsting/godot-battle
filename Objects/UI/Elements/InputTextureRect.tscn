@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jwpnsxxme8k0"]
+
+[ext_resource type="Script" path="res://Objects/UI/Elements/InputTextureRect.gd" id="1"]
+
+[node name="InputTextureRect" type="TextureRect"]
+script = ExtResource("1")

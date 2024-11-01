@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_6"
+type="Resource"
+uid="uid://cd5khx0e68i1d"
+path="res://.godot/imported/GlobalDialogue.dialogue-e6a9ab4fa9c296bc8f3c81c104e043ec.tres"
+
+[deps]
+
+source_file="res://Dialogue/GlobalDialogue.dialogue"
+dest_files=["res://.godot/imported/GlobalDialogue.dialogue-e6a9ab4fa9c296bc8f3c81c104e043ec.tres"]
+
+[params]
+

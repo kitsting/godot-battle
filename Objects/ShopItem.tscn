@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsby4i53gmptq"]
+
+[ext_resource type="Texture2D" path="res://Graphics/UI/Theme/ButtonSelected.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://b8iqrel02b1km" path="res://Graphics/UI/Items/Bread.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c7kk4phnqv7va" path="res://Graphics/UI/Coin.png" id="3"]
+[ext_resource type="Script" path="res://Objects/ShopItem.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://bwcmtyicoc8vy" path="res://Graphics/UI/Items/ItemShadow.png" id="5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ocrja"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="1"]
+resource_name = "selected"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Item/Border:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Item:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, -12)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "unselected"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Item/Border:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Item:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f68sy"]
+_data = {
+"selected": SubResource("1"),
+"unselected": SubResource("2")
+}
+
+[node name="ShopItem" type="Control" groups=["shop_item"]]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("4")
+
+[node name="Item" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Texture" type="TextureRect" parent="Item"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+texture = ExtResource("2")
+
+[node name="Border" type="NinePatchRect" parent="Item"]
+visible = false
+layout_mode = 0
+offset_left = -24.0
+offset_top = -44.0
+offset_right = 24.0
+offset_bottom = 4.0
+texture = ExtResource("1")
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="Price" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_top = 5.0
+offset_right = 20.5
+offset_bottom = 24.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Price"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3")
+
+[node name="Label" type="Label" parent="Price"]
+layout_mode = 2
+text = "x10"
+label_settings = SubResource("LabelSettings_ocrja")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f68sy")
+}
+
+[node name="Shadow" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.529412)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = 4.0
+texture = ExtResource("5")
+
+[connection signal="focus_entered" from="." to="." method="_on_ShopItem_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_ShopItem_focus_exited"]

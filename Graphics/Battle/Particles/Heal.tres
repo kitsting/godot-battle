@@ -1,0 +1,11 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3]
+
+[ext_resource type="Texture" uid="uid://b16h5a3bx1jeu" path="res://Graphics/Battle/Particles/Heal2.png" id="1"]
+[ext_resource type="Texture" uid="uid://b3kt31og0rs2m" path="res://Graphics/Battle/Particles/Heal1.png" id="2"]
+
+[resource]
+frames = 2
+pause = true
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 1 )
+frame_1/delay_sec = 0.0

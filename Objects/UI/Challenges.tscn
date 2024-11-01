@@ -1,0 +1,255 @@
+[gd_scene load_steps=16 format=3 uid="uid://yy42d76i8ljp"]
+
+[ext_resource type="Texture2D" uid="uid://byq6jymnhrxlp" path="res://Graphics/UI/Theme/PanelBack.png" id="1_ch06n"]
+[ext_resource type="Script" path="res://Objects/UI/Challenges.gd" id="1_mfg1v"]
+[ext_resource type="PackedScene" uid="uid://cfak7sg6dybpi" path="res://Objects/UI/Elements/SelectableButton.tscn" id="2_3hsw3"]
+[ext_resource type="FontFile" uid="uid://cg0kedwr3m5a6" path="res://Fonts/DialogueFontBold.tres" id="3_3uahh"]
+[ext_resource type="Texture2D" uid="uid://oqor77b5mrtp" path="res://Graphics/UI/Menus/Challenge/Grid.png" id="4_nuuet"]
+[ext_resource type="Texture2D" uid="uid://bt1dw7newljmj" path="res://Graphics/UI/Menus/Challenge/Enemy.png" id="4_tfygc"]
+[ext_resource type="Texture2D" uid="uid://cdx05fxjuw3at" path="res://Graphics/UI/Theme/PanelHSeparate.png" id="5_dqh2e"]
+[ext_resource type="FontFile" path="res://Fonts/DialogueFontSmall.tres" id="5_mbr46"]
+[ext_resource type="Texture2D" uid="uid://cl16tcmrxkpq6" path="res://Graphics/UI/Theme/PanelVSeparate.png" id="6_e0qpw"]
+[ext_resource type="Texture2D" uid="uid://br6m064740wic" path="res://Graphics/UI/Menus/Challenge/MiniCoin.png" id="8_boyse"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_udbn3"]
+font = ExtResource("3_3uahh")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8bkix"]
+font = ExtResource("3_3uahh")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_51mwd"]
+font = ExtResource("5_mbr46")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l0d4h"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3mm6k"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Challenges" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_mfg1v")
+battles = Array[String](["Mines/TooManyBats", "Delta", "ForgorTest", "BossBiker"])
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="OuterMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="NinePatchRect" parent="OuterMargin"]
+layout_mode = 2
+texture = ExtResource("1_ch06n")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="InnerMargin" type="MarginContainer" parent="OuterMargin/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="OuterMargin/Panel/InnerMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Upper" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox"]
+layout_mode = 2
+
+[node name="BackButton" parent="OuterMargin/Panel/InnerMargin/VBox/Upper" instance=ExtResource("2_3hsw3")]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Back"
+
+[node name="Label" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Upper"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Challenges"
+label_settings = SubResource("LabelSettings_udbn3")
+horizontal_alignment = 1
+
+[node name="Lower" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="BattleList" type="VBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BattleInfo" type="VBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo"]
+layout_mode = 2
+text = "Battle Name"
+label_settings = SubResource("LabelSettings_8bkix")
+horizontal_alignment = 1
+
+[node name="Info" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo"]
+layout_mode = 2
+alignment = 1
+
+[node name="Difficulty" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/Info"]
+layout_mode = 2
+text = "Difficulty"
+label_settings = SubResource("LabelSettings_51mwd")
+
+[node name="Sep" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/Info"]
+layout_mode = 2
+text = "-"
+label_settings = SubResource("LabelSettings_51mwd")
+
+[node name="Boss" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/Info"]
+layout_mode = 2
+text = "Boss"
+label_settings = SubResource("LabelSettings_51mwd")
+
+[node name="GridGrid" type="GridContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = -1
+theme_override_constants/v_separation = -1
+columns = 3
+
+[node name="g" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g2" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g3" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g4" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g5" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g6" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g7" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g8" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="g9" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/GridGrid"]
+layout_mode = 2
+texture = ExtResource("4_nuuet")
+
+[node name="MoreInfo" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo"]
+layout_mode = 2
+alignment = 1
+
+[node name="PadBegin" type="Control" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="Enemies" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Icon" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Enemies"]
+layout_mode = 2
+texture = ExtResource("4_tfygc")
+stretch_mode = 3
+
+[node name="x" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Enemies"]
+layout_mode = 2
+text = "x"
+label_settings = SubResource("LabelSettings_l0d4h")
+
+[node name="Count" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Enemies"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_l0d4h")
+
+[node name="Reward" type="HBoxContainer" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo"]
+layout_mode = 2
+
+[node name="Reward" type="TextureRect" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Reward"]
+layout_mode = 2
+texture = ExtResource("8_boyse")
+stretch_mode = 3
+
+[node name="Coins" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Reward"]
+layout_mode = 2
+text = "x"
+label_settings = SubResource("LabelSettings_3mm6k")
+
+[node name="Count" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo/Reward"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_3mm6k")
+
+[node name="PadEnd" type="Control" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo/MoreInfo"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="Desc" type="Label" parent="OuterMargin/Panel/InnerMargin/VBox/Lower/BattleInfo"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_51mwd")
+autowrap_mode = 2
+
+[node name="DivH" type="TextureRect" parent="."]
+offset_left = 12.0
+offset_top = 47.0
+offset_right = 468.0
+offset_bottom = 51.0
+texture = ExtResource("5_dqh2e")
+stretch_mode = 1
+
+[node name="DivV" type="TextureRect" parent="."]
+offset_left = 304.0
+offset_top = 49.0
+offset_right = 308.0
+offset_bottom = 258.0
+texture = ExtResource("6_e0qpw")
+stretch_mode = 1
+
+[connection signal="button_down" from="OuterMargin/Panel/InnerMargin/VBox/Upper/BackButton" to="." method="_on_back_button_button_down"]
+[connection signal="pressed" from="OuterMargin/Panel/InnerMargin/VBox/Upper/BackButton" to="." method="_on_back_button_pressed"]

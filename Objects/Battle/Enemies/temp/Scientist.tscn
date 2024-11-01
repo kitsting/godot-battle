@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Battle/Enemies/temp/Scientist.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/LiterallyNothing.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Temp/Scientist.tscn" type="PackedScene" id=4]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+hp = 50
+enemyname = "Scientist"
+
+[node name="Sprite" parent="." index="3"]
+texture = ExtResource( 3 )
+
+[node name="Node2D" parent="Sprite" index="0" instance=ExtResource( 4 )]
+position = Vector2( -248, -130 )

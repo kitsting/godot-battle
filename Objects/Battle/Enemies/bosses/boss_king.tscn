@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dnf22bxpndni8"]
+
+[ext_resource type="PackedScene" uid="uid://dja4somqhrbfm" path="res://Objects/Battle/Enemies/EnemyTemplate.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://chqqx1udn0iux" path="res://Objects/Battle/Enemies/BulletSpawner.tscn" id="3"]
+[ext_resource type="Script" path="res://Objects/Battle/Enemies/bosses/boss_king.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://blyuisl350syn" path="res://Graphics/UI/Battle/Bars/BossHealthFull.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dnvr23sv16lku" path="res://Graphics/UI/Battle/Bars/BossHealthEmpty.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b2m51ghvvssuh" path="res://Graphics/UI/Battle/Bars/BossHealthOverlay.png" id="7"]
+
+[sub_resource type="Shader" id="Shader_dp0uu"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlyoo"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dp0uu")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6junn"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("2")]
+script = ExtResource("4")
+hp = 350
+defense = 6
+enemyname = "The King"
+enemydesc = "Is just the g boss but stronger"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_wlyoo")
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_6junn")
+
+[node name="ProgressBar" parent="CanvasLayer" index="1"]
+texture_under = ExtResource("6")
+texture_over = ExtResource("7")
+texture_progress = ExtResource("5")
+
+[node name="BulletSpawner" parent="." index="6" instance=ExtResource("3")]
+position = Vector2(113.5, 2)

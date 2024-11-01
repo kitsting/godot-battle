@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj5lk0x3n87e7"]
+
+[ext_resource type="Script" path="res://Objects/UI/Battle/guard_widget.gd" id="1_jt0ip"]
+[ext_resource type="Texture2D" uid="uid://cr56waehgf7bf" path="res://Graphics/UI/Battle/Guard.png" id="1_urq1r"]
+[ext_resource type="PackedScene" uid="uid://jwpnsxxme8k0" path="res://Objects/UI/Elements/InputTextureRect.tscn" id="2_81nbd"]
+[ext_resource type="Texture2D" uid="uid://bmc134egahomd" path="res://Graphics/UI/Buttons/KeyZ.png" id="3_lkfi0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3g7rj"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GuardWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jt0ip")
+
+[node name="Guards" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 158.0
+offset_right = 52.0
+offset_bottom = 238.0
+theme_override_constants/separation = -23
+alignment = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Guards"]
+layout_mode = 2
+texture = ExtResource("1_urq1r")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Guards"]
+layout_mode = 2
+texture = ExtResource("1_urq1r")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Guards"]
+layout_mode = 2
+texture = ExtResource("1_urq1r")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Guards"]
+layout_mode = 2
+texture = ExtResource("1_urq1r")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Guards"]
+layout_mode = 2
+texture = ExtResource("1_urq1r")
+stretch_mode = 2
+
+[node name="Prompt" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 240.0
+offset_right = 74.0
+offset_bottom = 259.0
+
+[node name="InputTextureRect" parent="Prompt" instance=ExtResource("2_81nbd")]
+layout_mode = 2
+texture = ExtResource("3_lkfi0")
+action_name = "ui_accept"
+xbox_texture = "res://Graphics/UI/Buttons/ButtonAXbox.png"
+nintendo_texture = "res://Graphics/UI/Buttons/ButtonBGeneric.png"
+playstation_texture = "res://Graphics/UI/Buttons/ButtonXXbox.png"
+pc_texture = "res://Graphics/UI/Buttons/KeyZ.png"
+
+[node name="Label" type="Label" parent="Prompt"]
+layout_mode = 2
+text = "Guard"
+label_settings = SubResource("LabelSettings_3g7rj")

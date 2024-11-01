@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cgam6gs68ajsm" path="res://Graphics/Battle/MiniItem/Coolant.png" id="1_djwdi"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_i1460"]
+[ext_resource type="Texture2D" uid="uid://b5sts6c3lpurt" path="res://Graphics/UI/Items/Coolant.png" id="2_gqaxa"]
+[ext_resource type="Script" path="res://Resources/ItemScripts/Coolant.gd" id="3_36n2g"]
+
+[resource]
+script = ExtResource("1_i1460")
+attackname = "Small Coolant"
+attackid = "Coolant"
+desc = "Cools down attacks by a small amount."
+extended_desc = "A container of... something. Reduces the attack cooldown of all attacks by a small amount."
+texture = ExtResource("2_gqaxa")
+mini_texture = ExtResource("1_djwdi")
+cost = 0
+heals_hp = 0
+heals_ap = 0
+affects = 4
+custom_script = true
+usescript = ExtResource("3_36n2g")
+requires1 = false
+requires2 = false

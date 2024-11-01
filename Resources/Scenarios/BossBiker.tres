@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="BattleScenario" load_steps=7 format=3 uid="uid://dx47d5afm04a6"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/BattleScenario.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d2pvj2op2htyt" path="res://Objects/Battle/Enemies/bosses/biker_base.tscn" id="2_b5unj"]
+[ext_resource type="Script" path="res://Resources/Scripts/EnemyData.gd" id="3_p1it2"]
+
+[sub_resource type="Resource" id="Resource_8cofk"]
+script = ExtResource("3_p1it2")
+enemyscene = ExtResource("2_b5unj")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_6ck7g"]
+script = ExtResource("3_p1it2")
+enemyscene = ExtResource("2_b5unj")
+is_advanced = false
+general_int = 0
+
+[sub_resource type="Resource" id="Resource_72nug"]
+script = ExtResource("3_p1it2")
+enemyscene = ExtResource("2_b5unj")
+is_advanced = false
+general_int = 0
+
+[resource]
+script = ExtResource("1")
+readable_name = "VS Biker Gang"
+description = "BossBiker"
+difficulty = 1
+grid = "m x x x m
+x 2 x x x
+x m 0 m x
+x 1 x x x
+m x m x m"
+challenge_desc = ""
+coins = 10
+is_boss = true
+enemies = Array[ExtResource("3_p1it2")]([SubResource("Resource_8cofk"), SubResource("Resource_6ck7g"), SubResource("Resource_72nug")])
+background = "res://Objects/Battle/Backgrounds/Biker.tscn"
+music = "res://Sounds/Music/biker.ogg"
+custom_color = Color(0.756863, 0, 0.121569, 1)
+state = 1
